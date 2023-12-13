@@ -43,7 +43,7 @@ public class DanhSachDonDK extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã đơn", "Mã học phần", "Tên học phần", "Trình độ đào tạo"
+                "Mã đơn", "Mã học phần", "Tên học phần", "Loại đơn "
             }
         ) {
             Class[] types = new Class [] {
@@ -90,8 +90,8 @@ public class DanhSachDonDK extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)

@@ -8,12 +8,12 @@ package view.admin;
  *
  * @author Le Thi Ngoc
  */
-public class ThongKeLopHocPhanTheoKhoa extends javax.swing.JFrame {
+public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
 
     /**
-     * Creates new form ThongKeLopHocPhanTheoKhoa
+     * Creates new form ThongKeTheoKhoa
      */
-    public ThongKeLopHocPhanTheoKhoa() {
+    public ThongKeHocPhanTheoKhoa() {
         initComponents();
     }
 
@@ -29,11 +29,9 @@ public class ThongKeLopHocPhanTheoKhoa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -42,7 +40,7 @@ public class ThongKeLopHocPhanTheoKhoa extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Mã học phần", "Tên học phần", "Số lượng đơn đăng ký"
+                "Mã lớp học phần", "Tên lớp học phần", "Số đơn đăng ký"
             }
         ) {
             Class[] types = new Class [] {
@@ -53,7 +51,7 @@ public class ThongKeLopHocPhanTheoKhoa extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setName("tblHocPhan"); // NOI18N
+        jTable1.setName("tblKhoa"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -65,9 +63,6 @@ public class ThongKeLopHocPhanTheoKhoa extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Duyệt");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,25 +70,21 @@ public class ThongKeLopHocPhanTheoKhoa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(273, 273, 273)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jButton1)
-                        .addGap(64, 64, 64)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(85, 85, 85)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -120,27 +111,27 @@ public class ThongKeLopHocPhanTheoKhoa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThongKeLopHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThongKeLopHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThongKeLopHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThongKeLopHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeHocPhanTheoKhoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThongKeLopHocPhanTheoKhoa().setVisible(true);
+                new ThongKeHocPhanTheoKhoa().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
