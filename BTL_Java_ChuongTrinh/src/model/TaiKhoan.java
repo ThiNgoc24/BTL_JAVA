@@ -26,10 +26,6 @@ public class TaiKhoan {
         return maTK;
     }
 
-    public void setMaTK(String maTK) {
-        this.maTK = maTK;
-    }
-
     public String getMatKhau() {
         return matKhau;
     }
