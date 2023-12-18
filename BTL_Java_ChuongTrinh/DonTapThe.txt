@@ -1,30 +1,31 @@
+
 Mã đơn tập thể: DTT0001
-Tên học phần: Item 1
-Mã học phần: 1
+Tên học phần: Kiến trúc máy tính
+Mã học phần: IT6014
 Danh sách sinh viên:
   - Mã SV: 111, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 222, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 333, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 444, Tên SV: Nguyen Van Manh, Ngành học: CNTT
-Lý do mở lớp: 1
+Lý do mở lớp: 
 -----------------------------------------
 Mã đơn tập thể: DTT0002
-Tên học phần: Item 1
-Mã học phần: 2
+Tên học phần: Kiến trúc máy tính
+Mã học phần: IT6014
 Danh sách sinh viên:
   - Mã SV: 111, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 222, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 333, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 444, Tên SV: Nguyen Van Manh, Ngành học: CNTT
-Lý do mở lớp: 2
+Lý do mở lớp: 
 -----------------------------------------
-Mã đơn tập thể: DTT0001
-Tên học phần: Cơ sở dữ liệu
-Mã học phần: IT6006
+Mã đơn tập thể: DTT0003
+Tên học phần: Kiến trúc máy tính
+Mã học phần: IT6014
 Danh sách sinh viên:
   - Mã SV: 111, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 222, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 333, Tên SV: Nguyen Van Manh, Ngành học: CNTT
   - Mã SV: 444, Tên SV: Nguyen Van Manh, Ngành học: CNTT
-Lý do mở lớp: Học vượt
+Lý do mở lớp: 
 -----------------------------------------

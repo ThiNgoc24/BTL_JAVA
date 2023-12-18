@@ -17,7 +17,7 @@ import java.util.List;
  * @author NGUYEN VAN MANH
  */
 public class TTDonTapTheModel {
-    private static final String FILE_PATH = "DonTapThe.txt";
+    private static final String FILE_PATH = "src\\data\\DonTapThe.txt";
 
     public static void saveDonTapTheInfo(TTDonTapThe donTapThe) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {

@@ -13,13 +13,13 @@ import java.util.HashSet;
 public class SinhVien {
     private String maSV;
     private String hoTenSV;
-    private HashSet<ChiTietNganh> chiTietNganh;
+    private HashSet<Nganh> chiTietNganh;
     private String maTK;
 
     public SinhVien() {
     }
 
-    public SinhVien(String maSV, String hoTenSV, HashSet<ChiTietNganh> chiTietNganh) {
+    public SinhVien(String maSV, String hoTenSV, HashSet<Nganh> chiTietNganh) {
         this.maSV = maSV;
         this.hoTenSV = hoTenSV;
         this.chiTietNganh = chiTietNganh;
@@ -44,11 +44,11 @@ public class SinhVien {
         this.hoTenSV = hoTenSV;
     }
 
-    public HashSet<ChiTietNganh> getChiTietNganh() {
+    public HashSet<Nganh> getChiTietNganh() {
         return chiTietNganh;
     }
 
-    public void setChiTietNganh(HashSet<ChiTietNganh> chiTietNganh) {
+    public void setChiTietNganh(HashSet<Nganh> chiTietNganh) {
         this.chiTietNganh = chiTietNganh;
     }
     
