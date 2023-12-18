@@ -4,6 +4,17 @@
  */
 package view.dangnhap;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Le Thi Ngoc
@@ -29,11 +40,11 @@ public class DoiMatKhau extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtMatKhauCu = new javax.swing.JTextField();
-        txtMatKhauMoi = new javax.swing.JTextField();
-        txtNhapLai = new javax.swing.JTextField();
         btnQuayLai = new javax.swing.JButton();
         btnDoiMatKhau = new javax.swing.JButton();
+        txtMatKhauCu = new javax.swing.JPasswordField();
+        txtMatKhauMoi = new javax.swing.JPasswordField();
+        txtNhapLai = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,47 +57,51 @@ public class DoiMatKhau extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Nhập lại mật khẩu mới");
 
-        txtMatKhauCu.setName("txtMatKhauCu"); // NOI18N
-
-        txtMatKhauMoi.setName("txtMatKhauMoi"); // NOI18N
-
-        txtNhapLai.setName("txtNhapLai"); // NOI18N
-
         btnQuayLai.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnQuayLai.setText("Quay lại");
         btnQuayLai.setName("btnQuayLai"); // NOI18N
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLaiActionPerformed(evt);
+            }
+        });
 
         btnDoiMatKhau.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDoiMatKhau.setText("Đổi mật khẩu");
         btnDoiMatKhau.setName("btnDoiMatKhau"); // NOI18N
+        btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoiMatKhauActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(txtMatKhauMoi))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(76, 76, 76)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMatKhauCu)
+                                    .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNhapLai, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNhapLai))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94)
-                        .addComponent(txtMatKhauCu, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(61, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btnDoiMatKhau)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(111, 111, 111)
+                        .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnDoiMatKhau)))
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,11 +128,134 @@ public class DoiMatKhau extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
+        // TODO add your handling code here:
+        checkChange();
+    }//GEN-LAST:event_btnDoiMatKhauActionPerformed
+
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public void changePassword(){
+    public static String tkDangNhap;
+    public static String[] infor;
+    
+    public void checkChange(){
+        String filePath = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\LichSuDangNhap.txt";
+        try {
+            // Tạo đối tượng FileReader để đọc tệp tin
+            FileReader fileReader = new FileReader(filePath);
+
+            // Tạo đối tượng BufferedReader để đọc dữ liệu từ FileReader
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                tkDangNhap = line;
+            }
+            System.out.println("Tên đang nhập: " + tkDangNhap);
+            // Đóng FileReader và BufferedReader sau khi đọc xong
+            bufferedReader.close();
+            fileReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         
+        try{
+            String fileNameSV = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\SinhVien.txt";
+            String fileNameAdmin = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\Admin.txt";
+            
+            if(checkUser(tkDangNhap, fileNameSV)){
+                Map<String, String> svMap = readUserMapFromFile(fileNameSV);
+                infor = svMap.get(tkDangNhap).split(",");
+                if(checkChangePassword()){
+                    infor[0] = new String(txtMatKhauMoi.getPassword());
+                    svMap.put(tkDangNhap, String.join(",", infor));
+                    JOptionPane.showMessageDialog(DoiMatKhau.this, "Đổi mật khẩu thành công");
+                }  
+                writeDataToFile(svMap, fileNameSV);
+                return;
+            }
+            if(checkUser(tkDangNhap, fileNameAdmin)){
+                Map<String, String> adminMap = readUserMapFromFile(fileNameAdmin);
+                infor = adminMap.get(tkDangNhap).split(",");
+                if(checkChangePassword()){
+                    infor[0] = new String(txtMatKhauMoi.getPassword());
+                    adminMap.put(tkDangNhap, String.join(",", infor));
+                    JOptionPane.showMessageDialog(DoiMatKhau.this, "Đổi mật khẩu thành công");
+                }  
+                writeDataToFile(adminMap, fileNameAdmin);
+                return;
+            }
+        }catch(IOException e){
+             e.printStackTrace();
+        }
+    }
+    
+    private Map<String, String> readUserMapFromFile(String fileName) throws FileNotFoundException, IOException{
+        Map<String, String> userMap = new HashMap<>();
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line;
+        // Đọc từng dòng từ file
+        while ((line = br.readLine()) != null) {
+            // Tách các phần trong dòng bằng dấu phẩy
+            String[] parts = line.split(",");
+
+            // Lưu vào map với key là phần đầu tiên trong dòng và value là các phần còn lại
+            String value = parts.length > 3 ? String.join(",", parts[1], parts[2], parts[3]) : String.join(",", parts[1], parts[2]);
+
+            userMap.put(parts[0],value);
+        }
+        return userMap;
+    }
+    
+    //Kiểm tra xem user đăng nhập thuộc danh sách nào
+    public boolean checkUser(String username, String fileName) throws IOException{
+        Map<String, String> userMap = readUserMapFromFile(fileName);
+        if(userMap.containsKey(username))
+            return true;
+        else
+            return false;
+    }
+    
+    private void writeDataToFile(Map<String, String> dataMap, String fileName) {
+        try (PrintWriter writer = new PrintWriter(new File(fileName))) {
+            for (Map.Entry<String, String> entry : dataMap.entrySet()) {
+                writer.println(entry.getKey() + "," + entry.getValue());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public boolean checkChangePassword(){
+        //Lấy thông tin các ô textbox
+        String matKhauCu = new String(txtMatKhauCu.getPassword());
+        String matKhauMoi = new String(txtMatKhauMoi.getPassword());
+        String nhapLaiMK = new String(txtNhapLai.getPassword());
+        
+        try{
+            //Kiểm tra bỏ trống
+            if(matKhauCu.equals("") || matKhauMoi.equals("") || nhapLaiMK.equals("")){
+                throw new Exception("Vui lòng điền đầy đủ thông tin");
+            }
+            
+            //Kiểm tra mật khẩu cũ nhập vào đã khớp với mật khẩu đăng nhập chưa
+            if(!matKhauCu.equals(infor[0]))
+                throw new Exception("Mật khẩu nhập vào không đúng");
+            
+            //Kiểm tra trường mật khẩu mới và nhập lại mật khẩu mới
+            if(!matKhauMoi.equals(nhapLaiMK))
+                throw new Exception("Mật khẩu mới và mật khẩu nhập lại không trùng khớp");
+            
+            return true;
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(DoiMatKhau.this, ex.getMessage());
+            return false;
+        }
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -157,8 +295,8 @@ public class DoiMatKhau extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtMatKhauCu;
-    private javax.swing.JTextField txtMatKhauMoi;
-    private javax.swing.JTextField txtNhapLai;
+    private javax.swing.JPasswordField txtMatKhauCu;
+    private javax.swing.JPasswordField txtMatKhauMoi;
+    private javax.swing.JPasswordField txtNhapLai;
     // End of variables declaration//GEN-END:variables
 }

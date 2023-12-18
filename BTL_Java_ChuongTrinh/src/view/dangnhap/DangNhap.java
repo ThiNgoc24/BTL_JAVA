@@ -5,9 +5,16 @@
 package view.dangnhap;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import model.QuanTriVien;
 import model.SinhVien;
@@ -183,7 +190,7 @@ public class DangNhap extends javax.swing.JFrame {
                String maTK = tk[0].trim();
                String passWord = tk[1].trim();
                String name = tk[2].trim();
-               String[] nganhList = tk[3].replaceAll("[\\[\\]\"]", "").split(", "); 
+               String[] nganhList = tk[3].replaceAll("[\\[\\]\"]", "").split(","); 
                HashSet<String> nganhs  = new HashSet<>();
                for (String nganh : nganhList) {
                         nganhs.add(nganh);
@@ -220,6 +227,7 @@ public class DangNhap extends javax.swing.JFrame {
         }
         return 2;
     }
+//    Map<String, String> userMap = new HashMap<>();
     
     private void rdoQuanTriVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoQuanTriVienActionPerformed
         // TODO add your handling code here:
@@ -233,14 +241,17 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userName = tenDangNhap.getText();
         String passWord = new String(matKhau.getPassword()) ;
+        String outputFileName = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\LichSuDangNhap.txt";
         try{
             if(checkLogin(userName, passWord) == 1){
+                writeUserInFileHistory(userName, outputFileName);
                 TrangChuSinhVien sinhVien = new TrangChuSinhVien();
                 sinhVien.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(DangNhap.this, "Đăng nhập thành công với vai trò sinh viên!");
             }
             else if(checkLogin(userName, passWord) == 0){
+                writeUserInFileHistory(userName, outputFileName);
                 TrangChuAdmin admin = new TrangChuAdmin();
                 admin.setVisible(true); //Truy cập đến trang chủ admin
                 dispose(); //Đóng giao diện đăng nhập hiện tại
@@ -253,21 +264,26 @@ public class DangNhap extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    //Loạt code để xử lý sự kiện thay đổi mật khẩu
-    private void readSVMapFromFile(){
-        
-    }
+//    private void readUserMapFromFile(String fileName) throws FileNotFoundException, IOException{
+//        BufferedReader br = new BufferedReader(new FileReader(fileName));
+//        String line;
+//        // Đọc từng dòng từ file
+//        while ((line = br.readLine()) != null) {
+//            // Tách các phần trong dòng bằng dấu phẩy
+//            String[] parts = line.split(",");
+//
+//            // Lưu vào map với key là phần đầu tiên trong dòng và value là các phần còn lại
+//            String[] values = new String[parts.length - 1];
+//            System.arraycopy(parts, 1, values, 0, values.length);
+//            userMap.put(parts[0],Arrays.toString(values));
+//        }
+//    }
     
-    private void readAdminMapFromFile(){
-        
-    }
-    
-    private void writeSVInFileHistory(String maSV, String fileName){
-        
-    }
-    
-    private void writeAdminInFileHistory(String maAdmin, String fileName){
-        
+    private void writeUserInFileHistory(String maUser, String outputFileName)throws Exception{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
+        // Ghi thông tin tài khoản đăng nhập vào file
+        writer.write(maUser);
+        writer.close();
     }
     
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
