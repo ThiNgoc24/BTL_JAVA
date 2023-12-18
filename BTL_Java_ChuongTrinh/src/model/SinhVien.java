@@ -4,56 +4,43 @@
  */
 package model;
 
-import java.util.HashSet;
 
 /**
  *
  * @author NGUYEN VAN MANH
  */
-public class SinhVien {
-    private String maSV;
+public class SinhVien extends TaiKhoan{
     private String hoTenSV;
-    private HashSet<Nganh> chiTietNganh;
-    private String maTK;
-
+    private String maNganh;
+    
     public SinhVien() {
     }
 
-    public SinhVien(String maSV, String hoTenSV, HashSet<Nganh> chiTietNganh) {
-        this.maSV = maSV;
+    public SinhVien(String hoTenSV, String maNganh) {
         this.hoTenSV = hoTenSV;
-        this.chiTietNganh = chiTietNganh;
-        this.maTK = this.maSV;
+        this.maNganh = maNganh;
     }
 
-    
-    public String getMaSV() {
-        return maSV;
-    }
 
-    public void setMaSV(String maSV) {
-        this.maSV = maSV;
-        this.maTK = this.maSV;
+    public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau, int role) {
+        super(maTK, matKhau, role);
+        this.hoTenSV = hoTenSV;
+        this.maNganh = maNganh;
     }
-
+   
     public String getHoTenSV() {
         return hoTenSV;
+    }
+
+    public String getMaNganh() {
+        return maNganh;
     }
 
     public void setHoTenSV(String hoTenSV) {
         this.hoTenSV = hoTenSV;
     }
 
-    public HashSet<Nganh> getChiTietNganh() {
-        return chiTietNganh;
-    }
-
-    public void setChiTietNganh(HashSet<Nganh> chiTietNganh) {
-        this.chiTietNganh = chiTietNganh;
-    }
-    
-    
-    
-    
-    
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
+    }    
 }
