@@ -12,35 +12,36 @@ import java.util.HashSet;
  */
 public class SinhVien extends TaiKhoan{
     private String hoTenSV;
-    private HashSet<String> nganh;
+    private String nganh;
 
     public SinhVien() {
     }
 
-    public SinhVien(String hoTenSV, HashSet<String> nganh) {
+    public SinhVien(String hoTenSV, String nganh) {
         this.hoTenSV = hoTenSV;
         this.nganh = nganh;
     }
 
-    public SinhVien(String hoTenSV, HashSet<String> nganh, String maTK, String matKhau, int role) {
+    public SinhVien(String hoTenSV, String nganh, String maTK, String matKhau, int role) {
         super(maTK, matKhau, role);
         this.hoTenSV = hoTenSV;
         this.nganh = nganh;
     }
-    
+
     public String getHoTenSV() {
         return hoTenSV;
+    }
+
+    public String getNganh() {
+        return nganh;
     }
 
     public void setHoTenSV(String hoTenSV) {
         this.hoTenSV = hoTenSV;
     }
 
-    public HashSet<String> getNganh() {
-        return nganh;
-    }
-
-    public void setNganh(HashSet<String> nganh) {
+    public void setNganh(String nganh) {
         this.nganh = nganh;
     }
 }
+
