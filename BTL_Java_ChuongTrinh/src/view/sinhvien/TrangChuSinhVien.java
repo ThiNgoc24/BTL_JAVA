@@ -38,6 +38,11 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton1.setText("Tạo đơn đăng ký cá nhân");
         jButton1.setName("btnCaNhan"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton2.setText("Tạo đơn đăng ký tập thể");
@@ -116,6 +121,13 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                DonCaNhan dcn = new DonCaNhan();
+                dcn.setVisible(true); //Truy cập đến đơn cá nhân
+                dispose(); //Đóng giao diện đăng nhập hiện tại
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

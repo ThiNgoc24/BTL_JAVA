@@ -102,6 +102,11 @@ public class DonCaNhan extends javax.swing.JFrame {
         btnThoat.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.setName("btnThoat"); // NOI18N
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         btnGui.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnGui.setText("Gửi đơn");
@@ -231,6 +236,13 @@ public class DonCaNhan extends javax.swing.JFrame {
     private void cboTenHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTenHPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboTenHPActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+                TrangChuSinhVien sv = new TrangChuSinhVien();
+                sv.setVisible(true); //Truy cập đến trang chủ sinh viên
+                dispose(); //Đóng giao diện hiện tại
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments

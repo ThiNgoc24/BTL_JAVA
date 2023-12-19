@@ -96,6 +96,9 @@ public class TrangChuAdmin extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        ThongKeDeXuat tk = new ThongKeDeXuat();
+        tk.setVisible(true); //Truy cập đến trang chủ Thống kê đề xuất
+        dispose(); //Đóng giao diện hiện tại
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

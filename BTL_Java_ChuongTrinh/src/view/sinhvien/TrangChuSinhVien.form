@@ -73,6 +73,9 @@
         <Property name="text" type="java.lang.String" value="T&#x1ea1;o &#x111;&#x1a1;n &#x111;&#x103;ng k&#xfd; c&#xe1; nh&#xe2;n"/>
         <Property name="name" type="java.lang.String" value="btnCaNhan" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
