@@ -11,7 +11,6 @@ package model;
 public class TaiKhoan {
     private String maTK;
     private String matKhau;
-//    private int role; //role = 1 -> Sinh viên; role = 0 -> Quản trị viên
 
     public TaiKhoan() {
     }
@@ -20,12 +19,6 @@ public class TaiKhoan {
         this.maTK = maTK;
         this.matKhau = matKhau;
     }
-    
-//    public TaiKhoan(String maTK, String matKhau, int role) {
-//        this.maTK = maTK;
-//        this.matKhau = matKhau;
-//        this.role = role;
-//    }
 
     public String getMaTK() {
         return maTK;
@@ -38,13 +31,4 @@ public class TaiKhoan {
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
     }
-
-//    public int getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(int role) {
-//        this.role = role;
-//    }
-
 }
