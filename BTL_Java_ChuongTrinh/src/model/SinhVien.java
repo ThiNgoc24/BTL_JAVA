@@ -4,12 +4,11 @@
  */
 package model;
 
-import java.util.HashSet;
-
 /**
  *
  * @author NGUYEN VAN MANH
  */
+
 public class SinhVien{
     private String maSV;
     private String hoTenSV;
@@ -17,11 +16,6 @@ public class SinhVien{
     private String maKhoa;
 
     public SinhVien() {
-    }
-
-    public SinhVien(String hoTenSV, String maNganh) {
-        this.hoTenSV = hoTenSV;
-        this.maNganh = maNganh;
     }
 
     public SinhVien(String maSV, String hoTenSV, String maNganh, String maKhoa) {
@@ -42,7 +36,7 @@ public class SinhVien{
     public String getMaNganh() {
         return maNganh;
     }
-
+    
     public String getMaKhoa() {
         return maKhoa;
     }
@@ -51,17 +45,7 @@ public class SinhVien{
         this.maSV = maSV;
     }
 
-    public void setHoTenSV(String hoTenSV) {
-        this.hoTenSV = hoTenSV;
-    }
-
-    public void setMaNganh(String maNganh) {
-        this.maNganh = maNganh;
-    }
-
     public void setMaKhoa(String maKhoa) {
         this.maKhoa = maKhoa;
     }
-
-    
 }

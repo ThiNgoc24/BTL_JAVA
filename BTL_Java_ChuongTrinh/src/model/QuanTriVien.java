@@ -8,6 +8,7 @@ package model;
  *
  * @author NGUYEN VAN MANH
  */
+
 public class QuanTriVien{
     private String maQTV;
     private String tenQTV;
@@ -39,5 +40,4 @@ public class QuanTriVien{
     public void setTenQTV(String tenQTV) {
         this.tenQTV = tenQTV;
     }
-    
 }
