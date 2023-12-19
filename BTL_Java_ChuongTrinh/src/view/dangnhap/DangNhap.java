@@ -151,8 +151,8 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void loadDataBase(){
         //Đọc cơ sở dữ liệu từ tệp văn bản và tạo danh sách người dùng
-        adminList = readAdminFromFile("D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\Admin.txt");
-        sinhVienList = readSVFromFile("D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\SinhVien.txt");
+        adminList = readAdminFromFile("src\\data\\Admin.txt");
+        sinhVienList = readSVFromFile("src\\data\\SinhVien.txt");
     }
     
     private ArrayList<QuanTriVien> readAdminFromFile(String fileName){
@@ -240,7 +240,7 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userName = tenDangNhap.getText();
         String passWord = new String(matKhau.getPassword()) ;
-        String outputFileName = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\LichSuDangNhap.txt";
+        String outputFileName = "src\\data\\LichSuDangNhap.txt";
         try{
             if(checkLogin(userName, passWord) == 1){
                 writeUserInFileHistory(userName, outputFileName);
