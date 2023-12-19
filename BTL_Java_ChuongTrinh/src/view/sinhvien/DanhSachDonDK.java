@@ -21,6 +21,7 @@ import java.io.IOException;
  * @author Le Thi Ngoc
  */
 public class DanhSachDonDK extends javax.swing.JFrame {
+   
       private List<DSDonDK> listDSDon = new ArrayList<>(); 
      private int indexDon;
      private controller.DonDKController controlers = new controller.DonDKController();
@@ -36,16 +37,8 @@ DefaultTableModel model = new DefaultTableModel();
         
         tblDanhSachDon.setModel(model);
         tblDanhSachDon.getTableHeader().setReorderingAllowed(false);
-        loadDSDon("D:\\JAVA\\BTL\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\Data\\DanhSachDonDK.txt");
+       loadDSDon("D:\\JAVA\\BTL\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\Data\\DanhSachDonDK.txt");
 
-        
-        
-        //theo cach nhom khac
-//        this.setLocationRelativeTo(null);
-//        listDSDon = new ArrayList<>();
-//        model = (DefaultTableModel) tblDanhSachDon.getModel();
-//       loadDataFromFile("DanhSachDonDK.txt");
-        
        
     }
     
@@ -54,12 +47,9 @@ DefaultTableModel model = new DefaultTableModel();
             String line;
             while ((line = reader.readLine()) != null) {
                 // Split the line into individual values (assuming tab-separated values)
-                String[] values = line.split(",");
-                
-               
+                String[] values = line.split(",");                           
                 DSDonDK item = new DSDonDK(values[0], values[1], values[2], values[3], values[4]);
-                listDSDon.add(item);
-                
+                listDSDon.add(item);               
                  // Add a new row to the table model
                 model.addRow(values);
             }
@@ -81,8 +71,8 @@ DefaultTableModel model = new DefaultTableModel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDanhSachDon = new javax.swing.JTable();
         btnSuaDonDK = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,21 +107,21 @@ DefaultTableModel model = new DefaultTableModel();
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Xoá");
-        jButton2.setName("btnXoa"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnXoa.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnXoa.setText("Xoá");
+        btnXoa.setName("btnXoa"); // NOI18N
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnXoaActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton3.setText("Quay lại");
-        jButton3.setName("btnQuayLai"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnQuayLai.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnQuayLai.setText("Quay lại");
+        btnQuayLai.setName("btnQuayLai"); // NOI18N
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnQuayLaiActionPerformed(evt);
             }
         });
 
@@ -146,9 +136,9 @@ DefaultTableModel model = new DefaultTableModel();
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSuaDonDK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76)
-                        .addComponent(jButton3)))
+                        .addComponent(btnQuayLai)))
                 .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,8 +149,8 @@ DefaultTableModel model = new DefaultTableModel();
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSuaDonDK)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnXoa)
+                    .addComponent(btnQuayLai))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -190,7 +180,7 @@ DefaultTableModel model = new DefaultTableModel();
         
     }//GEN-LAST:event_btnSuaDonDKActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         ////xoa
         int removeDonDK = tblDanhSachDon.getSelectedRow();
@@ -204,14 +194,14 @@ DefaultTableModel model = new DefaultTableModel();
            showDataDon();
         }
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
         // TODO add your handling code here:
         //quay lai
         TrangChuSinhVien trangchu = new TrangChuSinhVien();
         trangchu.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     
     private void showDataDon() {
@@ -259,9 +249,9 @@ DefaultTableModel model = new DefaultTableModel();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuayLai;
     private javax.swing.JButton btnSuaDonDK;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDanhSachDon;
     // End of variables declaration//GEN-END:variables

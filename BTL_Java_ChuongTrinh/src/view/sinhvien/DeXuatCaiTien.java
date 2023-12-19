@@ -3,13 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view.sinhvien;
-
+//import  model.DonDeXuat;
+import model.SinhVien;
+import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Le Thi Ngoc
  */
 public class DeXuatCaiTien extends javax.swing.JFrame {
-
+//    ArrayList<DonDeXuat> dons = new ArrayList<DonDeXuat>();
     /**
      * Creates new form DeXuatCaiTien
      */
@@ -32,13 +39,13 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtkhac = new javax.swing.JTextArea();
+        txtMongMuon = new javax.swing.JTextField();
+        txtTgian = new javax.swing.JTextField();
+        txtGopYGV = new javax.swing.JTextField();
+        txtGopYForm = new javax.swing.JTextField();
+        btlQuayLai = new javax.swing.JButton();
+        btlGuiDeXuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,23 +64,33 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Góp ý khác:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtkhac.setColumns(20);
+        txtkhac.setRows(5);
+        jScrollPane1.setViewportView(txtkhac);
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtMongMuon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtTgian.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtGopYGV.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtGopYForm.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setText("Quay lại");
+        btlQuayLai.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btlQuayLai.setText("Quay lại");
+        btlQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlQuayLaiActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Gửi đề xuất");
+        btlGuiDeXuat.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btlGuiDeXuat.setText("Gửi đề xuất");
+        btlGuiDeXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlGuiDeXuatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,51 +107,98 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(txtGopYForm, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                                .addComponent(txtMongMuon, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtGopYGV, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addComponent(txtTgian, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btlQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
-                        .addComponent(jButton2)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(btlGuiDeXuat)))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMongMuon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel2)
                 .addGap(12, 12, 12)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtGopYForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(9, 9, 9)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtGopYGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTgian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(btlQuayLai)
+                    .addComponent(btlGuiDeXuat))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btlGuiDeXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlGuiDeXuatActionPerformed
+                // TODO add your handling code here:
+//                DonDeXuat x = new DonDeXuat();
+//               
+//                x.setCauHoi1(txtMongMuon.getText());
+//                x.setCauHoi2(txtGopYForm.getText());
+//                x.setCauHoi3(txtGopYGV.getText());
+//                x.setCauHoi4(txtTgian.getText());
+//                x.setGopY(txtkhac.getText());
+//                String mongMuon = txtMongMuon.getText();
+//                String gopYForm = txtGopYForm.getText();
+//                String gopYGV = txtGopYGV.getText();
+//                String thoiGian = txtTgian.getText();
+//                String khac = txtkhac.getText();
+                
+//    dons.add(x);
+//Object[] DonDeXuatN = {mongMuon,gopYForm,gopYGV,thoiGian,khac};
+               JOptionPane.showMessageDialog(rootPane,"Gửi đề xuất thành công");
+//                if(mongMuon.isEmpty() || gopYForm.isEmpty() || gopYGV.isEmpty() || thoiGian.isEmpty() || khac.isEmpty()){
+//                    JOptionPane.showMessageDialog(this, "Nhập dữ liệu trước khi lưu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//            return;
+//                }  
+                
+                
+                // Lưu dữ liệu vào file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\JAVA\\BTL\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\Data\\DanhSachDexuat.txt", true))) {
+//
+//            writer.write(x.getCauHoi1() + ",");
+//            writer.write(x.getCauHoi2() + ",");
+//            writer.write(x.getCauHoi3() + ",");
+//            writer.write(x.getCauHoi4() + ",");
+//            writer.write(x.getGopY());
+
+            writer.newLine();
+            writer.flush();
+            JOptionPane.showMessageDialog(this, "Dữ liệu đã được lưu vào file thành công!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi lưu dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btlGuiDeXuatActionPerformed
+
+    private void btlQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlQuayLaiActionPerformed
+        TrangChuSinhVien trangchu = new TrangChuSinhVien();
+        trangchu.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btlQuayLaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,18 +236,18 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btlGuiDeXuat;
+    private javax.swing.JButton btlQuayLai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtGopYForm;
+    private javax.swing.JTextField txtGopYGV;
+    private javax.swing.JTextField txtMongMuon;
+    private javax.swing.JTextField txtTgian;
+    private javax.swing.JTextArea txtkhac;
     // End of variables declaration//GEN-END:variables
 }
