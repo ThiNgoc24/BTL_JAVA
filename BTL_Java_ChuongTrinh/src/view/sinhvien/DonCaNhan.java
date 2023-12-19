@@ -3,18 +3,51 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view.sinhvien;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import javax.swing.DefaultComboBoxModel;
+import model.HocPhan;
+import model.SinhVien;
 
 /**
  *
  * @author Le Thi Ngoc
  */
 public class DonCaNhan extends javax.swing.JFrame {
+    List<String> data = new ArrayList<>();
+    private static int nextMaDon = 1;
+    private String lyDo;
+    private SinhVien sv = new SinhVien("Nguyễn Thị Điệp", "HTTT", "2021601120", "abcd", 2);
+    List<HocPhan> danhSachHocPhan = HocPhan.readHocPhanFromFile("HTTT.txt");
 
     /**
      * Creates new form ĐonCaNhan
      */
     public DonCaNhan() {
         initComponents();
+        /*data.add("Tư tưởng Hồ Chí Minh");
+        data.add("Pháp luật đại cương");
+        data.add("Kỹ năng giao tiếp");
+        data.add("Giáo dục thể chất");
+        data.add("Kiến trúc máy tính");
+        data.add("Toán rời rạc");
+        data.add("Lập trình căn bản");
+        data.add("Kỹ thuật lập trình");
+        data.add("Cơ sở dữ liệu");
+        data.add("TcCNTT2");
+        cboTenHP.removeAllItems();
+        for (String ten : data) {
+            cboTenHP.addItem(ten);
+        }*/
+    }
+     private String MaDon() {
+        String maDon = "DCN" + String.format("%04d", nextMaDon);
+        nextMaDon++;
+        return maDon;
     }
 
     /**
@@ -29,23 +62,28 @@ public class DonCaNhan extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboTenHP = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMaHP = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtLyDo = new javax.swing.JTextArea();
+        btnThoat = new javax.swing.JButton();
+        btnGui = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("Tên học phần");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setName("cbbTenHP"); // NOI18N
+        cboTenHP.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        cboTenHP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboTenHP.setName("cbbTenHP"); // NOI18N
+        cboTenHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTenHPActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Mã học phần");
@@ -53,21 +91,26 @@ public class DonCaNhan extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("Lý do mở lớp");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField1.setName("txtMaHP"); // NOI18N
+        txtMaHP.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtMaHP.setName("txtMaHP"); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setName("txtLyDo"); // NOI18N
-        jScrollPane1.setViewportView(jTextArea1);
+        txtLyDo.setColumns(20);
+        txtLyDo.setRows(5);
+        txtLyDo.setName("txtLyDo"); // NOI18N
+        jScrollPane1.setViewportView(txtLyDo);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setText("Thoát");
-        jButton1.setName("btnThoat"); // NOI18N
+        btnThoat.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnThoat.setText("Thoát");
+        btnThoat.setName("btnThoat"); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Gửi đơn");
-        jButton2.setName("btnGuiDon"); // NOI18N
+        btnGui.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnGui.setText("Gửi đơn");
+        btnGui.setName("btnGuiDon"); // NOI18N
+        btnGui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,15 +126,15 @@ public class DonCaNhan extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 239, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
+                            .addComponent(cboTenHP, 0, 239, Short.MAX_VALUE)
+                            .addComponent(txtMaHP)))
                     .addComponent(jLabel4))
                 .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(jButton2)
+                .addComponent(btnGui)
                 .addGap(180, 180, 180))
         );
         layout.setVerticalGroup(
@@ -100,24 +143,94 @@ public class DonCaNhan extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboTenHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnGui)
+                    .addComponent(btnThoat))
                 .addGap(22, 22, 22))
         );
 
+        // Tạo DefaultComboBoxModel từ danh sách tên học phần
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (HocPhan hocPhan : danhSachHocPhan) {
+            model.addElement(hocPhan.getTenHP());
+        }
+        // Thiết lập mô hình cho JComboBox
+        cboTenHP.setModel(model);
+        cboTenHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTenHPActionPerformed(evt);
+            }
+        });
+        cboTenHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Lấy tên học phần được chọn
+                String selectedTenHP = (String) cboTenHP.getSelectedItem();
+
+                // Tìm học phần tương ứng trong danh sách
+                for (HocPhan hocPhan : danhSachHocPhan) {
+                    if (hocPhan.getTenHP().equals(selectedTenHP)) {
+                        // Gán mã học phần vào txtMaHP
+                        txtMaHP.setText(hocPhan.getMaHP());
+                        break;
+                    }
+                }
+            }
+        });
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiActionPerformed
+        // TODO add your handling code here:
+        this.themDon();
+    }
+
+    private void themDon() {
+        String d1 = (String) cboTenHP.getSelectedItem();
+        String d2 = txtMaHP.getText();
+        String d3 = txtLyDo.getText();
+
+        if (d1.trim().equals("") || d2.trim().equals("") || d3.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin!", "Invalidation", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            String md = MaDon();
+            String filePath = "src/Data/DonCaNhan.txt";
+            try {
+                // Khởi tạo FileWriter với đường dẫn tới tệp tin và true để cho phép ghi thêm
+                FileWriter fileWriter = new FileWriter(filePath, true);
+
+                // Khởi tạo BufferedWriter
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+                // Ghi dữ liệu vào tệp tin
+                bufferedWriter.write(md + ", " + sv.getMaTK() + ", " + sv.getHoTenSV() + ", " + d1 + ", " + d2 + ", " + d3);
+                bufferedWriter.newLine(); // Thêm dòng mới sau mỗi dữ liệu
+
+                // Đóng BufferedWriter
+                bufferedWriter.close();
+                JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Invalidation", JOptionPane.ERROR_MESSAGE);
+                System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
+            } catch (IOException e) {
+                System.out.println("Đã xảy ra lỗi khi thêm dữ liệu vào tệp tin: " + e.getMessage());
+            }
+        }                          
+
+    }//GEN-LAST:event_btnGuiActionPerformed
+
+    private void cboTenHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTenHPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboTenHPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,16 +269,16 @@ public class DonCaNhan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGui;
+    private javax.swing.JButton btnThoat;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cboTenHP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea txtLyDo;
+    private javax.swing.JTextField txtMaHP;
     // End of variables declaration//GEN-END:variables
 }

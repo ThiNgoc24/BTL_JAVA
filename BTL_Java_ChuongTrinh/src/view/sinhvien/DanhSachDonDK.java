@@ -4,18 +4,70 @@
  */
 package view.sinhvien;
 
+import controller.DonDKController;
+import model.DSDonDK;
+
+import java.awt.Graphics;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
 /**
  *
  * @author Le Thi Ngoc
  */
 public class DanhSachDonDK extends javax.swing.JFrame {
+      private List<DSDonDK> listDSDon = new ArrayList<>(); 
+     private int indexDon;
+     private controller.DonDKController controlers = new controller.DonDKController();
+DefaultTableModel model = new DefaultTableModel();
 
-    /**
-     * Creates new form DanhSachDonDK
-     */
     public DanhSachDonDK() {
         initComponents();
+        model.addColumn("Mã đơn");
+        model.addColumn("Mã học phần");
+        model.addColumn("Tên học phần");
+      model.addColumn("Loại đơn");
+        model.addColumn("Trạng thái");
+        
+        tblDanhSachDon.setModel(model);
+        tblDanhSachDon.getTableHeader().setReorderingAllowed(false);
+        loadDSDon("D:\\JAVA\\BTL\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\Data\\DanhSachDonDK.txt");
+
+        
+        
+        //theo cach nhom khac
+//        this.setLocationRelativeTo(null);
+//        listDSDon = new ArrayList<>();
+//        model = (DefaultTableModel) tblDanhSachDon.getModel();
+//       loadDataFromFile("DanhSachDonDK.txt");
+        
+       
     }
+    
+    private void loadDSDon(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Split the line into individual values (assuming tab-separated values)
+                String[] values = line.split(",");
+                
+               
+                DSDonDK item = new DSDonDK(values[0], values[1], values[2], values[3], values[4]);
+                listDSDon.add(item);
+                
+                 // Add a new row to the table model
+                model.addRow(values);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,15 +79,15 @@ public class DanhSachDonDK extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        tblDanhSachDon = new javax.swing.JTable();
+        btnSuaDonDK = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDanhSachDon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tblDanhSachDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -54,54 +106,123 @@ public class DanhSachDonDK extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDanhSachDon);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setText("Sửa");
-        jButton1.setName("btnSua"); // NOI18N
+        btnSuaDonDK.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnSuaDonDK.setText("Sửa");
+        btnSuaDonDK.setName("btnSua"); // NOI18N
+        btnSuaDonDK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaDonDKActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton2.setText("Xoá");
         jButton2.setName("btnXoa"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton3.setText("Quay lại");
         jButton3.setName("btnQuayLai"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSuaDonDK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                        .addComponent(jButton3)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnSuaDonDK)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSuaDonDKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaDonDKActionPerformed
+        // TODO add your handling code here:
+        
+        //sua
+        indexDon = tblDanhSachDon.getSelectedRow();
+        if(listDSDon.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane,"Hay nhap them don dang ky");
+        }else if(indexDon == -1){
+            JOptionPane.showMessageDialog(rootPane,"Hay chon don dang ky ban muon sua");
+        }else{
+            if (listDSDon.get(indexDon).getLoaiDon().equals("Cá nhân")) {
+                 DonCaNhan editDon = new DonCaNhan();
+            editDon.setVisible(true);
+            }else{
+                DonTapThe editDon = new DonTapThe();
+                editDon.setVisible(true);
+            }
+           
+        }
+        
+        
+    }//GEN-LAST:event_btnSuaDonDKActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ////xoa
+        int removeDonDK = tblDanhSachDon.getSelectedRow();
+        if(removeDonDK == -1){
+            JOptionPane.showMessageDialog(rootPane,"Hay chon mot dong muon xoa");
+        }else if(listDSDon.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane,"Khong co du lieu de xoa");
+        }else{
+            listDSDon.remove(removeDonDK);
+           controlers.writeDataToFile(listDSDon,"DanhSachDonDK.txt");
+           showDataDon();
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        //quay lai
+        TrangChuSinhVien trangchu = new TrangChuSinhVien();
+        trangchu.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    
+    private void showDataDon() {
+        model.setRowCount(0);
+        for (DSDonDK tv : listDSDon) {
+            model.addRow(new Object[]{
+                tv.getMaDon(),tv.getMaHocPhan(),tv.getTenHocPhan(),tv.getLoaiDon(), tv.getTrangThai()
+            });
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -138,10 +259,10 @@ public class DanhSachDonDK extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSuaDonDK;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblDanhSachDon;
     // End of variables declaration//GEN-END:variables
 }

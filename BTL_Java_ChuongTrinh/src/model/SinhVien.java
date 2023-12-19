@@ -4,8 +4,6 @@
  */
 package model;
 
-import java.util.HashSet;
-
 /**
  *
  * @author NGUYEN VAN MANH
@@ -13,9 +11,6 @@ import java.util.HashSet;
 public class SinhVien extends TaiKhoan{
     private String hoTenSV;
     private String maNganh;
-
-    public SinhVien() {
-    }
 
     public SinhVien(String hoTenSV, String maNganh) {
         this.hoTenSV = hoTenSV;
@@ -32,20 +27,23 @@ public class SinhVien extends TaiKhoan{
         return hoTenSV;
     }
 
-    public String getMaNganh() {
-        return maNganh;
-    }
-
     public void setHoTenSV(String hoTenSV) {
         this.hoTenSV = hoTenSV;
+    }
+
+    public String getMaNganh() {
+        return maNganh;
     }
 
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
     }
 
+   
+
 
     
+   
     
     
     
