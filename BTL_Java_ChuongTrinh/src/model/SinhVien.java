@@ -11,6 +11,9 @@ package model;
 public class SinhVien extends TaiKhoan{
     private String hoTenSV;
     private String maNganh;
+    
+    public SinhVien() {
+    }
 
     public SinhVien(String hoTenSV, String maNganh) {
         this.hoTenSV = hoTenSV;
@@ -30,7 +33,7 @@ public class SinhVien extends TaiKhoan{
     public void setHoTenSV(String hoTenSV) {
         this.hoTenSV = hoTenSV;
     }
-
+    
     public String getMaNganh() {
         return maNganh;
     }
@@ -38,14 +41,5 @@ public class SinhVien extends TaiKhoan{
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
     }
-
-   
-
-
-    
-   
-    
-    
-    
-    
 }
+
