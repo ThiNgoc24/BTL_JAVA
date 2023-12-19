@@ -35,5 +35,11 @@ public class Khoa {
     public void setTenKhoa(String tenKhoa) {
         this.tenKhoa = tenKhoa;
     }
+
+    @Override
+    public String toString() {
+        return "Khoa{" + "maKhoa=" + maKhoa + ", tenKhoa=" + tenKhoa + '}';
+    }
+    
     
 }

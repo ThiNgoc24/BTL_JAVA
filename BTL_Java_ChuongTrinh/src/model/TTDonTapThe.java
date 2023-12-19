@@ -12,20 +12,24 @@ import java.util.List;
  */
 public class TTDonTapThe {
     private String maDonTapThe;
+    private String maSV;
     private String tenHP;
     private String maHP;
     private String lyDo;
     private List<SinhVienTapThe> dsSV;
+    private String trangThai;
 
     public TTDonTapThe() {
     }
 
-    public TTDonTapThe(String maDonTapThe, String tenHP, String maHP, String lyDo, List<SinhVienTapThe> dsSV) {
+    public TTDonTapThe(String maDonTapThe,String maSV, String tenHP, String maHP, String lyDo, List<SinhVienTapThe> dsSV, String trangThai) {
         this.maDonTapThe = maDonTapThe;
+        this.maSV = maSV;
         this.tenHP = tenHP;
         this.maHP = maHP;
         this.lyDo = lyDo;
         this.dsSV = dsSV;
+        this.trangThai = trangThai;
     }
 
     public String getMaDonTapThe() {
@@ -68,10 +72,40 @@ public class TTDonTapThe {
     public void setDsSV(List<SinhVienTapThe> dsSV) {
         this.dsSV = dsSV;
     }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
     
      public void addSinhVienTapThe(SinhVienTapThe sinhVienTapThe) {
         dsSV.add(sinhVienTapThe);
     }
-    
-    
+
+    public String getMaSV() {
+        return maSV;
+    }
+
+    public void setMaSV(String maSV) {
+        this.maSV = maSV;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(maDonTapThe).append(",")
+                .append(maSV).append(",")
+                .append(tenHP).append(",")
+                .append(maHP).append(",")
+                .append(lyDo);
+        for (SinhVienTapThe sv:dsSV){
+            result.append(",").append(sv.toString());
+        }
+
+        result.append(",").append(trangThai);
+        return result.toString();
+    }
 }
