@@ -13,6 +13,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.FakeData;
+import model.FakeData1;
 import model.HocPhan;
 import model.SinhVienTapThe;
 import model.TTDonTapThe;
@@ -464,7 +465,7 @@ public class DonTapThe extends javax.swing.JFrame {
 
     public void setResults(){
         this.maDonTapThe = sinhMaDonTapThe();
-        this.maSV = "SV001";
+        this.maSV = FakeData1.maSVDN;
         this.tenHP = cbbTenHP.getSelectedItem().toString();
         this.maHP = txtMaHP.getText();
         this.lyDo = txtLyDo.getText();
