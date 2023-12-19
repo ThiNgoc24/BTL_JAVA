@@ -1,3 +1,0 @@
-sv01,123456,Ngoc,["CNTT","Kế toán"]
-sv02,123456,Ngoc,["CNTT","Kế toán"]
-sv03,123456,Ngoc,["CNTT","Kế toán"]

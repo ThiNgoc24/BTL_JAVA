@@ -18,6 +18,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import model.QuanTriVien;
 import model.SinhVien;
+import model.TaiKhoan;
 import view.admin.TrangChuAdmin;
 import view.sinhvien.TrangChuSinhVien;
 
@@ -31,8 +32,8 @@ public class DangNhap extends javax.swing.JFrame {
         initComponents();
     }
 
-    private ArrayList<QuanTriVien> adminList;
-    private ArrayList<SinhVien> sinhVienList;
+    private ArrayList<TaiKhoan> adminList;
+    private ArrayList<TaiKhoan> sinhVienList;
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -151,12 +152,12 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void loadDataBase(){
         //Đọc cơ sở dữ liệu từ tệp văn bản và tạo danh sách người dùng
-        adminList = readAdminFromFile("D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\Admin.txt");
-        sinhVienList = readSVFromFile("D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\SinhVien.txt");
+        adminList = readUserFromFile("src\\data\\TaiKhoanAdmin.txt");
+        sinhVienList = readUserFromFile("src\\data\\TaiKhoanSV.txt");
     }
     
-    private ArrayList<QuanTriVien> readAdminFromFile(String fileName){
-        ArrayList<QuanTriVien> admins = new ArrayList<>();
+    private ArrayList<TaiKhoan> readUserFromFile(String fileName){
+        ArrayList<TaiKhoan> users = new ArrayList<>();
         FileReader inFileReader;
         BufferedReader in;
         try{
@@ -165,43 +166,13 @@ public class DangNhap extends javax.swing.JFrame {
            String line;
            while((line = in.readLine()) != null){
                String[] tk = line.split(",");
-               String maTK = tk[0].trim();
-               String password = tk[1].trim();
-               String name = tk[2].trim();
-               QuanTriVien qtv = new QuanTriVien(name,maTK, password, 0);
-               admins.add(qtv);
+               TaiKhoan taikhoan = new TaiKhoan(tk[0].trim(), tk[1].trim());
+               users.add(taikhoan);
            }
         }catch(Exception ex){
             System.out.println(ex.toString());
         }
-        return admins;
-    }
-    
-    private ArrayList<SinhVien> readSVFromFile(String fileName){
-        ArrayList<SinhVien> SVs = new ArrayList<>();
-        FileReader inFileReader;
-        BufferedReader in;
-        try{
-           inFileReader = new FileReader(fileName);
-           in = new BufferedReader(inFileReader);
-           String line;
-           while((line = in.readLine()) != null){
-               String[] tk = line.split(",");
-               String maTK = tk[0].trim();
-               String passWord = tk[1].trim();
-               String name = tk[2].trim();
-               String[] nganhList = tk[3].replaceAll("[\\[\\]\"]", "").split(","); 
-               HashSet<String> nganhs  = new HashSet<>();
-               for (String nganh : nganhList) {
-                        nganhs.add(nganh);
-               }
-               SinhVien sv = new SinhVien(name, nganhs, maTK, passWord, 1);
-               SVs.add(sv);
-           }
-        }catch(Exception ex){
-            System.out.println(ex.toString());
-        }
-        return SVs;
+        return users;
     }
     
     private int checkLogin(String maTK, String passWord)throws Exception{
@@ -212,14 +183,14 @@ public class DangNhap extends javax.swing.JFrame {
             throw new Exception("Vui lòng chọn vai trò đăng nhập");
         
         if(rdoQuanTriVien.isSelected()){
-            for(QuanTriVien qtv : adminList){
+            for(TaiKhoan qtv : adminList){
                 if(maTK.equalsIgnoreCase(qtv.getMaTK())&& passWord.equals(qtv.getMatKhau())){
                     return 0;
                 }
             }
         }
         else {
-            for(SinhVien sv : sinhVienList){
+            for(TaiKhoan sv : sinhVienList){
                 if(maTK.equalsIgnoreCase(sv.getMaTK())&& passWord.equals(sv.getMatKhau())){
                     return 1;
                 }
@@ -241,7 +212,7 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userName = tenDangNhap.getText();
         String passWord = new String(matKhau.getPassword()) ;
-        String outputFileName = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\LichSuDangNhap.txt";
+        String outputFileName = "src\\data\\LichSuDangNhap.txt";
         try{
             if(checkLogin(userName, passWord) == 1){
                 writeUserInFileHistory(userName, outputFileName);
@@ -264,21 +235,6 @@ public class DangNhap extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-//    private void readUserMapFromFile(String fileName) throws FileNotFoundException, IOException{
-//        BufferedReader br = new BufferedReader(new FileReader(fileName));
-//        String line;
-//        // Đọc từng dòng từ file
-//        while ((line = br.readLine()) != null) {
-//            // Tách các phần trong dòng bằng dấu phẩy
-//            String[] parts = line.split(",");
-//
-//            // Lưu vào map với key là phần đầu tiên trong dòng và value là các phần còn lại
-//            String[] values = new String[parts.length - 1];
-//            System.arraycopy(parts, 1, values, 0, values.length);
-//            userMap.put(parts[0],Arrays.toString(values));
-//        }
-//    }
-    
     private void writeUserInFileHistory(String maUser, String outputFileName)throws Exception{
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
         // Ghi thông tin tài khoản đăng nhập vào file

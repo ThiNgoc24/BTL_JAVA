@@ -11,16 +11,21 @@ package model;
 public class TaiKhoan {
     private String maTK;
     private String matKhau;
-    private int role;
+//    private int role; //role = 1 -> Sinh viên; role = 0 -> Quản trị viên
 
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String maTK, String matKhau, int role) {
+    public TaiKhoan(String maTK, String matKhau) {
         this.maTK = maTK;
         this.matKhau = matKhau;
-        this.role = role;
     }
+    
+//    public TaiKhoan(String maTK, String matKhau, int role) {
+//        this.maTK = maTK;
+//        this.matKhau = matKhau;
+//        this.role = role;
+//    }
 
     public String getMaTK() {
         return maTK;
@@ -34,12 +39,12 @@ public class TaiKhoan {
         this.matKhau = matKhau;
     }
 
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
+//    public int getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(int role) {
+//        this.role = role;
+//    }
 
 }
