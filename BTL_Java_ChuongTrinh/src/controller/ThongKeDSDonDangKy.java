@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.FakeData;
 import static model.FakeData.listDonDangKy;
+import model.Nganh;
 import model.TTDSDonDangKy;
 
 /**
@@ -16,8 +17,10 @@ import model.TTDSDonDangKy;
  */
 public class ThongKeDSDonDangKy {
     public static void main(String[] args) {
-        List<TTDSDonDangKy> listDS = FakeData.listDonDangKy;
-        listDonDangKy.forEach(System.out::println);
-       
+//        FakeData.layDSDonDangKy();
+////        List<TTDSDonDangKy> listDS =FakeData.listDonDangKy;
+//        FakeData.listDonDangKy.forEach(System.out::println);
+        Nganh nganh = new Nganh("1", "2", "3");
+        System.out.println(nganh);
     }
 }

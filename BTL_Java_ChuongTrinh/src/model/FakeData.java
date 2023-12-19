@@ -22,7 +22,6 @@ public class FakeData {
     public static List<TTDonCaNhan> listDonCaNhan = new ArrayList<>();
     public static List<TTDonTapThe> listDonTapThe = new ArrayList<>();
     public static List<TTDSDonDangKy> listDonDangKy = new ArrayList<>();
-    
     public static String maSVDN;
     
     static {
@@ -31,8 +30,8 @@ public class FakeData {
         layHocPhan();
         layDonDeXuat();
         layDSDonCaNhan();
-        layDSDonTapThe();
-        layDSDonDangKy();
+//        layDSDonTapThe();
+//        layDSDonDangKy();
         layMaSV();
     }
     
@@ -151,7 +150,7 @@ public class FakeData {
                     String masv = tokens[i];
                     String tenSV = tokens[i + 1];
                     String tenNganh = tokens[i + 2];
-                    dsSV.add(new SinhVienTapThe(maSV, tenSV, tenNganh));
+                    dsSV.add(new SinhVienTapThe(masv, tenSV, tenNganh));
                 }
                 String trangThai = tokens[tokens.length];
 
@@ -175,7 +174,7 @@ public class FakeData {
                TTDSDonDangKy donDK = new TTDSDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai);
                listDonDangKy.add(donDK);
            }
-           for(TTDonTapThe donTapThe : listDonTapThe){
+           for(TTDonTapThe donTapThe : SinhVienTapThe.listDonTapThe){
                String maDon = donTapThe.getMaDonTapThe();
                String maSV = donTapThe.getMaSV();
                String maHP = donTapThe.getMaHP();
@@ -196,11 +195,11 @@ public class FakeData {
         layHocPhan();
         listHocPhan.forEach(System.out::println);
         layDonDeXuat();
-//        listDonDeXuat.forEach();
+        listDonDeXuat.forEach(System.out::println);
         layDSDonCaNhan();
         listDonCaNhan.forEach(System.out::println);
-        layDSDonTapThe();
-        listDonTapThe.forEach(System.out::println);
+//        layDSDonTapThe();
+//        listDonTapThe.forEach(System.out::println);
         layNganh();
         listNganh.forEach(System.out::println);
         listDonDangKy.forEach(System.out::println);
