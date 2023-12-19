@@ -1,0 +1,8 @@
+DTT002,SV001,Kiến trúc máy tính,IT6014,hoc,q,q,q,a,a,a,Chưa duyệt
+DTT003,SV001,Kiến trúc máy tính,IT6014,hoc,q,q,q,a,a,a,Chưa duyệt
+DTT004,SV001,Kiến trúc máy tính,IT6014,hoc,q,q,q,a,a,a,Chưa duyệt
+DTT005,SV001,Kiến trúc máy tính,IT6014,hoc,q,q,q,a,a,a,Chưa duyệt
+DTT006,SV001,Kiến trúc máy tính,IT6014,hoc,q,q,q,a,a,a,Chưa duyệt
+DTT001,SV001,Nhập môn về kỹ thuật,123,hoc lại,q,q,q,Chưa duyệt
+DTT002,SV001,Nhập môn về kỹ thuật,123,hoc lại,q,q,q,Chưa duyệt
+DTT003,SV001,Nhập môn về kỹ thuật,123,hoc lại,q,q,q,Chưa duyệt

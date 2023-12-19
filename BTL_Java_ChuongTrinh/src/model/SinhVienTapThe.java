@@ -48,8 +48,7 @@ public class SinhVienTapThe {
 
     @Override
     public String toString() {
-        return "SinhVienTapThe{" + "maSV=" + maSV + ", hoTen=" + hoTen + ", tenNganh=" + tenNganh + '}';
+        return  maSV + "," + hoTen + "," + tenNganh;
     }
-    
     
 }

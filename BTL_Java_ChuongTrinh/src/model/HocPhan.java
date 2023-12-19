@@ -16,17 +16,25 @@ import java.util.List;
  */
 public class HocPhan {
     private String maHP;
+    private String maKhoa;
+    private String maNganh;
     private String tenHP;
     private int soTC;
 
     public HocPhan() {
     }
 
-    public HocPhan(String maHP, String tenHP, int soTC) {
+    public HocPhan(String maHP, String maKhoa, String maNganh, String tenHP, int soTC) {
         this.maHP = maHP;
+        this.maKhoa = maKhoa;
+        this.maNganh = maNganh;
         this.tenHP = tenHP;
         this.soTC = soTC;
     }
+
+    
+
+    
 
     public String getMaHP() {
         return maHP;
@@ -51,6 +59,16 @@ public class HocPhan {
     public void setSoTC(int soTC) {
         this.soTC = soTC;
     }
+
+    public String getMaKhoa() {
+        return maKhoa;
+    }
+
+    public void setMaKhoa(String maKhoa) {
+        this.maKhoa = maKhoa;
+    }
+    
+    
     
     public static List<HocPhan> readHocPhanFromFile(String filePath) {
         List<HocPhan> danhSachHocPhan = new ArrayList<>();

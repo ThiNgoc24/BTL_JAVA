@@ -1,0 +1,7 @@
+Mã đơn tập thể: DTT0001
+Tên học phần: Nhập môn về kỹ thuật
+Mã học phần: 
+Danh sách sinh viên:
+  - Mã SV: q, Tên SV: q, Ngành học: q
+Lý do mở lớp: 
+-----------------------------------------

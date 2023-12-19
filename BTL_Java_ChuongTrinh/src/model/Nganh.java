@@ -45,5 +45,10 @@ public class Nganh {
     public void setMaKhoa(String maKhoa) {
         this.maKhoa = maKhoa;
     }
+
+    @Override
+    public String toString() {
+        return "Nganh{" + "maNganh=" + maNganh + ", tenNganh=" + tenNganh + ", maKhoa=" + maKhoa + '}';
+    }
     
 }

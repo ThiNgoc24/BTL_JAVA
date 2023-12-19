@@ -9,7 +9,6 @@ package model;
  * @author Le Thi Ngoc
  */
 public class DonDeXuat {
-    private String maSV;
     private String maDon;
     private String cauHoi1;
     private String cauHoi2;
@@ -21,18 +20,13 @@ public class DonDeXuat {
         
     }
     
-    public DonDeXuat(String maSV, String maDon, String cauHoi1, String cauHoi2, String cauHoi3, String cauHoi4, String gopY) {
-        this.maSV = maSV;
+    public DonDeXuat(String maDon, String cauHoi1, String cauHoi2, String cauHoi3, String cauHoi4, String gopY) {
         this.maDon = maDon;
         this.cauHoi1 = cauHoi1;
         this.cauHoi2 = cauHoi2;
         this.cauHoi3 = cauHoi3;
         this.cauHoi4 = cauHoi4;
         this.gopY = gopY;
-    }
-
-    public String getMaSV() {
-        return maSV;
     }
 
     public String getMaDon() {
@@ -57,10 +51,6 @@ public class DonDeXuat {
 
     public String getGopY() {
         return gopY;
-    }
-
-    public void setMaSV(String maSV) {
-        this.maSV = maSV;
     }
 
     public void setMaDon(String maDon) {

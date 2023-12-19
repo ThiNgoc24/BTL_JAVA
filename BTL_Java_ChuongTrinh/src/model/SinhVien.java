@@ -4,7 +4,6 @@
  */
 package model;
 
-
 /**
  *
  * @author NGUYEN VAN MANH
@@ -20,7 +19,6 @@ public class SinhVien extends TaiKhoan{
         this.hoTenSV = hoTenSV;
         this.maNganh = maNganh;
     }
-
 
     public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau, int role) {
         super(maTK, matKhau, role);
