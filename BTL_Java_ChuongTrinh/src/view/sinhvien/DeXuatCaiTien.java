@@ -227,7 +227,7 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
 
         writer.newLine();
         writer.flush();
-        JOptionPane.showMessageDialog(this, "Dữ liệu đã được lưu vào file thành công!");
+        JOptionPane.showMessageDialog(this, "Gửi đơn đề xuất thành công!");
 
         // Xóa nội dung của các ô textbox sau khi lưu thành công
         txtcauHoi1.setText("");
