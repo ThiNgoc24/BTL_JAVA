@@ -95,6 +95,10 @@ public class DonTapThe extends javax.swing.JFrame {
             model.addRow(new Object[]{x.getMaSV(),x.getHoTen(),x.getTenNganh()});
         }
     }
+    public void reloadTable(){
+        DefaultTableModel model = (DefaultTableModel) this.tblSVTT.getModel();
+        model.setRowCount(0);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -439,6 +443,13 @@ public class DonTapThe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    public void reloadForm(){
+        cbbTenHP.setSelectedIndex(0);
+        txtMaHP.setText("");
+        txtLyDo.setText("");
+        
+        reloadTable();
+    }
     private void btnGuiDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiDonActionPerformed
         // TODO add your handling code here:
         // Lấy thông tin từ form và tạo đối tượng TTDonTapThe
@@ -454,6 +465,7 @@ public class DonTapThe extends javax.swing.JFrame {
 
                 // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
                 this.showRegistrationSuccessMessage();
+                reloadForm();
             }else{
                 JOptionPane.showMessageDialog(this, "Đơn không hợp lệ.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
@@ -523,6 +535,7 @@ public class DonTapThe extends javax.swing.JFrame {
 
         // Kiểm tra đơn tập thể đã tồn tại
         List<TTDonTapThe> listDTT = FakeData.listDonTapThe;
+        listDTT.forEach(System.out::println);
         for (TTDonTapThe x : listDTT) {
             if (x.getMaSV().equals(maSV) && x.getMaHP().equals(maHP)) {
                 return false; // Đơn tập thể đã tồn tại
