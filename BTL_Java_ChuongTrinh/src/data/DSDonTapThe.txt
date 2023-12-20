@@ -1,1 +1,2 @@
 DTT002,SV001,Kiến trúc máy tính,IT6014,hoc,q,q,q,a,a,a,Chưa duyệt
+DTT001,SV001,Kiến trúc máy tính,IT6014,hoc vuot,q,q,q,a,a,a,Chưa duyệt
