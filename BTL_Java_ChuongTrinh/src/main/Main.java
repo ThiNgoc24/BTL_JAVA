@@ -5,6 +5,7 @@
 package main;
 
 import controller.DonTapTheController;
+import view.dangnhap.DangNhap;
 import view.sinhvien.DonTapThe;
 
 /**
@@ -23,5 +24,13 @@ public class Main {
                 donTapTheForm.setVisible(true);
             }
         });
+        
+//        DangNhap dangNhap = new DangNhap();
+//        // Hiển thị cửa sổ dangNhap
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                dangNhap.setVisible(true);
+//            }
+//        });
     }
 }

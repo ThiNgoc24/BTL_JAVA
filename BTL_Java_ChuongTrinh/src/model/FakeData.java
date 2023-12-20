@@ -32,7 +32,7 @@ public class FakeData {
         layDonDeXuat();
         layDSDonCaNhan();
         layDSDonTapThe();
-        layDSDonDangKy();
+        taoDSDonDangKy();
         layMaSV();
     }
     
@@ -138,35 +138,71 @@ public class FakeData {
         }
     }
     
-    public static void layDSDonTapThe(){
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] tokens = line.split(",");
-                String maDonTapThe = tokens[0];
-                String maSV = tokens[1];
-                String tenHP = tokens[2];
-                String maHP = tokens[3];
-                String lyDo = tokens[4];
+//    public static void layDSDonTapThe(){
+//        try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                String[] tokens = line.split(",");
+//                String maDonTapThe = tokens[0];
+//                String maSV = tokens[1];
+//                String tenHP = tokens[2];
+//                String maHP = tokens[3];
+//                String lyDo = tokens[4];
+//
+//                List<SinhVienTapThe> dsSV = new ArrayList<>();
+//                for (int i = 5; i < tokens.length-1; i += 3) {
+//                    String masv = tokens[i];
+//                    String tenSV = tokens[i + 1];
+//                    String tenNganh = tokens[i + 2];
+//                    dsSV.add(new SinhVienTapThe(masv, tenSV, tenNganh));
+//                }
+//                String trangThai = tokens[tokens.length - 1];
+//
+//                TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, maSV, tenHP, maHP, lyDo, dsSV,trangThai);
+//                listDonTapThe.add(donTapThe);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+    
+    public static void layDSDonTapThe() {
+    try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] tokens = line.split(",");
+            if (tokens.length < 5) {
+                // Bỏ qua dòng không hợp lệ không chứa đủ các phần tử cần thiết
+                continue;
+            }
+            String maDonTapThe = tokens[0];
+            String maSV = tokens[1];
+            String tenHP = tokens[2];
+            String maHP = tokens[3];
+            String lyDo = tokens[4];
 
-                List<SinhVienTapThe> dsSV = new ArrayList<>();
-                for (int i = 5; i < tokens.length-1; i += 3) {
+            List<SinhVienTapThe> dsSV = new ArrayList<>();
+            for (int i = 5; i < tokens.length - 1; i += 3) {
+                if (i + 2 < tokens.length) {
                     String masv = tokens[i];
                     String tenSV = tokens[i + 1];
                     String tenNganh = tokens[i + 2];
                     dsSV.add(new SinhVienTapThe(masv, tenSV, tenNganh));
                 }
-                String trangThai = tokens[tokens.length - 1];
-
-                TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, maSV, tenHP, maHP, lyDo, dsSV,trangThai);
-                listDonTapThe.add(donTapThe);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            String trangThai = tokens[tokens.length - 1];
+
+            TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, maSV, tenHP, maHP, lyDo, dsSV, trangThai);
+            listDonTapThe.add(donTapThe);
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
+
+
     
-    public static void layDSDonDangKy(){
+    public static void taoDSDonDangKy(){
         try {
            for(TTDonCaNhan donCaNhan : listDonCaNhan){
                String maDon = donCaNhan.getMaDonCaNhan();

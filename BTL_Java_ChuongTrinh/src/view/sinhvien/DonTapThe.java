@@ -407,7 +407,7 @@ public class DonTapThe extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Lấy thông tin từ form và tạo đối tượng TTDonTapThe
         this.setResults();
-        TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe,maSV, tenHP, maHP, lyDo, dsSV,trangThai);
+        TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe,maSV,maHP ,tenHP , lyDo, dsSV,trangThai);
 
         // Gọi phương thức lưu trữ trong model
         DonTapTheController.saveDonTapTheInfo(donTapThe);
