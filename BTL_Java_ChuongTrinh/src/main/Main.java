@@ -14,9 +14,8 @@ import view.sinhvien.DonTapThe;
 public class Main {
     public static void main(String[] args) {
         // Tạo đối tượng DonTapTheForm
+        
         DonTapThe donTapTheForm = new DonTapThe();
-        // Tạo đối tượng DonTapTheController và truyền DonTapTheForm vào
-        DonTapTheController controller = new DonTapTheController(donTapTheForm);
 
         // Hiển thị cửa sổ DonTapTheForm
         java.awt.EventQueue.invokeLater(new Runnable() {

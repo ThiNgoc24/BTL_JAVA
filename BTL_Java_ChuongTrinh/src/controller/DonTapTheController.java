@@ -4,10 +4,12 @@
  */
 package controller;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import model.SinhVienTapThe;
 import model.TTDonTapThe;
-import model.TTDonTapTheModel;
 import view.sinhvien.DonTapThe;
 
 /**
@@ -15,28 +17,12 @@ import view.sinhvien.DonTapThe;
  * @author NGUYEN VAN MANH
  */
 public class DonTapTheController {
-    private DonTapThe view;
-    public DonTapTheController(DonTapThe view) {
-        this.view = view;
-        //gọi hàm lắng nghe sự kiện từ nút Gửi đơn
-        view.setRegisterButtonListener(e -> registerDonTapThe());
-    }
-    
-    private void registerDonTapThe() {
-        // Lấy thông tin từ form và tạo đối tượng TTDonTapThe
-        view.setResults();
-        String maDonTapThe = view.getMaDonTapThe();
-        String tenHP = view.getTenHP();
-        String maHP = view.getMaHP();
-        String lyDo = view.getLyDo();
-        List<SinhVienTapThe> dsSV = view.getDsSV();
-
-        TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, tenHP, maHP, lyDo, dsSV);
-
-        // Gọi phương thức lưu trữ trong model
-        TTDonTapTheModel.saveDonTapTheInfo(donTapThe);
-
-        // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
-        view.showRegistrationSuccessMessage();
+    public static void saveDonTapTheInfo(TTDonTapThe donTapThe) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\data\\DSDonTapThe.txt", true))) {
+            writer.write(donTapThe.toString());
+            writer.newLine();  // Thêm dòng mới để cách biệt giữa các bản ghi
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

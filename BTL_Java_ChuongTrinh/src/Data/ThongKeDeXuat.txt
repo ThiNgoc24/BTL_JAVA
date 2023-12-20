@@ -1,5 +1,0 @@
-2021601120,D01,cau hoi 1,cau hoi 2,cau hoi 3,cau hoi 4,gop y
-2021601121,D02,cau hoi 11,cau hoi 21,cau hoi 31,cau hoi 41,gop y1
-2021601122,D03,cau hoi 12,cau hoi 22,cau hoi 32,cau hoi 42,gop y2
-2021601123,D04,cau hoi 13,cau hoi 23,cau hoi 33,cau hoi 43,gop y3
-2021601124,D05,cau hoi 1,cau hoi 24,cau hoi 34,cau hoi 44,gop y4

@@ -17,7 +17,7 @@ import model.DonDeXuat;
 public class ThongKeDeXuat extends javax.swing.JFrame {
 
     private DonDeXuat don;
-    List<DonDeXuat> dsDon = DonDeXuat.readDSDonFromFile("src\\Data\\ThongKeDeXuat.txt");
+    List<DonDeXuat> dsDon = DonDeXuat.readDSDonFromFile("src\\data\\DonDeXuat.txt");
 
     /**
      * Creates new form ThongKeDeXuat
@@ -32,7 +32,12 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
         model.setRowCount(0);//reset nội dung trong bảng về 0
 
         for (DonDeXuat x : dsDon) {
-            model.addRow(new Object[]{x.getMaDon(), x.getMaTK()});
+            model.addRow(new Object[]{x.getMaDon(), x.getCauHoi1()});
+            model.addRow(new Object[]{"", x.getCauHoi2()});
+            model.addRow(new Object[]{"", x.getCauHoi3()});
+            model.addRow(new Object[]{"", x.getCauHoi4()});
+            model.addRow(new Object[]{"", x.getGopY()});
+
         }
     }
 
@@ -54,17 +59,17 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
 
         tblDonDeXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Mã đơn", "Mã sinh viên", "Tên sinh viên", "Ngành"
+                "Mã đơn", "Nội dung đơn"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -153,13 +158,9 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
     private void tblDonDeXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonDeXuatMouseClicked
         // TODO add your handling code here:
         int pos = this.tblDonDeXuat.getSelectedRow();
-            DonDeXuat don = dsDon.get(pos);
-            TrangChuAdmin admin = new TrangChuAdmin();
-        admin.setVisible(true); //Truy cập đến trang chủ Admin
-        dispose(); //Đóng giao diện hiện tại
-        
-            
-        
+        DonDeXuat don = dsDon.get(pos);
+
+
     }//GEN-LAST:event_tblDonDeXuatMouseClicked
 
     /**

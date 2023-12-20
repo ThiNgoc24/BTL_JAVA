@@ -25,7 +25,7 @@ public class SinhVien extends TaiKhoan{
         this.hoTenSV = hoTenSV;
         this.maNganh = maNganh;
     }
-
+   
     public String getHoTenSV() {
         return hoTenSV;
     }
@@ -40,6 +40,7 @@ public class SinhVien extends TaiKhoan{
 
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
-    }
+
+    }    
 }
 
