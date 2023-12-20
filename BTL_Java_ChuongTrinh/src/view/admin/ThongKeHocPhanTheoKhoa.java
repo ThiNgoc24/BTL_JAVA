@@ -22,7 +22,7 @@ import model.TTDonDangKy;
  */
 public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
 
-   private List<TTDonDangKy> listDonDangKy = FakeData.listDonDangKy;
+   private List<TTDonDangKy> listDonDangKy = FakeData.listDonDangKy_ChuaDuyet;
     private List<HocPhan> listHocPhan = FakeData.listHocPhan;
     private String maKhoa = "KCNTT";
     private Map<HocPhanDangKyCuaKhoa, Integer> mapHPCuaKhoa = new HashMap<>();
@@ -34,6 +34,7 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
     }
 
     private void taoDanhSachHocPhanCuaKhoa() {
+        mapHPCuaKhoa.clear();
         for (TTDonDangKy don : listDonDangKy) {
             String maHP = don.getMaHP();
 
@@ -70,6 +71,14 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
             int soLuongDon = entry.getValue();
             model.addRow(new Object[]{hpKhoa.getMaHP(), hpKhoa.getTenHP(), soLuongDon});
         }
+    }
+
+    private void reloadTable() {
+        listDonDangKy.clear();
+        FakeData.taoDSDonDangKyChuaDuyet();
+        listDonDangKy = FakeData.listDonDangKy_ChuaDuyet;
+        taoDanhSachHocPhanCuaKhoa();
+        viewTable(); // Hiển thị dữ liệu mới lên table
     }
 
     @SuppressWarnings("unchecked")
@@ -187,6 +196,8 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
             // Ví dụ: new ThongKeDonDangKyTheoHocPhan(maHP);
             TKDonDKTheoHocPhan thongKeDonDangKyTheoHocPhan = new TKDonDKTheoHocPhan(this, true, maHP);
             thongKeDonDangKyTheoHocPhan.setVisible(true);
+            
+            reloadTable();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
