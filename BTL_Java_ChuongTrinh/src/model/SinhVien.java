@@ -8,24 +8,27 @@ package model;
  *
  * @author NGUYEN VAN MANH
  */
-public class SinhVien extends TaiKhoan{
+
+public class SinhVien{
+    private String maSV;
     private String hoTenSV;
     private String maNganh;
-    
+    private String maKhoa;
+
     public SinhVien() {
     }
 
-    public SinhVien(String hoTenSV, String maNganh) {
+    public SinhVien(String maSV, String hoTenSV, String maNganh, String maKhoa) {
+        this.maSV = maSV;
         this.hoTenSV = hoTenSV;
         this.maNganh = maNganh;
+        this.maKhoa = maKhoa;
+    }
+    
+    public String getMaSV() {
+        return maSV;
     }
 
-    public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau, int role) {
-        super(maTK, matKhau, role);
-        this.hoTenSV = hoTenSV;
-        this.maNganh = maNganh;
-    }
-   
     public String getHoTenSV() {
         return hoTenSV;
     }
@@ -33,12 +36,16 @@ public class SinhVien extends TaiKhoan{
     public String getMaNganh() {
         return maNganh;
     }
-
-    public void setHoTenSV(String hoTenSV) {
-        this.hoTenSV = hoTenSV;
+    
+    public String getMaKhoa() {
+        return maKhoa;
     }
 
-    public void setMaNganh(String maNganh) {
-        this.maNganh = maNganh;
-    }    
+    public void setMaSV(String maSV) {
+        this.maSV = maSV;
+    }
+
+    public void setMaKhoa(String maKhoa) {
+        this.maKhoa = maKhoa;
+    }
 }
