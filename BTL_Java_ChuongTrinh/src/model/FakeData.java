@@ -242,6 +242,6 @@ public class FakeData {
 //        listDonTapThe.forEach(System.out::println);
 //        layNganh();
 //        listNganh.forEach(System.out::println);
-        listDonTapThe.forEach(System.out::println);
+        listDonDangKy.forEach(System.out::println);
     }
 }
