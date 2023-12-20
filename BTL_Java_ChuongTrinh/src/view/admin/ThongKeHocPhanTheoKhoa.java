@@ -34,6 +34,7 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
     }
 
     private void taoDanhSachHocPhanCuaKhoa() {
+        mapHPCuaKhoa.clear();
         for (TTDonDangKy don : listDonDangKy) {
             String maHP = don.getMaHP();
 
@@ -71,6 +72,14 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
 
             model.addRow(new Object[]{hpKhoa.getMaHP(), hpKhoa.getTenHP(), soLuongDon});
         }
+    }
+
+    private void reloadTable() {
+        listDonDangKy.clear();
+        FakeData.taoDSDonDangKy();
+        listDonDangKy = FakeData.listDonDangKy;
+        taoDanhSachHocPhanCuaKhoa();
+        viewTable(); // Hiển thị dữ liệu mới lên table
     }
 
     @SuppressWarnings("unchecked")
@@ -188,6 +197,8 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
             // Ví dụ: new ThongKeDonDangKyTheoHocPhan(maHP);
             TKDonDKTheoHocPhan thongKeDonDangKyTheoHocPhan = new TKDonDKTheoHocPhan(this, true, maHP);
             thongKeDonDangKyTheoHocPhan.setVisible(true);
+            
+            reloadTable();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

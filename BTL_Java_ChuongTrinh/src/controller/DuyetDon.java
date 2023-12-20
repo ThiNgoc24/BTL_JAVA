@@ -24,7 +24,7 @@ import model.TTDonTapThe;
  */
 public class DuyetDon {
     public static int maxSV = 65;
-    public static int minSV = 40;
+    public static int minSV = 5;
     public static int soLuongLopDuocMo;
     public static Map<String, TTDonCaNhan> mapDonCaNhan = new HashMap<>();
     public static Map<String, TTDonTapThe> mapDonTapThe = new HashMap<>();

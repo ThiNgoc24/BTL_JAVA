@@ -175,6 +175,7 @@ public class FakeData {
 
     
     public static void taoDSDonDangKy(){
+        listDonDangKy.clear();
         try {
            for(TTDonCaNhan donCaNhan : listDonCaNhan){
                String maDon = donCaNhan.getMaDonCaNhan();
