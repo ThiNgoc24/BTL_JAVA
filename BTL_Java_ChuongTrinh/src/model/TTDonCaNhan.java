@@ -74,8 +74,6 @@ public class TTDonCaNhan {
         this.trangThai = trangThai;
     }
 
-
-    
     @Override
     public String toString() {
         return maDonCaNhan + "," + maSV + "," + maHP + "," + tenHP + "," + lyDo + "," + trangThai;
