@@ -183,8 +183,12 @@ public class FakeData {
                String tenHP = donCaNhan.getTenHP();
                String loaiDon = "Cá nhân";
                String trangThai = donCaNhan.getTrangThai();
-               TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, 1);
-               listDonDangKy.add(donDK);
+
+               if(trangThai.trim().equals("Chưa duyệt")){
+                   TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, 1);
+                   listDonDangKy.add(donDK);
+               }
+               
            }
            for(TTDonTapThe donTapThe : listDonTapThe){
                String maDon = donTapThe.getMaDonTapThe();
@@ -194,12 +198,35 @@ public class FakeData {
                String loaiDon = "Tập thể";
                String trangThai = donTapThe.getTrangThai();
                List<SinhVienTapThe> svs = new ArrayList<>(donTapThe.getDsSV());
-               TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, svs.size()+1);
-               listDonDangKy.add(donDK);
+               if(trangThai.trim().equals("Chưa duyệt")){
+                   TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, svs.size()+1);
+                   listDonDangKy.add(donDK);
+               }
+               
            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    public static List<HocPhanDangKyCuaKhoa> layHocPhantheoNganh(String maNganh){
+        List<HocPhanDangKyCuaKhoa> listhp = new ArrayList<>();
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("src\\data\\HocPhan.txt"));
+            String line;
+            while((line = br.readLine())!= null){
+                if(!line.trim().isEmpty()){
+                    String [] xc = line.split(",");
+                    if(maNganh.equals(xc[1])){
+                        HocPhanDangKyCuaKhoa hp = new HocPhanDangKyCuaKhoa(xc[2],xc[3]);
+                        listhp.add(hp);
+                    } 
+                }
+            }
+            
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return listhp;
     }
 
     public static void main(String[] args) {
@@ -212,9 +239,9 @@ public class FakeData {
 //        layDSDonCaNhan();
 //        listDonCaNhan.forEach(System.out::println);
 //        layDSDonTapThe();
-        listDonTapThe.forEach(System.out::println);
+//        listDonTapThe.forEach(System.out::println);
 //        layNganh();
 //        listNganh.forEach(System.out::println);
-//        listDonDangKy.forEach(System.out::println);
+        listDonTapThe.forEach(System.out::println);
     }
 }

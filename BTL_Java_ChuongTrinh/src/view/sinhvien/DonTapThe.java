@@ -6,6 +6,9 @@ package view.sinhvien;
 
 import controller.DonTapTheController;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -15,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import model.FakeData;
 import model.FakeData1;
 import model.HocPhan;
+import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
 import model.TTDonTapThe;
 
@@ -27,7 +31,6 @@ public class DonTapThe extends javax.swing.JFrame {
     /**
      * Creates new form DonTapThe
      */
-    private static int nextMaDonTapThe = 1;
     private String maDonTapThe;
     private String maSV;
     private String tenHP;
@@ -36,7 +39,8 @@ public class DonTapThe extends javax.swing.JFrame {
     private List<SinhVienTapThe> dsSV = new ArrayList<>();
     private String trangThai;
     private SinhVienTapThe sinhVienTapThe;
-    List<HocPhan> danhSachHocPhan = HocPhan.readHocPhanFromFile("HTTT.txt");
+    private String maNganh = "HTTT";
+    List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
 
     private static int pos = -1;
     public DonTapThe() {
@@ -45,10 +49,38 @@ public class DonTapThe extends javax.swing.JFrame {
     }
     
 
+    private static String generateCode(String currentCode) {
+        // Hàm này sẽ sinh mã mới từ mã hiện tại, ví dụ: DTT001 -> DTT002
+        String prefix = currentCode.substring(0, currentCode.length() - 3);
+        int suffix = Integer.parseInt(currentCode.substring(currentCode.length() - 3));
+        int newSuffix = suffix + 1;
+        return String.format("%s%03d", prefix, newSuffix);
+    }
+
+    private static String loadLastCodeFromFile() {
+        String lastCode = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().isEmpty()) { // Kiểm tra xem dòng có rỗng không
+                    lastCode = line.split(",")[0]; // Lấy mã ở cột đầu tiên, tách các cột bằng dấu phẩy
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastCode;
+    }
+
     private String sinhMaDonTapThe() {
-        String maDon = "DTT" + String.format("%03d", nextMaDonTapThe);
-        nextMaDonTapThe++;
-        return maDon;
+        String currentCode = loadLastCodeFromFile();
+        if (currentCode == null) {
+            // Nếu không có mã trong file, khởi tạo mã ban đầu
+            currentCode = "DTT001";
+        }
+        // Sinh mã mới
+        String newCode = generateCode(currentCode);
+        return newCode;
     }
 
     public void viewTable(){
@@ -102,7 +134,7 @@ public class DonTapThe extends javax.swing.JFrame {
         cbbTenHP.setName("cbbTenHP"); // NOI18N
         // Tạo DefaultComboBoxModel từ danh sách tên học phần
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        for (HocPhan hocPhan : danhSachHocPhan) {
+        for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
             model.addElement(hocPhan.getTenHP());
         }
         // Thiết lập mô hình cho JComboBox
@@ -118,7 +150,7 @@ public class DonTapThe extends javax.swing.JFrame {
                 String selectedTenHP = (String) cbbTenHP.getSelectedItem();
 
                 // Tìm học phần tương ứng trong danh sách
-                for (HocPhan hocPhan : danhSachHocPhan) {
+                for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
                     if (hocPhan.getTenHP().equals(selectedTenHP)) {
                         // Gán mã học phần vào txtMaHP
                         txtMaHP.setText(hocPhan.getMaHP());
@@ -311,7 +343,7 @@ public class DonTapThe extends javax.swing.JFrame {
                 String maHP = txtMaHP.getText();
                 boolean check = false;
                 // Tìm học phần tương ứng trong danh sách
-                for (HocPhan hocPhan : danhSachHocPhan) {
+                for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
                     if (hocPhan.getMaHP().equals(maHP)) {
                         // Gán tên học phần vào cbbTenHP
                         cbbTenHP.setSelectedItem(hocPhan.getTenHP());
