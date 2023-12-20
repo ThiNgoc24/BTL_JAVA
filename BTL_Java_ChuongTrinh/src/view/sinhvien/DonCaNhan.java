@@ -3,51 +3,83 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view.sinhvien;
+
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
+import model.FakeData;
+import model.FakeData1;
 import model.HocPhan;
+import model.HocPhanDangKyCuaKhoa;
 import model.SinhVien;
+import model.TTDonCaNhan;
 
 /**
  *
  * @author Le Thi Ngoc
  */
 public class DonCaNhan extends javax.swing.JFrame {
+
     List<String> data = new ArrayList<>();
     private static int nextMaDon = 1;
     private String lyDo;
-    private SinhVien sv = new SinhVien("Nguyễn Thị Điệp", "HTTT", "2021601120", "abcd");
-    List<HocPhan> danhSachHocPhan = HocPhan.readHocPhanFromFile("HTTT.txt");
+
+    private String maNganh = "HTTT";
+    List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
+
+    public List<HocPhanDangKyCuaKhoa> getDanhSachHocPhan() {
+        return danhSachHocPhan;
+    }
+
+    public void setDanhSachHocPhan(List<HocPhanDangKyCuaKhoa> danhSachHocPhan) {
+        this.danhSachHocPhan = danhSachHocPhan;
+    }
 
     /**
      * Creates new form ĐonCaNhan
      */
     public DonCaNhan() {
         initComponents();
-        /*data.add("Tư tưởng Hồ Chí Minh");
-        data.add("Pháp luật đại cương");
-        data.add("Kỹ năng giao tiếp");
-        data.add("Giáo dục thể chất");
-        data.add("Kiến trúc máy tính");
-        data.add("Toán rời rạc");
-        data.add("Lập trình căn bản");
-        data.add("Kỹ thuật lập trình");
-        data.add("Cơ sở dữ liệu");
-        data.add("TcCNTT2");
-        cboTenHP.removeAllItems();
-        for (String ten : data) {
-            cboTenHP.addItem(ten);
-        }*/
     }
-     private String MaDon() {
-        String maDon = "DCN" + String.format("%04d", nextMaDon);
-        nextMaDon++;
-        return maDon;
+
+    private static String generateCode(String currentCode) {
+        // Hàm này sẽ sinh mã mới từ mã hiện tại, ví dụ: DTT001 -> DTT002
+        String prefix = currentCode.substring(0, currentCode.length() - 3);
+        int suffix = Integer.parseInt(currentCode.substring(currentCode.length() - 3));
+        int newSuffix = suffix + 1;
+        return String.format("%s%03d", prefix, newSuffix);
+    }
+
+    private static String loadLastCodeFromFile() {
+        String lastCode = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src\\data\\DSDonCaNhan.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().isEmpty()) { // Kiểm tra xem dòng có rỗng không
+                    lastCode = line.split(",")[0]; // Lấy mã ở cột đầu tiên, tách các cột bằng dấu phẩy
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastCode;
+    }
+
+    private String MaDon() {
+        String currentCode = loadLastCodeFromFile();
+        if (currentCode == null) {
+            // Nếu không có mã trong file, khởi tạo mã ban đầu
+            currentCode = "DCN001";
+        }
+        // Sinh mã mới
+        String newCode = generateCode(currentCode);
+        return newCode;
     }
 
     /**
@@ -166,7 +198,7 @@ public class DonCaNhan extends javax.swing.JFrame {
 
         // Tạo DefaultComboBoxModel từ danh sách tên học phần
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        for (HocPhan hocPhan : danhSachHocPhan) {
+        for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
             model.addElement(hocPhan.getTenHP());
         }
         // Thiết lập mô hình cho JComboBox
@@ -182,7 +214,7 @@ public class DonCaNhan extends javax.swing.JFrame {
                 String selectedTenHP = (String) cboTenHP.getSelectedItem();
 
                 // Tìm học phần tương ứng trong danh sách
-                for (HocPhan hocPhan : danhSachHocPhan) {
+                for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
                     if (hocPhan.getTenHP().equals(selectedTenHP)) {
                         // Gán mã học phần vào txtMaHP
                         txtMaHP.setText(hocPhan.getMaHP());
@@ -200,36 +232,58 @@ public class DonCaNhan extends javax.swing.JFrame {
         this.themDon();
     }
 
+    public boolean checkDonHopLe() {
+        List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src\\data\\DSDonCaNhan.txt");
+        String maHP = txtMaHP.getText();
+        
+        // Kiểm tra mã học phần đã tồn tại 
+        for (TTDonCaNhan x : ds) {
+            System.out.println(x.getMaHP());
+            if (x.getMaHP().equals(maHP)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void themDon() {
         String d1 = (String) cboTenHP.getSelectedItem();
         String d2 = txtMaHP.getText();
         String d3 = txtLyDo.getText();
+        String trangThai = "Chưa duyệt";
+        String maSV = FakeData1.maSVDN;
 
         if (d1.trim().equals("") || d2.trim().equals("") || d3.trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin!", "Invalidation", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             return;
         } else {
-            String md = MaDon();
-            String filePath = "src/Data/DonCaNhan.txt";
-            try {
-                // Khởi tạo FileWriter với đường dẫn tới tệp tin và true để cho phép ghi thêm
-                FileWriter fileWriter = new FileWriter(filePath, true);
+            if (checkDonHopLe()) {
+                String md = MaDon();
+                String filePath = "src/Data/DSDonCaNhan.txt";
+                try {
+                    // Khởi tạo FileWriter với đường dẫn tới tệp tin và true để cho phép ghi thêm
+                    FileWriter fileWriter = new FileWriter(filePath, true);
 
-                // Khởi tạo BufferedWriter
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    // Khởi tạo BufferedWriter
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-                // Ghi dữ liệu vào tệp tin
-                bufferedWriter.write(md + ", " + sv.getMaTK() + ", " + sv.getHoTenSV() + ", " + d1 + ", " + d2 + ", " + d3);
-                bufferedWriter.newLine(); // Thêm dòng mới sau mỗi dữ liệu
+                    // Ghi dữ liệu vào tệp tin
+                    bufferedWriter.write(md + "," + maSV + "," + d2 + "," + d1 + "," + d3 + "," + trangThai);
+                    bufferedWriter.newLine(); // Thêm dòng mới sau mỗi dữ liệu
 
-                // Đóng BufferedWriter
-                bufferedWriter.close();
-                JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Invalidation", JOptionPane.ERROR_MESSAGE);
-                System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
-            } catch (IOException e) {
-                System.out.println("Đã xảy ra lỗi khi thêm dữ liệu vào tệp tin: " + e.getMessage());
+                    // Đóng BufferedWriter
+                    bufferedWriter.close();
+                    JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
+                } catch (IOException e) {
+                    System.out.println("Đã xảy ra lỗi khi thêm dữ liệu vào tệp tin: " + e.getMessage());
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Đơn đã tồn tại.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
             }
-        }                          
+        }
 
     }//GEN-LAST:event_btnGuiActionPerformed
 
@@ -239,9 +293,12 @@ public class DonCaNhan extends javax.swing.JFrame {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
-                TrangChuSinhVien sv = new TrangChuSinhVien();
-                sv.setVisible(true); //Truy cập đến trang chủ sinh viên
-                dispose(); //Đóng giao diện hiện tại
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            TrangChuSinhVien sv = new TrangChuSinhVien();
+            sv.setVisible(true); //Truy cập đến trang chủ sinh viên
+            dispose(); //Đóng giao diện hiện tại
+        }
     }//GEN-LAST:event_btnThoatActionPerformed
 
     /**

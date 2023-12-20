@@ -150,9 +150,12 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        TrangChuAdmin admin = new TrangChuAdmin();
-        admin.setVisible(true); //Truy cập đến trang chủ Admin
-        dispose(); //Đóng giao diện hiện tại
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            TrangChuAdmin admin = new TrangChuAdmin();
+            admin.setVisible(true); //Truy cập đến trang chủ Admin
+            dispose(); //Đóng giao diện hiện tại
+        }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void tblDonDeXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonDeXuatMouseClicked

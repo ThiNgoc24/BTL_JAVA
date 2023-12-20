@@ -30,7 +30,7 @@ public class FakeData {
         layNganh();
         layHocPhan();
         layDonDeXuat();
-        layDSDonCaNhan();
+      //  layDSDonCaNhan();
         layDSDonTapThe();
         taoDSDonDangKy();
         layMaSV();
@@ -125,7 +125,7 @@ public class FakeData {
         }
     }
     
-    public static void layDSDonCaNhan(){
+    /*public static void layDSDonCaNhan(){
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonCaNhan.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -136,7 +136,7 @@ public class FakeData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
     
     public static void layDSDonTapThe() {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
