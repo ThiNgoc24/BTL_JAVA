@@ -68,7 +68,6 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
         for (Map.Entry<HocPhanDangKyCuaKhoa, Integer> entry : mapHPCuaKhoa.entrySet()) {
             HocPhanDangKyCuaKhoa hpKhoa = entry.getKey();
             int soLuongDon = entry.getValue();
-
             model.addRow(new Object[]{hpKhoa.getMaHP(), hpKhoa.getTenHP(), soLuongDon});
         }
     }
