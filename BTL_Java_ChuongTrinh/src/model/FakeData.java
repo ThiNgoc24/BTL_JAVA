@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import static model.FakeData1.maSVDN;
 
 /**
  *
@@ -36,16 +37,19 @@ public class FakeData {
         layMaSV();
     }
     
-    public static String layMaSV() {
-        try(BufferedReader br = new BufferedReader(new FileReader("src\\data\\LichSuDangNhap.txt"))){
-            String line;
-            if ((line=br.readLine()) != null){
+    public static void layMaSV() {
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\LichSuDangNhap.txt"))) {
+            String line = br.readLine();
+            if (line != null) {
                 maSVDN = line.trim();
+            } else {
+                System.out.println("File is empty");
             }
-        }catch(IOException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     

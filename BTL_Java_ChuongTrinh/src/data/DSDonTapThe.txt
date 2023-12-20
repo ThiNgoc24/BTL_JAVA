@@ -1,2 +1,1 @@
-
-DTT001,SV001,Kiến trúc máy tính,IT6014,hoc vuot,q,q,q,a,a,a,Chưa duyệt
+DTT001,SV001,Cơ sở dữ liệu,IT6006,học vượt,SV003,Nguyễn Văn Lâm,Hệ thống thông tin,SV005,Nguyễn Thị Hòa,Công nghệ thông tin,SV008,Nguyễn Văn Trường,Kỹ thuật phần mềm,Chưa duyệt
