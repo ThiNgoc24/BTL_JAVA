@@ -4,17 +4,44 @@
  */
 package view.admin;
 
+import controller.TKDSDonDKTheoMaHPController;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.TTDonDangKy;
+
 /**
  *
  * @author Le Thi Ngoc
  */
 public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
-
+    private TKDSDonDKTheoMaHPController model;
     /**
      * Creates new form ThongKeDonDangKyTheoHocPhan
      */
     public ThongKeDonDangKyTheoHocPhan() {
         initComponents();
+        capNhapBang();
+    }
+    
+    public void capNhapBang(){
+        List<TTDonDangKy> dons = model.dsDonTheoMaHP("IT6017");
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Mã đơn");
+        tableModel.addColumn("Mã SV");
+        tableModel.addColumn("Loại đơn");
+        tableModel.addColumn("Số lượng SV");
+
+        for (TTDonDangKy don : dons) {
+            Object[] row = {
+                    don.getMaDon(),
+                    don.getMaSV(),
+                    don.getLoaiDon(),
+                    don.getSoLuongSV()
+            };
+            tableModel.addRow(row);
+        }
+
+        tbl_DonDangKy.setModel(tableModel);
     }
 
     /**
@@ -27,36 +54,42 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tbl_DonDangKy = new javax.swing.JTable();
+        btnQuayLai = new javax.swing.JButton();
+        btnDuyet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_DonDangKy.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tbl_DonDangKy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã đơn", "Mã sinh viên", "Tên học phần", "Loại đơn", "Số lượng SV"
+                "Mã đơn", "Mã sinh viên", "Loại đơn", "Số lượng SV"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_DonDangKy);
 
-        jButton1.setText("Quay lại");
+        btnQuayLai.setText("Quay lại");
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLaiActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Duyệt");
+        btnDuyet.setText("Duyệt");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,29 +98,34 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addGap(274, 274, 274)
+                        .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,9 +163,9 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnDuyet;
+    private javax.swing.JButton btnQuayLai;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_DonDangKy;
     // End of variables declaration//GEN-END:variables
 }

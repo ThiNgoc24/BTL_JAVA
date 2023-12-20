@@ -1,2 +1,0 @@
-D01,IT6011,Nhập môn về kỹ thuật,Cá nhân,Đã duyệt
-D02,IT6006,Cơ sở dữ liệu,Cá nhân,Chưa duyệt
