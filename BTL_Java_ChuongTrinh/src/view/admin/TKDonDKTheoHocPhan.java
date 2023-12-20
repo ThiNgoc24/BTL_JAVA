@@ -4,18 +4,22 @@
  */
 package view.admin;
 
-import controller.TKDSDonDKTheoMaHPController;
+import controller.DuyetDon;
+import controller.TKDSDonDKTheoMaHP;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.TTDonDangKy;
+import view.dangnhap.DangNhap;
 
 /**
  *
  * @author Le Thi Ngoc
  */
 public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
-    private TKDSDonDKTheoMaHPController model;
+    private TKDSDonDKTheoMaHP model;
     private String maHP;
+    DefaultTableModel tableModel;
     /**
      * Creates new form TKDonDKTheoHocPhan
      */
@@ -28,7 +32,7 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
     
     public void capNhapBang(){
         List<TTDonDangKy> dons = model.dsDonTheoMaHP(maHP);
-        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel = new DefaultTableModel();
         tableModel.addColumn("Mã đơn");
         tableModel.addColumn("Mã SV");
         tableModel.addColumn("Loại đơn");
@@ -71,6 +75,11 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
         });
 
         btnDuyet.setText("Duyệt");
+        btnDuyet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDuyetActionPerformed(evt);
+            }
+        });
 
         tbl_DonDangKy.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tbl_DonDangKy.setModel(new javax.swing.table.DefaultTableModel(
@@ -129,6 +138,16 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
+
+    private void btnDuyetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDuyetActionPerformed
+        // TODO add your handling code here:
+        DuyetDon duyet = new DuyetDon(model.dsDonTheoMaHP(maHP));
+        if(DuyetDon.soLuongLopDuocMo == 0)
+            JOptionPane.showMessageDialog(TKDonDKTheoHocPhan.this, "Đã duyệt! Không có lớp nào được mở do không đủ số lượng sinh viên!");
+        else
+            JOptionPane.showMessageDialog(TKDonDKTheoHocPhan.this, "Đã duyệt! Có " + DuyetDon.soLuongLopDuocMo + " lớp được mở");
+        tableModel.setRowCount(0);
+    }//GEN-LAST:event_btnDuyetActionPerformed
 
     /**
      * @param args the command line arguments
