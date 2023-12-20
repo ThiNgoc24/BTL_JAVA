@@ -1,25 +1,30 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view.admin;
 
-import controller.TKDSDonDKTheoMaHPController;
+import controller.DuyetDon;
+import controller.TKDSDonDKTheoMaHP;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.TTDonDangKy;
+import view.dangnhap.DangNhap;
 
 /**
  *
  * @author Le Thi Ngoc
  */
-public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
-    private TKDSDonDKTheoMaHPController model;
+public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
+    private TKDSDonDKTheoMaHP model;
     private String maHP;
+    DefaultTableModel tableModel;
     /**
-     * Creates new form ThongKeDonDangKyTheoHocPhan
+     * Creates new form TKDonDKTheoHocPhan
      */
-    public ThongKeDonDangKyTheoHocPhan(String maHP) {
+    public TKDonDKTheoHocPhan(java.awt.Frame parent, boolean modal, String maHP) {
+        super(parent, modal);
         this.maHP = maHP;
         initComponents();
         capNhapBang();
@@ -27,7 +32,7 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
     
     public void capNhapBang(){
         List<TTDonDangKy> dons = model.dsDonTheoMaHP(maHP);
-        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel = new DefaultTableModel();
         tableModel.addColumn("Mã đơn");
         tableModel.addColumn("Mã SV");
         tableModel.addColumn("Loại đơn");
@@ -42,7 +47,6 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
             };
             tableModel.addRow(row);
         }
-
         tbl_DonDangKy.setModel(tableModel);
     }
 
@@ -55,12 +59,26 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_DonDangKy = new javax.swing.JTable();
         btnQuayLai = new javax.swing.JButton();
         btnDuyet = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_DonDangKy = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        btnQuayLai.setText("Quay lại");
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLaiActionPerformed(evt);
+            }
+        });
+
+        btnDuyet.setText("Duyệt");
+        btnDuyet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDuyetActionPerformed(evt);
+            }
+        });
 
         tbl_DonDangKy.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tbl_DonDangKy.setModel(new javax.swing.table.DefaultTableModel(
@@ -84,15 +102,6 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_DonDangKy);
 
-        btnQuayLai.setText("Quay lại");
-        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuayLaiActionPerformed(evt);
-            }
-        });
-
-        btnDuyet.setText("Duyệt");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,12 +116,12 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
                         .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,8 +135,18 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
         // TODO add your handling code here:
-        
+        dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
+
+    private void btnDuyetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDuyetActionPerformed
+        // TODO add your handling code here:
+        DuyetDon duyet = new DuyetDon(model.dsDonTheoMaHP(maHP));
+        if(DuyetDon.soLuongLopDuocMo == 0)
+            JOptionPane.showMessageDialog(TKDonDKTheoHocPhan.this, "Đã duyệt! Không có lớp nào được mở do không đủ số lượng sinh viên!");
+        else
+            JOptionPane.showMessageDialog(TKDonDKTheoHocPhan.this, "Đã duyệt! Có " + DuyetDon.soLuongLopDuocMo + " lớp được mở");
+        tableModel.setRowCount(0);
+    }//GEN-LAST:event_btnDuyetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,20 +165,27 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDonDangKyTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TKDonDKTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDonDangKyTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TKDonDKTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDonDangKyTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TKDonDKTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDonDangKyTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TKDonDKTheoHocPhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new ThongKeDonDangKyTheoHocPhan().setVisible(true);
+//                TKDonDKTheoHocPhan dialog = new TKDonDKTheoHocPhan(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
             }
         });
     }

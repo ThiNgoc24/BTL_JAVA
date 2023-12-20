@@ -17,7 +17,7 @@ import model.TTDonDangKy;
  *
  * @author Le Thi Ngoc
  */
-public class TKDSDonDKTheoMaHPController {
+public class TKDSDonDKTheoMaHP {
     //Lấy ra danh sách đơn đăng ký
     static List<TTDonDangKy> listDon = new ArrayList<>(FakeData.listDonDangKy);
     static Map<String, List<TTDonDangKy>> mapDon = new HashMap<>();
@@ -28,11 +28,13 @@ public class TKDSDonDKTheoMaHPController {
     
     public static void tongHopTheoMaHP() {
         for (TTDonDangKy don : listDon) {
-            String maHP = don.getMaHP();
-            if (!mapDon.containsKey(maHP)) {
-                mapDon.put(maHP, new ArrayList<>());
+            if(don.getTrangThai().equals("Chưa duyệt")){
+                String maHP = don.getMaHP();
+                if (!mapDon.containsKey(maHP)) {
+                    mapDon.put(maHP, new ArrayList<>());
+                }
+                mapDon.get(maHP).add(don);
             }
-            mapDon.get(maHP).add(don);
         }
     }
     

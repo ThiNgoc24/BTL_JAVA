@@ -16,12 +16,14 @@ public class TTDonCaNhan {
     private String lyDo;
     private String trangThai="Chưa duyệt";
     public TTDonCaNhan(){}
-    public TTDonCaNhan(String maDonCaNhan, String maSV, String maHP, String tenHP, String lyDo) {
+    
+    public TTDonCaNhan(String maDonCaNhan, String maSV, String maHP, String tenHP, String lyDo, String trangThai) {
         this.maDonCaNhan = maDonCaNhan;
         this.maSV = maSV;
-        this.tenHP = tenHP;
         this.maHP = maHP;
+        this.tenHP = tenHP;
         this.lyDo = lyDo;
+        this.trangThai = trangThai;
     }
 
     public String getMaDonCaNhan() {
@@ -72,9 +74,8 @@ public class TTDonCaNhan {
         this.trangThai = trangThai;
     }
 
-    
     @Override
     public String toString() {
-        return "TTDonCaNhan{" + "maDonCaNhan=" + maDonCaNhan + ", maSV=" + maSV + ", tenHP=" + tenHP + ", maHP=" + maHP + ", lyDo=" + lyDo + '}';
+        return maDonCaNhan + "," + maSV + "," + maHP + "," + tenHP + "," + lyDo + "," + trangThai;
     }
 }
