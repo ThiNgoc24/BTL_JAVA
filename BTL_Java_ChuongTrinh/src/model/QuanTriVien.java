@@ -8,12 +8,16 @@ package model;
  *
  * @author NGUYEN VAN MANH
  */
-public class QuanTriVien {
+
+public class QuanTriVien{
     private String maQTV;
     private String tenQTV;
-    private String maTK;
     
     public QuanTriVien() {
+    }
+
+    public QuanTriVien(String tenQTV) {
+        this.tenQTV = tenQTV;
     }
 
     public QuanTriVien(String maQTV, String tenQTV) {
@@ -25,17 +29,15 @@ public class QuanTriVien {
         return maQTV;
     }
 
-    public void setMaQTV(String maQTV) {
-        this.maQTV = maQTV;
-        this.maTK = this.maQTV;
-    }
-
     public String getTenQTV() {
         return tenQTV;
+    }
+
+    public void setMaQTV(String maQTV) {
+        this.maQTV = maQTV;
     }
 
     public void setTenQTV(String tenQTV) {
         this.tenQTV = tenQTV;
     }
-    
 }

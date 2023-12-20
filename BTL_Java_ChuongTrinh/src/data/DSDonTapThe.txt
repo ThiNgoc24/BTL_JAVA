@@ -1,0 +1,2 @@
+DTT001,SV001,IT6006,Cơ sở dữ liệu,học vượt,SV002,Nguyễn Việt Hoàng,Hệ thống thông tin,SV004,Nguyễn Thị Hà,Công nghệ thông tin,SV008,Nguyễn Thị Lan,Kỹ Thuật Phần Mềm,Chưa duyệt
+DTT002,SV001,IT6020,Lập trình Java nâng cao,học vượt,SV008,Nguyễn Việt Trung,Hệ thống thông tin,SV005,Nguyễn Thị Hà,Công nghệ thông tin,SV007,Nguyễn Thị Phương,Kỹ Thuật Phần Mềm,Chưa duyệt

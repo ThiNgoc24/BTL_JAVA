@@ -4,15 +4,18 @@
  */
 package model;
 
-/**
- *
- * @author DELL
- */
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class HocPhan {
     private String maHP;
+    private String maKhoa;
+    private String maNganh;
     private String tenHP;
     private int soTC;
-    private String maKhoa;
 
     public HocPhan() {
     }
@@ -28,6 +31,15 @@ public class HocPhan {
         this.tenHP = tenHP;
         this.soTC = soTC;
         this.maKhoa = maKhoa;
+    }
+
+
+    public HocPhan(String maKhoa, String maNganh,String maHP, String tenHP, int soTC) {
+        this.maHP = maHP;
+        this.maKhoa = maKhoa;
+        this.maNganh = maNganh;
+        this.tenHP = tenHP;
+        this.soTC = soTC;
     }
 
     public String getMaHP() {
@@ -60,6 +72,42 @@ public class HocPhan {
 
     public void setMaKhoa(String maKhoa) {
         this.maKhoa = maKhoa;
+    }
+
+    public String getMaNganh() {
+        return maNganh;
+    }
+
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
+    }
+    
+    public static List<HocPhan> readHocPhanFromFile(String filePath) {
+        List<HocPhan> danhSachHocPhan = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\t");
+                if (parts.length == 3) {
+                    HocPhan hocPhan = new HocPhan();
+                    hocPhan.setMaHP(parts[0]);
+                    hocPhan.setTenHP(parts[1]);
+                    hocPhan.setSoTC(Integer.parseInt(parts[2]));
+
+                    danhSachHocPhan.add(hocPhan);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Xử lý lỗi nếu cần
+        }
+
+        return danhSachHocPhan;
+    }
+
+    @Override
+    public String toString() {
+        return "HocPhan{" + "maHP=" + maHP + ", maKhoa=" + maKhoa + ", maNganh=" + maNganh + ", tenHP=" + tenHP + ", soTC=" + soTC + '}';
     }
     
 }

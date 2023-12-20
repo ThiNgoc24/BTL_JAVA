@@ -4,6 +4,12 @@
  */
 package view.sinhvien;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Le Thi Ngoc
@@ -13,9 +19,54 @@ public class DanhSachDonDK extends javax.swing.JFrame {
     /**
      * Creates new form DanhSachDonDK
      */
+    DefaultTableModel model = new DefaultTableModel();
+    Vector sv = new Vector();
+    Vector dataSV = new Vector();
+    
     public DanhSachDonDK() {
         initComponents();
+        sv.add("Mã đơn");
+        sv.add("Mã học phần");
+        sv.add("Tên học phần");
+        sv.add("Loại đơn");
+        sv.add("Trạng thái");
+        
+        jTable1.setModel(new DefaultTableModel(dataSV, sv));
+        
+//        model.addColumn("1");
+//        model.addColumn("2");
+//        model.addColumn("3");
+//        model.addColumn("4");
+//        model.addColumn("5");
+//        model.addColumn(jTable1.getColumn("Mã đơn"));
+//        jTable1.setModel(model);
+        loadDSDon("D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\DSDonDangKy.txt");
     }
+    
+    private void loadDSDon(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Split the line into individual values (assuming tab-separated values)
+                String[] values = line.split(",");
+                
+                Vector add = new Vector();
+                add.add(values[0]);
+                add.add(values[1]);
+                add.add(values[2]);
+                add.add(values[3]);
+                add.add(values[4]);
+                
+                dataSV.add(add);
+                // Add a new row to the table model
+//                model.addRow(values);
+                jTable1.setModel(new DefaultTableModel(dataSV, sv));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,23 +88,15 @@ public class DanhSachDonDK extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã đơn", "Mã học phần", "Tên học phần", "Loại đơn "
+                "Mã đơn", "Mã học phần", "Tên học phần", "Loại đơn", "Trạng thái"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N

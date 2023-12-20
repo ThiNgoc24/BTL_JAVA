@@ -4,55 +4,48 @@
  */
 package model;
 
-import java.util.HashSet;
-
 /**
  *
  * @author NGUYEN VAN MANH
  */
-public class SinhVien {
+
+public class SinhVien{
     private String maSV;
     private String hoTenSV;
-    private HashSet<ChiTietNganh> chiTietNganh;
-    private String maTK;
+    private String maNganh;
+    private String maKhoa;
 
     public SinhVien() {
     }
 
-    public SinhVien(String maSV, String hoTenSV, HashSet<ChiTietNganh> chiTietNganh) {
+    public SinhVien(String maSV, String hoTenSV, String maNganh, String maKhoa) {
         this.maSV = maSV;
         this.hoTenSV = hoTenSV;
-        this.chiTietNganh = chiTietNganh;
-        this.maTK = this.maSV;
+        this.maNganh = maNganh;
+        this.maKhoa = maKhoa;
     }
-
+    
     public String getMaSV() {
         return maSV;
-    }
-
-    public void setMaSV(String maSV) {
-        this.maSV = maSV;
-        this.maTK = this.maSV;
     }
 
     public String getHoTenSV() {
         return hoTenSV;
     }
 
-    public void setHoTenSV(String hoTenSV) {
-        this.hoTenSV = hoTenSV;
+    public String getMaNganh() {
+        return maNganh;
+    }
+    
+    public String getMaKhoa() {
+        return maKhoa;
     }
 
-    public HashSet<ChiTietNganh> getChiTietNganh() {
-        return chiTietNganh;
+    public void setMaSV(String maSV) {
+        this.maSV = maSV;
     }
 
-    public void setChiTietNganh(HashSet<ChiTietNganh> chiTietNganh) {
-        this.chiTietNganh = chiTietNganh;
+    public void setMaKhoa(String maKhoa) {
+        this.maKhoa = maKhoa;
     }
-    
-    
-    
-    
-    
 }
