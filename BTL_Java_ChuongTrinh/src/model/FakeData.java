@@ -210,11 +210,11 @@ public class FakeData {
 //        layDonDeXuat();
 //        listDonDeXuat.forEach(System.out::println);
 //        layDSDonCaNhan();
-        listDonCaNhan.forEach(System.out::println);
+//        listDonCaNhan.forEach(System.out::println);
 //        layDSDonTapThe();
-//        listDonTapThe.forEach(System.out::println);
+        listDonTapThe.forEach(System.out::println);
 //        layNganh();
 //        listNganh.forEach(System.out::println);
-        listDonDangKy.forEach(System.out::println);
+//        listDonDangKy.forEach(System.out::println);
     }
 }
