@@ -186,6 +186,8 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
             String maHP = (String) tblDSHP.getValueAt(selectedRow, 0);
             // Gọi giao diện Thống kê đơn đăng ký theo học phần và truyền mã học phần
             // Ví dụ: new ThongKeDonDangKyTheoHocPhan(maHP);
+            ThongKeDonDangKyTheoHocPhan thongKeDonDangKyTheoHocPhan = new ThongKeDonDangKyTheoHocPhan(maHP);
+            thongKeDonDangKyTheoHocPhan.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

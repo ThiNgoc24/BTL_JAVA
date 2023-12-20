@@ -15,16 +15,18 @@ import model.TTDonDangKy;
  */
 public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
     private TKDSDonDKTheoMaHPController model;
+    private String maHP;
     /**
      * Creates new form ThongKeDonDangKyTheoHocPhan
      */
-    public ThongKeDonDangKyTheoHocPhan() {
+    public ThongKeDonDangKyTheoHocPhan(String maHP) {
+        this.maHP = maHP;
         initComponents();
         capNhapBang();
     }
     
     public void capNhapBang(){
-        List<TTDonDangKy> dons = model.dsDonTheoMaHP("IT6017");
+        List<TTDonDangKy> dons = model.dsDonTheoMaHP(maHP);
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Mã đơn");
         tableModel.addColumn("Mã SV");
@@ -157,7 +159,7 @@ public class ThongKeDonDangKyTheoHocPhan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThongKeDonDangKyTheoHocPhan().setVisible(true);
+//                new ThongKeDonDangKyTheoHocPhan().setVisible(true);
             }
         });
     }
