@@ -8,10 +8,11 @@ package model;
  *
  * @author NGUYEN VAN MANH
  */
+
 public class SinhVien extends TaiKhoan{
     private String hoTenSV;
     private String maNganh;
-    
+
     public SinhVien() {
     }
 
@@ -20,12 +21,12 @@ public class SinhVien extends TaiKhoan{
         this.maNganh = maNganh;
     }
 
-    public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau, int role) {
-        super(maTK, matKhau, role);
+    public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau) {
+        super(maTK, matKhau);
         this.hoTenSV = hoTenSV;
         this.maNganh = maNganh;
     }
-   
+
     public String getHoTenSV() {
         return hoTenSV;
     }
@@ -33,14 +34,15 @@ public class SinhVien extends TaiKhoan{
     public void setHoTenSV(String hoTenSV) {
         this.hoTenSV = hoTenSV;
     }
-    
+
     public String getMaNganh() {
         return maNganh;
     }
 
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
+    }
+    
+    
 
-    }    
 }
-

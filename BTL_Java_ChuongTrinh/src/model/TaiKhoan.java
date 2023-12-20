@@ -11,15 +11,13 @@ package model;
 public class TaiKhoan {
     private String maTK;
     private String matKhau;
-    private int role;
 
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String maTK, String matKhau, int role) {
+    public TaiKhoan(String maTK, String matKhau) {
         this.maTK = maTK;
         this.matKhau = matKhau;
-        this.role = role;
     }
 
     public String getMaTK() {
@@ -33,13 +31,4 @@ public class TaiKhoan {
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
     }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
-
 }

@@ -22,7 +22,7 @@ public class TTDonTapThe {
     public TTDonTapThe() {
     }
 
-    public TTDonTapThe(String maDonTapThe,String maSV, String tenHP, String maHP, String lyDo, List<SinhVienTapThe> dsSV, String trangThai) {
+    public TTDonTapThe(String maDonTapThe,String maSV, String maHP, String tenHP, String lyDo, List<SinhVienTapThe> dsSV, String trangThai) {
         this.maDonTapThe = maDonTapThe;
         this.maSV = maSV;
         this.tenHP = tenHP;
@@ -98,8 +98,8 @@ public class TTDonTapThe {
         StringBuilder result = new StringBuilder();
         result.append(maDonTapThe).append(",")
                 .append(maSV).append(",")
-                .append(tenHP).append(",")
                 .append(maHP).append(",")
+                .append(tenHP).append(",")
                 .append(lyDo);
         for (SinhVienTapThe sv:dsSV){
             result.append(",").append(sv.toString());

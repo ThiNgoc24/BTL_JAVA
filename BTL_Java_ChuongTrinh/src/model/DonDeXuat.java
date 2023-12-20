@@ -86,6 +86,7 @@ public class DonDeXuat {
         this.gopY = gopY;
     }
 
+
  public static List<DonDeXuat> readDSDonFromFile(String filePath) {
         List<DonDeXuat> dsDon = new ArrayList<>();
 
@@ -126,6 +127,12 @@ public class DonDeXuat {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    public String toString() {
+        return "DonDeXuat{" + "maDon=" + maDon + ", cauHoi1=" + cauHoi1 + ", cauHoi2=" + cauHoi2 + ", cauHoi3=" + cauHoi3 + ", cauHoi4=" + cauHoi4 + ", gopY=" + gopY + '}';
     }
 
 }

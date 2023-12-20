@@ -4,6 +4,8 @@
  */
 package view.dangnhap;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +16,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import view.admin.TrangChuAdmin;
+import view.sinhvien.TrangChuSinhVien;
 
 /**
  *
@@ -131,6 +135,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
         // TODO add your handling code here:
         checkChange();
+        resetForm();
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
@@ -142,10 +147,10 @@ public class DoiMatKhau extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static String tkDangNhap;
-    public static String[] infor;
+    public static String password;
     
     public void checkChange(){
-        String filePath = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\LichSuDangNhap.txt";
+        String filePath = "src\\data\\LichSuDangNhap.txt";
         try {
             // Tạo đối tượng FileReader để đọc tệp tin
             FileReader fileReader = new FileReader(filePath);
@@ -165,26 +170,45 @@ public class DoiMatKhau extends javax.swing.JFrame {
         }
         
         try{
-            String fileNameSV = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\SinhVien.txt";
-            String fileNameAdmin = "D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\Admin.txt";
+            String fileNameSV = "src\\data\\TaiKhoanSV.txt";
+            String fileNameAdmin = "src\\data\\TaiKhoanAdmin.txt";
             
             if(checkUser(tkDangNhap, fileNameSV)){
+                btnQuayLai.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        TrangChuSinhVien pageSV = new TrangChuSinhVien();
+                        pageSV.setVisible(true);
+                        dispose();
+                    }
+                    
+                });
                 Map<String, String> svMap = readUserMapFromFile(fileNameSV);
-                infor = svMap.get(tkDangNhap).split(",");
+                password = svMap.get(tkDangNhap);
                 if(checkChangePassword()){
-                    infor[0] = new String(txtMatKhauMoi.getPassword());
-                    svMap.put(tkDangNhap, String.join(",", infor));
+                    password = new String(txtMatKhauMoi.getPassword());
+                    svMap.put(tkDangNhap, password);
                     JOptionPane.showMessageDialog(DoiMatKhau.this, "Đổi mật khẩu thành công");
                 }  
                 writeDataToFile(svMap, fileNameSV);
                 return;
             }
+                        
             if(checkUser(tkDangNhap, fileNameAdmin)){
+                btnQuayLai.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        TrangChuAdmin pageAdmin = new TrangChuAdmin();
+                        pageAdmin.setVisible(true);
+                        dispose();
+                    }
+                    
+                });
                 Map<String, String> adminMap = readUserMapFromFile(fileNameAdmin);
-                infor = adminMap.get(tkDangNhap).split(",");
+                password = adminMap.get(tkDangNhap);
                 if(checkChangePassword()){
-                    infor[0] = new String(txtMatKhauMoi.getPassword());
-                    adminMap.put(tkDangNhap, String.join(",", infor));
+                    password = new String(txtMatKhauMoi.getPassword());
+                    adminMap.put(tkDangNhap, password);
                     JOptionPane.showMessageDialog(DoiMatKhau.this, "Đổi mật khẩu thành công");
                 }  
                 writeDataToFile(adminMap, fileNameAdmin);
@@ -195,7 +219,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
         }
     }
     
-    private Map<String, String> readUserMapFromFile(String fileName) throws FileNotFoundException, IOException{
+    public static Map<String, String> readUserMapFromFile(String fileName) throws FileNotFoundException, IOException{
         Map<String, String> userMap = new HashMap<>();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line;
@@ -203,11 +227,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
         while ((line = br.readLine()) != null) {
             // Tách các phần trong dòng bằng dấu phẩy
             String[] parts = line.split(",");
-
-            // Lưu vào map với key là phần đầu tiên trong dòng và value là các phần còn lại
-            String value = parts.length > 3 ? String.join(",", parts[1], parts[2], parts[3]) : String.join(",", parts[1], parts[2]);
-
-            userMap.put(parts[0],value);
+            userMap.put(parts[0],parts[1]);
         }
         return userMap;
     }
@@ -244,7 +264,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
             }
             
             //Kiểm tra mật khẩu cũ nhập vào đã khớp với mật khẩu đăng nhập chưa
-            if(!matKhauCu.equals(infor[0]))
+            if(!matKhauCu.equals(password))
                 throw new Exception("Mật khẩu nhập vào không đúng");
             
             //Kiểm tra trường mật khẩu mới và nhập lại mật khẩu mới
@@ -253,9 +273,15 @@ public class DoiMatKhau extends javax.swing.JFrame {
             
             return true;
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(DoiMatKhau.this, ex.getMessage());
+            JOptionPane.showMessageDialog(DoiMatKhau.this,ex.getMessage(), "Invalidation", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+    
+    public void resetForm(){
+        txtMatKhauCu.setText("");
+        txtMatKhauMoi.setText("");
+        txtNhapLai.setText("");
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

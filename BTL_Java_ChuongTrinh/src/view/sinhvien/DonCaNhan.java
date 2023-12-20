@@ -21,7 +21,7 @@ public class DonCaNhan extends javax.swing.JFrame {
     List<String> data = new ArrayList<>();
     private static int nextMaDon = 1;
     private String lyDo;
-    private SinhVien sv = new SinhVien("Nguyễn Thị Điệp", "HTTT", "2021601120", "abcd", 2);
+    private SinhVien sv = new SinhVien("Nguyễn Thị Điệp", "HTTT", "2021601120", "abcd");
     List<HocPhan> danhSachHocPhan = HocPhan.readHocPhanFromFile("HTTT.txt");
 
     /**

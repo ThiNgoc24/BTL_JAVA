@@ -24,7 +24,7 @@ public class HocPhan {
     public HocPhan() {
     }
 
-    public HocPhan(String maHP, String maKhoa, String maNganh, String tenHP, int soTC) {
+    public HocPhan(String maKhoa, String maNganh,String maHP, String tenHP, int soTC) {
         this.maHP = maHP;
         this.maKhoa = maKhoa;
         this.maNganh = maNganh;
@@ -67,6 +67,14 @@ public class HocPhan {
     public void setMaKhoa(String maKhoa) {
         this.maKhoa = maKhoa;
     }
+
+    public String getMaNganh() {
+        return maNganh;
+    }
+
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
+    }
     
     
     
@@ -95,7 +103,9 @@ public class HocPhan {
 
     @Override
     public String toString() {
-        return "HocPhan{" + "maHP=" + maHP + ", tenHP=" + tenHP + ", soTC=" + soTC + '}';
+        return "HocPhan{" + "maHP=" + maHP + ", maKhoa=" + maKhoa + ", maNganh=" + maNganh + ", tenHP=" + tenHP + ", soTC=" + soTC + '}';
     }
+
+    
     
 }

@@ -8,22 +8,25 @@ package model;
  *
  * @author NGUYEN VAN MANH
  */
-public class TTDSDonDangKy {
+public class TTDonDangKy {
     private String maDon;
     private String maSV;
     private String maHP;
     private String tenHP;
     private String loaiDon;
     private String trangThai;
-    public TTDSDonDangKy(){}
+    private int soLuongSV;
+    
+    public TTDonDangKy(){}
 
-    public TTDSDonDangKy(String maDon, String maSV, String maHP, String tenHP, String loaiDon,String trangThai) {
+    public TTDonDangKy(String maDon, String maSV, String maHP, String tenHP, String loaiDon,String trangThai, int soLuongSV) {
         this.maDon = maDon;
         this.maSV = maSV;
         this.maHP = maHP;
         this.tenHP = tenHP;
         this.loaiDon = loaiDon;
         this.trangThai = trangThai;
+        this.soLuongSV = soLuongSV;
     }
 
     public String getMaDon() {
@@ -74,10 +77,16 @@ public class TTDSDonDangKy {
         this.trangThai = trangThai;
     }
 
-    
+    public int getSoLuongSV() {
+        return soLuongSV;
+    }
+
+    public void setSoLuongSV(int soLuongSV) {
+        this.soLuongSV = soLuongSV;
+    }
+
     @Override
     public String toString() {
-        return "TTDSDonDangKy{" + "maDon=" + maDon + ", maSV=" + maSV + ", maHP=" + maHP + ", tenHP=" + tenHP + ", loaiDon=" + loaiDon + '}';
+        return "TTDSDonDangKy{" + "maDon=" + maDon + ", maSV=" + maSV + ", maHP=" + maHP + ", tenHP=" + tenHP + ", loaiDon=" + loaiDon + ", trangThai=" + trangThai + ", soLuongSV=" + soLuongSV + '}';
     }
-    
 }

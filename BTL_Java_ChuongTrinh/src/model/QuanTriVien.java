@@ -8,7 +8,9 @@ package model;
  *
  * @author NGUYEN VAN MANH
  */
-public class QuanTriVien extends TaiKhoan{
+
+public class QuanTriVien{
+    private String maQTV;
     private String tenQTV;
     
     public QuanTriVien() {
@@ -18,13 +20,23 @@ public class QuanTriVien extends TaiKhoan{
         this.tenQTV = tenQTV;
     }
 
-    public QuanTriVien(String tenQTV, String maTK, String matKhau, int role) {
-        super(maTK, matKhau, role);
+    public QuanTriVien(String maQTV, String tenQTV) {
+        this.maQTV = maQTV;
         this.tenQTV = tenQTV;
     }
 
+
+    public String getMaQTV() {
+        return maQTV;
+    }
+
+
     public String getTenQTV() {
         return tenQTV;
+    }
+
+    public void setMaQTV(String maQTV) {
+        this.maQTV = maQTV;
     }
 
     public void setTenQTV(String tenQTV) {
