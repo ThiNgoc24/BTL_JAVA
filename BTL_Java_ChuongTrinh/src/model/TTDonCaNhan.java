@@ -14,8 +14,7 @@ public class TTDonCaNhan {
     private String tenHP;
     private String maHP;
     private String lyDo;
-    private String trangThai;
-    
+    private String trangThai="Chưa duyệt";
     public TTDonCaNhan(){}
     
     public TTDonCaNhan(String maDonCaNhan, String maSV, String maHP, String tenHP, String lyDo, String trangThai) {
@@ -74,6 +73,8 @@ public class TTDonCaNhan {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
+
+
     
     @Override
     public String toString() {
