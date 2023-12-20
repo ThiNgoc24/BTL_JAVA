@@ -4,68 +4,59 @@
  */
 package view.sinhvien;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
 
+import javax.swing.table.DefaultTableModel;
+import controller.TKDSDonTheoSV;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.TTDonDangKy;
+import model.FakeData;
 /**
  *
  * @author Le Thi Ngoc
  */
 public class DanhSachDonDK extends javax.swing.JFrame {
 
+    private TKDSDonTheoSV model;
+    private String maSV = FakeData.maSVDN;
+    
     /**
      * Creates new form DanhSachDonDK
      */
-    DefaultTableModel model = new DefaultTableModel();
-    Vector sv = new Vector();
-    Vector dataSV = new Vector();
     
     public DanhSachDonDK() {
+
         initComponents();
-        sv.add("Mã đơn");
-        sv.add("Mã học phần");
-        sv.add("Tên học phần");
-        sv.add("Loại đơn");
-        sv.add("Trạng thái");
-        
-        jTable1.setModel(new DefaultTableModel(dataSV, sv));
-        
-//        model.addColumn("1");
-//        model.addColumn("2");
-//        model.addColumn("3");
-//        model.addColumn("4");
-//        model.addColumn("5");
-//        model.addColumn(jTable1.getColumn("Mã đơn"));
-//        jTable1.setModel(model);
-        loadDSDon("D:\\HaUI\\HocKi5\\Lap trinh Java\\BTL\\Code\\BTL_Java_ChuongTrinh\\src\\data\\DSDonDangKy.txt");
+//        this.maSV = maSV;
+        capNhapDon();
     }
-    
-    private void loadDSDon(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                // Split the line into individual values (assuming tab-separated values)
-                String[] values = line.split(",");
-                
-                Vector add = new Vector();
-                add.add(values[0]);
-                add.add(values[1]);
-                add.add(values[2]);
-                add.add(values[3]);
-                add.add(values[4]);
-                
-                dataSV.add(add);
-                // Add a new row to the table model
-//                model.addRow(values);
-                jTable1.setModel(new DefaultTableModel(dataSV, sv));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            List<TTDonDangKy> dons = model.dsDonTheoMaSV(maSV);
+
+    public void capNhapDon(){
+
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Mã đơn");
+        tableModel.addColumn("Mã học phần");
+        tableModel.addColumn("Tên học phần");
+        tableModel.addColumn("Loại đơn");
+        tableModel.addColumn("Trạng thái");
+        
+        for(TTDonDangKy don: dons){
+               Object[] row = {
+                   don.getMaDon(),
+                   don.getMaHP(),
+                   don.getTenHP(),
+                   don.getLoaiDon(),
+                   don.getTrangThai()
+               
+               };
+              tableModel.addRow(row);
+              
         }
+        tbl_DonDangKYSV.setModel(tableModel);
     }
+
 
 
     /**
@@ -78,72 +69,65 @@ public class DanhSachDonDK extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tbl_DonDangKYSV = new javax.swing.JTable();
+        btlQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_DonDangKYSV.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tbl_DonDangKYSV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã đơn", "Mã học phần", "Tên học phần", "Loại đơn", "Trạng thái"
+                "Mã học phần", "Tên học phần", "Loại đơn", "Trạng thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_DonDangKYSV);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setText("Sửa");
-        jButton1.setName("btnSua"); // NOI18N
-
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Xoá");
-        jButton2.setName("btnXoa"); // NOI18N
-
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton3.setText("Quay lại");
-        jButton3.setName("btnQuayLai"); // NOI18N
+        btlQuayLai.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btlQuayLai.setText("Quay lại");
+        btlQuayLai.setName("btnQuayLai"); // NOI18N
+        btlQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlQuayLaiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btlQuayLai)
+                .addGap(375, 375, 375))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(127, 127, 127)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btlQuayLai)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btlQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlQuayLaiActionPerformed
+        // TODO add your handling code here:
+        TrangChuSinhVien trangChu = new TrangChuSinhVien();
+        trangChu.setVisible(true);
+    }//GEN-LAST:event_btlQuayLaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,10 +165,8 @@ public class DanhSachDonDK extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btlQuayLai;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_DonDangKYSV;
     // End of variables declaration//GEN-END:variables
 }
