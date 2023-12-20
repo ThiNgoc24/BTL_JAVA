@@ -23,6 +23,7 @@ public class FakeData {
     public static List<TTDonTapThe> listDonTapThe = new ArrayList<>();
     public static List<TTDSDonDangKy> listDonDangKy = new ArrayList<>();
     public static String maSVDN;
+    public static Iterable<DSDonDK> listDSDon;
     
     
     static {
@@ -109,13 +110,15 @@ public class FakeData {
         }
     }
     
-    public static void layDonDeXuat(){
+public static void layDonDeXuat(){
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DonDeXuat.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(",");
+                System.out.println(line);
                 DonDeXuat don = new DonDeXuat(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5]);
                 listDonDeXuat.add(don);
+                
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -129,6 +132,9 @@ public class FakeData {
                 String[] tokens = line.split(",");
                 TTDonCaNhan don = new TTDonCaNhan(tokens[0], tokens[1], tokens[2], tokens[3],tokens[4]);
                 listDonCaNhan.add(don);
+
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -147,13 +153,13 @@ public class FakeData {
                 String lyDo = tokens[4];
 
                 List<SinhVienTapThe> dsSV = new ArrayList<>();
-                for (int i = 5; i < tokens.length; i += 3) {
+                for (int i = 5; i < tokens.length-1; i += 3) {
                     String masv = tokens[i];
                     String tenSV = tokens[i + 1];
                     String tenNganh = tokens[i + 2];
                     dsSV.add(new SinhVienTapThe(maSV, tenSV, tenNganh));
                 }
-                String trangThai = tokens[tokens.length];
+                String trangThai = tokens[tokens.length-1];
 
                 TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, maSV, tenHP, maHP, lyDo, dsSV,trangThai);
                 listDonTapThe.add(donTapThe);

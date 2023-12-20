@@ -6,58 +6,62 @@ package view.sinhvien;
 
 import controller.DonDKController;
 import model.DSDonDK;
+import model.FakeData;
 
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
+import model.TTDSDonDangKy;
+import static model.FakeData.listDonCaNhan;
+import model.TTDonCaNhan;
+import model.TTDonTapThe;
 /**
  *
  * @author Le Thi Ngoc
  */
 public class DanhSachDonDK extends javax.swing.JFrame {
-   
+
       private List<DSDonDK> listDSDon = new ArrayList<>(); 
      private int indexDon;
      private controller.DonDKController controlers = new controller.DonDKController();
-DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model = new DefaultTableModel();
 
     public DanhSachDonDK() {
         initComponents();
         model.addColumn("Mã đơn");
         model.addColumn("Mã học phần");
         model.addColumn("Tên học phần");
-      model.addColumn("Loại đơn");
+       model.addColumn("Loại đơn");
         model.addColumn("Trạng thái");
         
         tblDanhSachDon.setModel(model);
         tblDanhSachDon.getTableHeader().setReorderingAllowed(false);
-       loadDSDon("D:\\JAVA\\BTL\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\Data\\DanhSachDonDK.txt");
-
        
+//        FakeData.layDSDonCaNhan();
+//        FakeData.layDSDonTapThe();
+
+        FakeData.layDSDonDangKy();
+        for (TTDSDonDangKy don : FakeData.listDonDangKy) {
+            model.addRow(new Object[]{don.getMaDon(),don.getMaHP(), don.getTenHP(), don.getLoaiDon(), don.getTrangThai()});
+        }
+        // cái nyaf là e add tất cả danh sách đơn của các cá nhân với cả cả tập thể 
+
+//        for (TTDonCaNhan don : FakeData.listDonCaNhan) {
+//            model.addRow(new Object[]{don.getMaDonCaNhan(),don.getMaSV(), don.getMaHP(), don.getTenHP(), don.getLyDo()});
+//        }
+//        for (TTDonTapThe don : FakeData.listDonTapThe) {
+//            model.addRow(new Object[]{don.getMaDonTapThe(), don.getMaHP(), don.getTenHP(), don.getLyDo(), don.getTrangThai()});
+//        }
+
     }
     
-    private void loadDSDon(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                // Split the line into individual values (assuming tab-separated values)
-                String[] values = line.split(",");                           
-                DSDonDK item = new DSDonDK(values[0], values[1], values[2], values[3], values[4]);
-                listDSDon.add(item);               
-                 // Add a new row to the table model
-                model.addRow(values);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,23 +83,15 @@ DefaultTableModel model = new DefaultTableModel();
         tblDanhSachDon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tblDanhSachDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Mã đơn", "Mã học phần", "Tên học phần", "Loại đơn "
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(tblDanhSachDon);
 
         btnSuaDonDK.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -132,26 +128,26 @@ DefaultTableModel model = new DefaultTableModel();
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSuaDonDK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
                         .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76)
                         .addComponent(btnQuayLai)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSuaDonDK)
                     .addComponent(btnXoa)
                     .addComponent(btnQuayLai))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -180,17 +176,20 @@ DefaultTableModel model = new DefaultTableModel();
         
     }//GEN-LAST:event_btnSuaDonDKActionPerformed
 
+
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         ////xoa
         int removeDonDK = tblDanhSachDon.getSelectedRow();
         if(removeDonDK == -1){
-            JOptionPane.showMessageDialog(rootPane,"Hay chon mot dong muon xoa");
-        }else if(listDSDon.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane,"Khong co du lieu de xoa");
+            JOptionPane.showMessageDialog(rootPane,"Hay chon mot dong muon xoa");//        }else if(listDonCaNhan.isEmpty() || listDonTapThe.isEmpty()){
+           
+        }else if(listDSDon.isEmpty()) {
+             JOptionPane.showMessageDialog(rootPane,"Khong co du lieu de xoa");
+            
         }else{
             listDSDon.remove(removeDonDK);
-           controlers.writeDataToFile(listDSDon,"DanhSachDonDK.txt");
+       controlers. writeDataToFile(listDSDon,"src\\data\\DanhSachDonDK.txt");
            showDataDon();
         }
         
@@ -242,6 +241,7 @@ DefaultTableModel model = new DefaultTableModel();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new DanhSachDonDK().setVisible(true);
             }

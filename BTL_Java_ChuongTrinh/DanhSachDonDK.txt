@@ -1,3 +1,17 @@
-DTT0001,IT6011,Nhập môn về kỹ thuật,Tập thể,Đã duyệt
-DTT0002,IT6006,Cơ sở dữ liệu,Tập thể,Chưa duyệt
-DTT0001,IT6014,Kiến trúc máy tính,Tập thể,Chưa duyệt
+DONDK11,IT6017,Lập trình .NET,Cải thiện,Chưa duyệt
+DONDK12,IT6013,Kiểm thử phần mềm,Học lại,Chưa duyệt
+DONDK13,IT6059,Thực tập chuyên ngành Hệ thống thông tin,Cải thiện,Chưa duyệt
+DONDK14,IT6058,Hệ hỗ trợ quyết định,Học lại,Chưa duyệt
+DTT002,Kiến trúc máy tính,IT6014,hoc,q
+DTT003,Kiến trúc máy tính,IT6014,hoc,q
+DTT004,Kiến trúc máy tính,IT6014,hoc,q
+DTT005,Kiến trúc máy tính,IT6014,hoc,q
+DTT006,Kiến trúc máy tính,IT6014,hoc,q
+DTT001,Nhập môn về kỹ thuật,123,hoc lại,q
+DTT002,Nhập môn về kỹ thuật,123,hoc lại,q
+DTT003,Nhập môn về kỹ thuật,123,hoc lại,q
+DTT001,Nhập môn về kỹ thuật,,,Chưa duyệt
+DTT001,Cơ sở dữ liệu,IT6006,,sv01
+DTT001,Nhập môn về kỹ thuật,,,Chưa duyệt
+DTT001,Nhập môn về kỹ thuật,,,Chưa duyệt
+DTT002,Nhập môn về kỹ thuật,,,Chưa duyệt

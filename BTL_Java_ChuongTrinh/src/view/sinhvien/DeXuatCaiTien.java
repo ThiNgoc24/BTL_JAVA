@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view.sinhvien;
-//import  model.DonDeXuat;
+import  model.DonDeXuat;
 import model.SinhVien;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
@@ -16,7 +16,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Le Thi Ngoc
  */
 public class DeXuatCaiTien extends javax.swing.JFrame {
-//    ArrayList<DonDeXuat> dons = new ArrayList<DonDeXuat>();
+    ArrayList<DonDeXuat> dons = new ArrayList<DonDeXuat>();
+    private static int nextMaDonTapThe = 1;
     /**
      * Creates new form DeXuatCaiTien
      */
@@ -152,39 +153,37 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private String sinhMaDonTapThe(){
+        String maDon = "DTT" + String.format("%03d", nextMaDonTapThe);
+        nextMaDonTapThe++;       
+        System.out.println(nextMaDonTapThe);
+        return maDon;
+    }
     private void btlGuiDeXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlGuiDeXuatActionPerformed
                 // TODO add your handling code here:
-//                DonDeXuat x = new DonDeXuat();
-//               
-//                x.setCauHoi1(txtMongMuon.getText());
-//                x.setCauHoi2(txtGopYForm.getText());
-//                x.setCauHoi3(txtGopYGV.getText());
-//                x.setCauHoi4(txtTgian.getText());
-//                x.setGopY(txtkhac.getText());
-//                String mongMuon = txtMongMuon.getText();
-//                String gopYForm = txtGopYForm.getText();
-//                String gopYGV = txtGopYGV.getText();
-//                String thoiGian = txtTgian.getText();
-//                String khac = txtkhac.getText();
-                
-//    dons.add(x);
-//Object[] DonDeXuatN = {mongMuon,gopYForm,gopYGV,thoiGian,khac};
-               JOptionPane.showMessageDialog(rootPane,"Gửi đề xuất thành công");
-//                if(mongMuon.isEmpty() || gopYForm.isEmpty() || gopYGV.isEmpty() || thoiGian.isEmpty() || khac.isEmpty()){
-//                    JOptionPane.showMessageDialog(this, "Nhập dữ liệu trước khi lưu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//            return;
-//                }  
-                
-                
+                DonDeXuat x = new DonDeXuat();
+               x.setMaDon(sinhMaDonTapThe());
+                x.setCauHoi1(txtMongMuon.getText());
+                x.setCauHoi2(txtGopYForm.getText());
+                x.setCauHoi3(txtGopYGV.getText());
+                x.setCauHoi4(txtTgian.getText());
+                x.setGopY(txtkhac.getText());
+     
+             dons.add(x);
+
+                if(txtMongMuon.getText().isEmpty() || txtGopYForm.getText().isEmpty() || txtGopYGV.getText().isEmpty() || txtTgian.getText().isEmpty() || txtkhac.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(this, "Nhập dữ liệu trước khi lưu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+                }              
                 // Lưu dữ liệu vào file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\JAVA\\BTL\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\Data\\DanhSachDexuat.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\Data\\DonDexuat.txt", true))) {
 //
-//            writer.write(x.getCauHoi1() + ",");
-//            writer.write(x.getCauHoi2() + ",");
-//            writer.write(x.getCauHoi3() + ",");
-//            writer.write(x.getCauHoi4() + ",");
-//            writer.write(x.getGopY());
+            writer.write(x.getMaDon() + ",");
+            writer.write(x.getCauHoi1() + ",");
+            writer.write(x.getCauHoi2() + ",");
+            writer.write(x.getCauHoi3() + ",");
+            writer.write(x.getCauHoi4() + ",");
+            writer.write(x.getGopY());
 
             writer.newLine();
             writer.flush();
