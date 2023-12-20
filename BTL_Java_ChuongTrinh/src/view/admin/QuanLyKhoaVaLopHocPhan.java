@@ -4,12 +4,15 @@
  */
 package view.admin;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import model.Khoa;
+import view.admin.QuanLyDSLopHocPhan;
 
 /**
  *
@@ -32,8 +35,8 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
         tbDSKhoa.setModel(tb);
         controller = new data.controllerKhoa();
         HienThi();
-        loadDS("D:\\Java\\BTL\\Code\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\data\\DSKhoa.txt");
-        luuDS("D:\\Java\\BTL\\Code\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\data\\DSKhoa.txt");
+        loadDS("src\\data\\DSKhoa.txt");
+        luuDS("src\\data\\DSKhoa.txt");
     }
 
     private void loadDS(String fileName) {
@@ -70,17 +73,41 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
         controller.writeKhoaToFile(listKhoa, fileName);
     }
 
-    private void HienThi(){
-        tbDSKhoa.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+    private void HienThi() {
+        tbDSKhoa.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void valueChanged(ListSelectionEvent e){
-                if(tbDSKhoa.getSelectedRow() >= 0){
+            public void valueChanged(ListSelectionEvent e) {
+                if (tbDSKhoa.getSelectedRow() >= 0) {
                     txtmaK.setText(tbDSKhoa.getValueAt(tbDSKhoa.getSelectedRow(), 0) + "");
                     txtTenK.setText(tbDSKhoa.getValueAt(tbDSKhoa.getSelectedRow(), 1) + "");
                 }
             }
         });
     }
+
+//    private void hThiHP() {
+//        tbDSKhoa.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                if (e.getClickCount() == 2) {
+////                    int row = tbDSKhoa.getSelectedRow();
+////                    if (row != -1) {
+////                        String maHP = tbDSKhoa.getValueAt(row, 0).toString();
+////                        openQLDS(maHP);
+////                    }
+//                    QuanLyDSLopHocPhan ds = new QuanLyDSLopHocPhan();
+//                    ds.setVisible(true);
+//                    dispose();
+//                }
+//            }
+//        });
+//    }
+//
+//    private void openQLDS(String maHP) {
+//        QuanLyDSLopHocPhan QLHP = new QuanLyDSLopHocPhan(maHP);
+//        QLHP.setVisible(true);
+//    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -119,6 +146,11 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tbDSKhoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDSKhoaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbDSKhoa);
@@ -200,10 +232,11 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTenK, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                     .addComponent(txtmaK))
@@ -211,7 +244,7 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,27 +344,27 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
                     }
                 }
             }
-            luuDS("D:\\Java\\BTL\\Code\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\data\\DSKhoa.txt");
+            luuDS("src\\data\\DSKhoa.txt");
         }
     }//GEN-LAST:event_btXoaActionPerformed
-    
+
 
     private void btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaActionPerformed
         int selectedRow = tbDSKhoa.getSelectedRow(); // Lấy dòng được chọn
-        
+
         if (selectedRow == -1) { // Kiểm tra xem có dòng nào được chọn không
             JOptionPane.showMessageDialog(this, "Vui lòng chọn một dòng để xóa.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             return;
         } else {
-            String ma  = txtmaK.getText();
+            String ma = txtmaK.getText();
             String ten = txtTenK.getText();
-            
+
             tbDSKhoa.setValueAt(ma, selectedRow, 0);
             tbDSKhoa.setValueAt(ten, selectedRow, 1);
-            
+
             txtmaK.setText("");
             txtTenK.setText("");
-            luuDS("D:\\Java\\BTL\\Code\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\data\\DSKhoa.txt");
+            luuDS("src\\data\\DSKhoa.txt");
         }
     }//GEN-LAST:event_btSuaActionPerformed
 
@@ -339,7 +372,7 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ma = txtmaK.getText();
         String ten = txtTenK.getText();
-        if(ma.isEmpty() || ten.isEmpty()){
+        if (ma.isEmpty() || ten.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!", "Thông báp", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -348,11 +381,30 @@ public class QuanLyKhoaVaLopHocPhan extends javax.swing.JFrame {
         model.addRow(kMoi);
         tbDSKhoa.updateUI();
         JOptionPane.showMessageDialog(rootPane, "Thêm thành công thành viên mới !");
-        luuDS("D:\\Java\\BTL\\Code\\BTL_JAVA\\BTL_Java_ChuongTrinh\\src\\data\\DSKhoa.txt");
-        
+        luuDS("src\\data\\DSKhoa.txt");
+
         txtmaK.setText("");
         txtTenK.setText("");
     }//GEN-LAST:event_btThemActionPerformed
+
+    private void tbDSKhoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDSKhoaMouseClicked
+         //TODO add your handling code here:
+         tbDSKhoa.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+//                    int row = tbDSKhoa.getSelectedRow();
+//                    if (row != -1) {
+//                        String maHP = tbDSKhoa.getValueAt(row, 0).toString();
+//                        openQLDS(maHP);
+//                    }
+                    QuanLyDSLopHocPhan ds = new QuanLyDSLopHocPhan();
+                    ds.setVisible(true);
+                    dispose();
+                }
+            }
+        });
+    }//GEN-LAST:event_tbDSKhoaMouseClicked
 
     /**
      * @param args the command line arguments
