@@ -20,6 +20,7 @@ public class SinhVien extends TaiKhoan{
         this.hoTenSV = hoTenSV;
         this.maNganh = maNganh;
     }
+   
 
     public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau) {
         super(maTK, matKhau);
@@ -44,5 +45,4 @@ public class SinhVien extends TaiKhoan{
     }
     
     
-
 }

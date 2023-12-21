@@ -4,8 +4,10 @@
  */
 package view.admin;
 
+import controller.TKDonDeXuatController;
+import java.util.List;
 import model.DonDeXuat;
-
+import model.FakeData;
 
 /**
  *
@@ -13,14 +15,28 @@ import model.DonDeXuat;
  */
 public class ChiTietDeXuat extends javax.swing.JFrame {
 
+    private String maDon;
+    private TKDonDeXuatController ctl;
+    List<DonDeXuat> dsDon = FakeData.listDonDeXuat;
+
     /**
      * Creates new form ChiTietDeXuat
      */
-    public ChiTietDeXuat() {
+    public ChiTietDeXuat(java.awt.Frame parent, boolean modal, String maDon) {
+        this.maDon = maDon;
         initComponents();
-        
+        loadData();
+
     }
-    
+
+    public void loadData() {
+        DonDeXuat x = ctl.donTheoMaDon(maDon);
+        txtCau1.setText(x.getCauHoi1());
+        txtCau2.setText(x.getCauHoi2());
+        txtCau3.setText(x.getCauHoi3());
+        txtCau4.setText(x.getCauHoi4());
+        txtCau5.setText(x.getGopY());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,6 +91,11 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
 
         btnExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnExit.setText("Quay Lại");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,6 +152,11 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -161,7 +187,7 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChiTietDeXuat().setVisible(true);
+                //new ChiTietDeXuat().setVisible(true);
             }
         });
     }

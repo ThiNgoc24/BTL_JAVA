@@ -15,9 +15,7 @@ import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import model.FakeData;
 import model.FakeData1;
-import model.HocPhan;
 import model.HocPhanDangKyCuaKhoa;
-import model.SinhVien;
 import model.TTDonCaNhan;
 
 /**
@@ -25,7 +23,7 @@ import model.TTDonCaNhan;
  * @author Le Thi Ngoc
  */
 public class DonCaNhan extends javax.swing.JFrame {
-
+    String maSV = FakeData1.maSVDN;
     List<String> data = new ArrayList<>();
     private static int nextMaDon = 1;
     private String lyDo;
@@ -234,8 +232,9 @@ public class DonCaNhan extends javax.swing.JFrame {
 
     public boolean checkDonHopLe() {
         List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src\\data\\DSDonCaNhan.txt");
+        //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
         String maHP = txtMaHP.getText();
-        
+
         // Kiểm tra mã học phần đã tồn tại 
         for (TTDonCaNhan x : ds) {
             System.out.println(x.getMaHP());
@@ -251,7 +250,7 @@ public class DonCaNhan extends javax.swing.JFrame {
         String d2 = txtMaHP.getText();
         String d3 = txtLyDo.getText();
         String trangThai = "Chưa duyệt";
-        String maSV = FakeData1.maSVDN;
+        
 
         if (d1.trim().equals("") || d2.trim().equals("") || d3.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -275,6 +274,9 @@ public class DonCaNhan extends javax.swing.JFrame {
                     bufferedWriter.close();
                     JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
+                    cboTenHP.setSelectedIndex(-1);
+                    txtMaHP.setText("");
+                    txtLyDo.setText("");
                 } catch (IOException e) {
                     System.out.println("Đã xảy ra lỗi khi thêm dữ liệu vào tệp tin: " + e.getMessage());
                 }
