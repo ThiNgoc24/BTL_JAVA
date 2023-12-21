@@ -6,12 +6,12 @@ package view.sinhvien;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import model.FakeData;
 import model.FakeData1;
@@ -23,11 +23,8 @@ import model.TTDonCaNhan;
  * @author Le Thi Ngoc
  */
 public class DonCaNhan extends javax.swing.JFrame {
+    //mã sinh viên là sinh viên đang đăng nhập
     String maSV = FakeData1.maSVDN;
-    List<String> data = new ArrayList<>();
-    private static int nextMaDon = 1;
-    private String lyDo;
-
     private String maNganh = "HTTT";
     List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
 
@@ -48,8 +45,8 @@ public class DonCaNhan extends javax.swing.JFrame {
 
     private static String generateCode(String currentCode) {
         // Hàm này sẽ sinh mã mới từ mã hiện tại, ví dụ: DTT001 -> DTT002
-        String prefix = currentCode.substring(0, currentCode.length() - 3);
-        int suffix = Integer.parseInt(currentCode.substring(currentCode.length() - 3));
+        String prefix = currentCode.substring(0, currentCode.length() - 3);  //DTT
+        int suffix = Integer.parseInt(currentCode.substring(currentCode.length() - 3)); //001
         int newSuffix = suffix + 1;
         return String.format("%s%03d", prefix, newSuffix);
     }
@@ -231,13 +228,20 @@ public class DonCaNhan extends javax.swing.JFrame {
     }
 
     public boolean checkDonHopLe() {
-        List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src\\data\\DSDonCaNhan.txt");
-        //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
+        List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src/Data/DSDonCaNhan.txt");
         String maHP = txtMaHP.getText();
 
         // Kiểm tra mã học phần đã tồn tại 
-        for (TTDonCaNhan x : ds) {
-            System.out.println(x.getMaHP());
+//        for (TTDonCaNhan x : ds) {
+//            System.out.println(x.getMaHP());
+//            if (x.getMaHP().equals(maHP)) {
+//                return false;
+//            }
+//        }
+
+        Iterator<TTDonCaNhan> itr = ds.iterator();
+        while(itr.hasNext()){
+            TTDonCaNhan x = itr.next();
             if (x.getMaHP().equals(maHP)) {
                 return false;
             }
@@ -250,7 +254,6 @@ public class DonCaNhan extends javax.swing.JFrame {
         String d2 = txtMaHP.getText();
         String d3 = txtLyDo.getText();
         String trangThai = "Chưa duyệt";
-        
 
         if (d1.trim().equals("") || d2.trim().equals("") || d3.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -274,16 +277,15 @@ public class DonCaNhan extends javax.swing.JFrame {
                     bufferedWriter.close();
                     JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
+                    
                     cboTenHP.setSelectedIndex(-1);
                     txtMaHP.setText("");
                     txtLyDo.setText("");
                 } catch (IOException e) {
                     System.out.println("Đã xảy ra lỗi khi thêm dữ liệu vào tệp tin: " + e.getMessage());
                 }
-
             } else {
                 JOptionPane.showMessageDialog(this, "Đơn đã tồn tại.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-
             }
         }
 
@@ -333,6 +335,7 @@ public class DonCaNhan extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new DonCaNhan().setVisible(true);
             }

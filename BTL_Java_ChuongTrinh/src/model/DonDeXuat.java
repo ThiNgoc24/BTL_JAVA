@@ -115,19 +115,7 @@ public class DonDeXuat {
         return dsDon;
     }
     
-     public void writeDSDonToFile(ArrayList<DonDeXuat> dsDon, String filePath){
-        try{
-            FileWriter wt = new FileWriter(filePath);
-            PrintWriter pt = new PrintWriter(wt);
-            for(DonDeXuat don: dsDon){
-                String line = String.join(",", don.maDon, don.cauHoi1, don.cauHoi2, don.cauHoi3, don.cauHoi4);
-                pt.write(line + "\n");
-            }
-            pt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+     
 
 
     @Override

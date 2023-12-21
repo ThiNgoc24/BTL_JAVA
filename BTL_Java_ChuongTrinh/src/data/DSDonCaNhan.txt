@@ -4,3 +4,6 @@ DCN003,SV001,IT6002,Cấu trúc dữ liệu và giải thuật,rrr,Chưa duyệt
 DCN004,SV001,IT6012,Hệ quản trị cơ sở dữ liệu,xxxx,Chưa duyệt
 DCN005,SV001,IT6012,Hệ quản trị cơ sở dữ liệu,xxx,Chưa duyệt
 DCN006,SV001,IT6015,Kỹ thuật lập trình,tttt,Chưa duyệt
+DCN007,SV001,IT6043,Trí tuệ nhân tạo,học lại,Chưa duyệt
+DCN008,SV001,IT6039,Thiết kế Web,ttt,Chưa duyệt
+DCN009,SV001,IT6011,Nhập môn về kỹ thuật,ttt,Chưa duyệt

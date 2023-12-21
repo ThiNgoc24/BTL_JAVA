@@ -4,6 +4,10 @@
  */
 package view.admin;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +20,6 @@ import model.FakeData;
  */
 public class ThongKeDeXuat extends javax.swing.JFrame {
 
-    private DonDeXuat don;
     List<DonDeXuat> dsDon = FakeData.listDonDeXuat;
 
     /**
@@ -31,8 +34,15 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) this.tblDonDeXuat.getModel();
         model.setRowCount(0);//reset nội dung trong bảng về 0
 
-        for (DonDeXuat x : dsDon) {
+//        for (DonDeXuat x : dsDon) {
+//            model.addRow(new Object[]{x.getMaDon(), x.getCauHoi1() + "," + x.getCauHoi2() + "," + x.getCauHoi3() + "," + x.getCauHoi4() + "," + x.getGopY()});
+//        }
+
+        Iterator<DonDeXuat> itr = dsDon.iterator();
+        while (itr.hasNext()) {
+            DonDeXuat x = itr.next();
             model.addRow(new Object[]{x.getMaDon(), x.getCauHoi1() + "," + x.getCauHoi2() + "," + x.getCauHoi3() + "," + x.getCauHoi4() + "," + x.getGopY()});
+
         }
     }
 
@@ -135,6 +145,32 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void writeDSDonToFile(List<DonDeXuat> dsDon, String filePath) {
+        try {
+            FileWriter wt = new FileWriter(filePath);
+            PrintWriter pt = new PrintWriter(wt);
+            for (DonDeXuat don : dsDon) {
+                String line = String.join(",", don.getMaDon(), don.getCauHoi1(), don.getCauHoi2(), don.getCauHoi3(), don.getCauHoi4(), don.getGopY());
+                pt.write(line + "\n");
+            }
+            pt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void capNhatDS(String fileName) {
+        dsDon = new ArrayList<>();
+        dsDon.clear();
+        for (int i = 0; i < tblDonDeXuat.getRowCount(); i++) {
+            String maDon = tblDonDeXuat.getValueAt(i, 0).toString();
+            String deXuat = tblDonDeXuat.getValueAt(i, 1).toString();
+            String[] parts = deXuat.split(",");
+            DonDeXuat ddx = new DonDeXuat(maDon, parts[0], parts[1], parts[2], parts[3], parts[4]);
+            dsDon.add(ddx);
+        }
+        writeDSDonToFile(dsDon, fileName);
+    }
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
@@ -149,6 +185,8 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
                     dsDon.remove(don);
                 }
                 loadTable();
+                String filePath = "src/data/DonDeXuat.txt";
+                capNhatDS(filePath); //cập nhật lại ds trong file txt
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -174,8 +212,7 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn một dòng để xem chi tiết.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         } else {
             String maDon = (String) tblDonDeXuat.getValueAt(pos, 0);
-            // Gọi giao diện Thống kê đơn đăng ký theo học phần và truyền mã học phần
-            // Ví dụ: new ThongKeDonDangKyTheoHocPhan(maHP);
+            // Gọi giao diện xem chi tiết đề xuất , truy xuất bằng mã đơn đề xuất
             ChiTietDeXuat ctdx = new ChiTietDeXuat(this, true, maDon);
             ctdx.setVisible(true);
         }

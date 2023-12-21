@@ -5,9 +5,7 @@
 package view.admin;
 
 import controller.TKDonDeXuatController;
-import java.util.List;
 import model.DonDeXuat;
-import model.FakeData;
 
 /**
  *
@@ -17,7 +15,6 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
 
     private String maDon;
     private TKDonDeXuatController ctl;
-    List<DonDeXuat> dsDon = FakeData.listDonDeXuat;
 
     /**
      * Creates new form ChiTietDeXuat
@@ -26,7 +23,6 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         this.maDon = maDon;
         initComponents();
         loadData();
-
     }
 
     public void loadData() {
@@ -66,6 +62,7 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         jLabel5.setText("Góp ý khác:");
 
         txtCau5.setColumns(20);
+        txtCau5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtCau5.setRows(5);
         jScrollPane1.setViewportView(txtCau5);
 
@@ -89,7 +86,7 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("Thời gian học của các lớp học phần được mở có phù hợp với sinh viên không?");
 
-        btnExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnExit.setText("Quay Lại");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,8 +114,8 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(267, 267, 267)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,8 +141,8 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
