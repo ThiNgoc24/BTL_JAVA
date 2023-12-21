@@ -23,6 +23,7 @@ public class FakeData {
     public static List<TTDonCaNhan> listDonCaNhan = new ArrayList<>();
     public static List<TTDonTapThe> listDonTapThe = new ArrayList<>();
     public static List<TTDonDangKy> listDonDangKy = new ArrayList<>();
+    public static List<TTDonDangKy> listDonDangKy_ChuaDuyet = new ArrayList<>();
     public static String maSVDN;
     
     static {
@@ -33,6 +34,7 @@ public class FakeData {
       //  layDSDonCaNhan();
         layDSDonTapThe();
         taoDSDonDangKy();
+        taoDSDonDangKyChuaDuyet();
         layMaSV();
     }
     
@@ -175,7 +177,36 @@ public class FakeData {
 
     
     public static void taoDSDonDangKy(){
-        listDonDangKy.clear();
+        try {
+           for(TTDonCaNhan donCaNhan : listDonCaNhan){
+               String maDon = donCaNhan.getMaDonCaNhan();
+               String maSV = donCaNhan.getMaSV();
+               String maHP = donCaNhan.getMaHP();
+               String tenHP = donCaNhan.getTenHP();
+               String loaiDon = "Cá nhân";
+               String trangThai = "Chưa duyệt";
+               TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, 1);
+               listDonDangKy.add(donDK);
+           }
+           for(TTDonTapThe donTapThe : listDonTapThe){
+               String maDon = donTapThe.getMaDonTapThe();
+               String maSV = donTapThe.getMaSV();
+               String maHP = donTapThe.getMaHP();
+               String tenHP = donTapThe.getTenHP();
+               String loaiDon = "Tập thể";
+               String trangThai = "Chưa duyệt";
+               List<SinhVienTapThe> svs = new ArrayList<>(donTapThe.getDsSV());
+               TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, svs.size()+1);
+               listDonDangKy.add(donDK);
+
+           }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void taoDSDonDangKyChuaDuyet(){
+        listDonDangKy_ChuaDuyet.clear();
         try {
            for(TTDonCaNhan donCaNhan : listDonCaNhan){
                String maDon = donCaNhan.getMaDonCaNhan();
@@ -187,7 +218,7 @@ public class FakeData {
 
                if(trangThai.trim().equals("Chưa duyệt")){
                    TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, 1);
-                   listDonDangKy.add(donDK);
+                   listDonDangKy_ChuaDuyet.add(donDK);
                }
                
            }
@@ -201,7 +232,7 @@ public class FakeData {
                List<SinhVienTapThe> svs = new ArrayList<>(donTapThe.getDsSV());
                if(trangThai.trim().equals("Chưa duyệt")){
                    TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, svs.size()+1);
-                   listDonDangKy.add(donDK);
+                   listDonDangKy_ChuaDuyet.add(donDK);
                }
                
            }
@@ -238,13 +269,11 @@ public class FakeData {
 //        layDonDeXuat();
 //        listDonDeXuat.forEach(System.out::println);
 //        layDSDonCaNhan();
-
 //        listDonCaNhan.forEach(System.out::println);
 //        layDSDonTapThe();
 //        listDonTapThe.forEach(System.out::println);
 //        layNganh();
 //        listNganh.forEach(System.out::println);
-
-        listDonDangKy.forEach(System.out::println);
+        listDonDangKy_ChuaDuyet.forEach(System.out::println);
     }
 }

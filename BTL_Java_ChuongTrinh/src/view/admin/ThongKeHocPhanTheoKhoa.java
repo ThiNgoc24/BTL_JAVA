@@ -22,7 +22,7 @@ import model.TTDonDangKy;
  */
 public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
 
-   private List<TTDonDangKy> listDonDangKy = FakeData.listDonDangKy;
+   private List<TTDonDangKy> listDonDangKy = FakeData.listDonDangKy_ChuaDuyet;
     private List<HocPhan> listHocPhan = FakeData.listHocPhan;
     private String maKhoa = "KCNTT";
     private Map<HocPhanDangKyCuaKhoa, Integer> mapHPCuaKhoa = new HashMap<>();
@@ -69,15 +69,14 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
         for (Map.Entry<HocPhanDangKyCuaKhoa, Integer> entry : mapHPCuaKhoa.entrySet()) {
             HocPhanDangKyCuaKhoa hpKhoa = entry.getKey();
             int soLuongDon = entry.getValue();
-
             model.addRow(new Object[]{hpKhoa.getMaHP(), hpKhoa.getTenHP(), soLuongDon});
         }
     }
 
     private void reloadTable() {
         listDonDangKy.clear();
-        FakeData.taoDSDonDangKy();
-        listDonDangKy = FakeData.listDonDangKy;
+        FakeData.taoDSDonDangKyChuaDuyet();
+        listDonDangKy = FakeData.listDonDangKy_ChuaDuyet;
         taoDanhSachHocPhanCuaKhoa();
         viewTable(); // Hiển thị dữ liệu mới lên table
     }

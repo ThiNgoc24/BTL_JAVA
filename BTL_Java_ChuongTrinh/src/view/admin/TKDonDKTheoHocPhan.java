@@ -47,7 +47,6 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
             };
             tableModel.addRow(row);
         }
-
         tbl_DonDangKy.setModel(tableModel);
     }
 

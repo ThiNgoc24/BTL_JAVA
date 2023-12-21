@@ -80,6 +80,7 @@ public class TTDonCaNhan {
         this.trangThai = trangThai;
     }
 
+
 public static List<TTDonCaNhan> readDonFromFile(String filePath) {
         List<TTDonCaNhan> dsDon = new ArrayList<>();
 
@@ -106,6 +107,7 @@ public static List<TTDonCaNhan> readDonFromFile(String filePath) {
     }
 
     
+
     @Override
     public String toString() {
         return maDonCaNhan + "," + maSV + "," + maHP + "," + tenHP + "," + lyDo + "," + trangThai;

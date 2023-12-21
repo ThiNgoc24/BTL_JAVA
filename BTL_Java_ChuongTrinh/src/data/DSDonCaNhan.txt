@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 DCN001,SV001,IT6044,Ứng dụng thuật toán,Cải thiện,Không có lớp nào được mở
 DCN002,SV002,IT6013,Kiểm thử phần mềm,Học lại,Chưa duyệt
 DCN003,SV002,IT6017,Lập trình .NET,Cải thiện,Không có lớp nào được mở
@@ -7,3 +8,10 @@ DCN005,SV001,IT6059,Thực tập chuyên ngành Hệ thống thông tin,Cải th
 DCN006,SV001,IT6029,Phát triển ứng dụng trên thiết bị di động,ttt,Chưa duyệt
 DCN007,SV001,IT6020,Lập trình Java nâng cao,ttt,Chưa duyệt
 DCN008,SV001,IT6033,Quản lý dự án công nghệ thông tin,test,Chưa duyệt
+=======
+DONDK10,SV001,IT6044,Ứng dụng thuật toán,Cải thiện,Chưa duyệt
+DONDK12,SV002,IT6013,Kiểm thử phần mềm,Học lại,Chưa duyệt
+DONDK11,SV002,IT6017,Lập trình .NET,Cải thiện,Chưa duyệt
+DONDK14,SV003,IT6058,Hệ hỗ trợ quyết định,Học lại,Chưa duyệt
+
+>>>>>>> master
