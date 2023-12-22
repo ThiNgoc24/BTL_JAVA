@@ -1,4 +1,4 @@
-DTT004,SV001,IT6006,Cơ sở dữ liệu,h,q,q,q,Chưa duyệt
-DTT001,SV001,IT6006,Cơ sở dữ liệu,học vượt,SV002,Nguyễn Việt Hoàng,Hệ thống thông tin,SV004,Nguyễn Thị Hà,Công nghệ thông tin,SV008,Nguyễn Thị Lan,Kỹ Thuật Phần Mềm,Không có lớp nào được mở
+DTT004,SV001,IT6006,Cơ sở dữ liệu,h,q,q,q,Có 1 lớp được mở
+DTT001,SV001,IT6006,Cơ sở dữ liệu,học vượt,SV002,Nguyễn Việt Hoàng,Hệ thống thông tin,SV004,Nguyễn Thị Hà,Công nghệ thông tin,SV008,Nguyễn Thị Lan,Kỹ Thuật Phần Mềm,Có 1 lớp được mở
 DTT002,SV001,IT6011,Nhập môn về kỹ thuật,học,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,Có 1 lớp được mở
-DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Chưa duyệt
+DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Không có lớp nào được mở

@@ -21,7 +21,7 @@ import model.TTDonDangKy;
  * @author Le Thi Ngoc
  */
 public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
-
+    
    private List<TTDonDangKy> listDonDangKy = FakeData.listDonDangKy;
     private List<HocPhan> listHocPhan = FakeData.listHocPhan;
     private String maKhoa = "KCNTT";
@@ -29,6 +29,7 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
 
     public ThongKeHocPhanTheoKhoa() {
         initComponents();
+        this.setTitle("Thông kê danh sách lớp học phần có đơn đăng ký");
         taoDanhSachHocPhanCuaKhoa();
         viewTable();
     }
@@ -85,6 +86,7 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tblDSHP.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         tblDSHP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
