@@ -1,4 +1,4 @@
 DONDK10,SV001,IT6044,Ứng dụng thuật toán,Cải thiện,Chưa duyệt
 DONDK12,SV002,IT6013,Kiểm thử phần mềm,Học lại,Chưa duyệt
 DONDK11,SV002,IT6017,Lập trình .NET,Cải thiện,Chưa duyệt
-DONDK14,SV003,IT6058,Hệ hỗ trợ quyết định,Học lại,Không có lớp nào được mở
+DONDK14,SV003,IT6058,Hệ hỗ trợ quyết định,Học lại,Chưa duyệt
