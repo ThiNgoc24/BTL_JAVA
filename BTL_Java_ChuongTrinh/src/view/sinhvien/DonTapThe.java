@@ -6,15 +6,23 @@ package view.sinhvien;
 
 import controller.DonTapTheController;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.FakeData;
 import model.FakeData1;
 import model.HocPhan;
+import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
 import model.TTDonTapThe;
 
@@ -27,7 +35,6 @@ public class DonTapThe extends javax.swing.JFrame {
     /**
      * Creates new form DonTapThe
      */
-    private static int nextMaDonTapThe = 1;
     private String maDonTapThe;
     private String maSV;
     private String tenHP;
@@ -36,7 +43,8 @@ public class DonTapThe extends javax.swing.JFrame {
     private List<SinhVienTapThe> dsSV = new ArrayList<>();
     private String trangThai;
     private SinhVienTapThe sinhVienTapThe;
-    List<HocPhan> danhSachHocPhan = HocPhan.readHocPhanFromFile("HTTT.txt");
+    private String maNganh = "HTTT";
+    List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
 
     private static int pos = -1;
     public DonTapThe() {
@@ -45,10 +53,38 @@ public class DonTapThe extends javax.swing.JFrame {
     }
     
 
+    private static String generateCode(String currentCode) {
+        // Hàm này sẽ sinh mã mới từ mã hiện tại, ví dụ: DTT001 -> DTT002
+        String prefix = currentCode.substring(0, currentCode.length() - 3);
+        int suffix = Integer.parseInt(currentCode.substring(currentCode.length() - 3));
+        int newSuffix = suffix + 1;
+        return String.format("%s%03d", prefix, newSuffix);
+    }
+
+    private static String loadLastCodeFromFile() {
+        String lastCode = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().isEmpty()) { // Kiểm tra xem dòng có rỗng không
+                    lastCode = line.split(",")[0]; // Lấy mã ở cột đầu tiên, tách các cột bằng dấu phẩy
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastCode;
+    }
+
     private String sinhMaDonTapThe() {
-        String maDon = "DTT" + String.format("%03d", nextMaDonTapThe);
-        nextMaDonTapThe++;
-        return maDon;
+        String currentCode = loadLastCodeFromFile();
+        if (currentCode == null) {
+            // Nếu không có mã trong file, khởi tạo mã ban đầu
+            currentCode = "DTT001";
+        }
+        // Sinh mã mới
+        String newCode = generateCode(currentCode);
+        return newCode;
     }
 
     public void viewTable(){
@@ -58,6 +94,10 @@ public class DonTapThe extends javax.swing.JFrame {
         for(SinhVienTapThe x:dsSV){
             model.addRow(new Object[]{x.getMaSV(),x.getHoTen(),x.getTenNganh()});
         }
+    }
+    public void reloadTable(){
+        DefaultTableModel model = (DefaultTableModel) this.tblSVTT.getModel();
+        model.setRowCount(0);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -102,7 +142,7 @@ public class DonTapThe extends javax.swing.JFrame {
         cbbTenHP.setName("cbbTenHP"); // NOI18N
         // Tạo DefaultComboBoxModel từ danh sách tên học phần
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        for (HocPhan hocPhan : danhSachHocPhan) {
+        for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
             model.addElement(hocPhan.getTenHP());
         }
         // Thiết lập mô hình cho JComboBox
@@ -118,7 +158,7 @@ public class DonTapThe extends javax.swing.JFrame {
                 String selectedTenHP = (String) cbbTenHP.getSelectedItem();
 
                 // Tìm học phần tương ứng trong danh sách
-                for (HocPhan hocPhan : danhSachHocPhan) {
+                for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
                     if (hocPhan.getTenHP().equals(selectedTenHP)) {
                         // Gán mã học phần vào txtMaHP
                         txtMaHP.setText(hocPhan.getMaHP());
@@ -311,7 +351,7 @@ public class DonTapThe extends javax.swing.JFrame {
                 String maHP = txtMaHP.getText();
                 boolean check = false;
                 // Tìm học phần tương ứng trong danh sách
-                for (HocPhan hocPhan : danhSachHocPhan) {
+                for (HocPhanDangKyCuaKhoa hocPhan : danhSachHocPhan) {
                     if (hocPhan.getMaHP().equals(maHP)) {
                         // Gán tên học phần vào cbbTenHP
                         cbbTenHP.setSelectedItem(hocPhan.getTenHP());
@@ -403,17 +443,36 @@ public class DonTapThe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    public void reloadForm(){
+        cbbTenHP.setSelectedIndex(0);
+        txtMaHP.setText("");
+        txtLyDo.setText("");
+        
+        reloadTable();
+    }
     private void btnGuiDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiDonActionPerformed
         // TODO add your handling code here:
         // Lấy thông tin từ form và tạo đối tượng TTDonTapThe
-        this.setResults();
-        TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe,maSV,maHP ,tenHP , lyDo, dsSV,trangThai);
+        if(!this.setResults()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
-        // Gọi phương thức lưu trữ trong model
-        DonTapTheController.saveDonTapTheInfo(donTapThe);
+        }else{
+            if(checkDonHopLe()){
+                TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe,maSV,maHP ,tenHP , lyDo, dsSV,trangThai);
 
-        // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
-        this.showRegistrationSuccessMessage();
+                // Gọi phương thức lưu trữ trong model
+                DonTapTheController.saveDonTapTheInfo(donTapThe);
+
+                // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
+                this.showRegistrationSuccessMessage();
+                reloadForm();
+            }else{
+                JOptionPane.showMessageDialog(this, "Đơn không hợp lệ.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+            
+        }
+        
     }//GEN-LAST:event_btnGuiDonActionPerformed
 
     private void cbbTenHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTenHPActionPerformed
@@ -463,13 +522,51 @@ public class DonTapThe extends javax.swing.JFrame {
         this.maDonTapThe = maDonTapThe;
     }
 
-    public void setResults(){
+    public boolean checkDonHopLe() {
+        String maSV = FakeData1.maSVDN;
+        String maHP = txtMaHP.getText();
+        List<SinhVienTapThe> svtt = this.getDsSV();
+
+        // Kiểm tra trùng lặp trong danh sách sinh viên
+        Set<SinhVienTapThe> setSvtt = new HashSet<>(svtt);
+        if (svtt.size() != setSvtt.size()) {
+            return false; // Có sinh viên trùng lặp
+        }
+
+        // Kiểm tra đơn tập thể đã tồn tại
+        List<TTDonTapThe> listDTT = FakeData.listDonTapThe;
+        listDTT.forEach(System.out::println);
+        for (TTDonTapThe x : listDTT) {
+            if (x.getMaSV().equals(maSV) && x.getMaHP().equals(maHP)) {
+                return false; // Đơn tập thể đã tồn tại
+            }
+        }
+
+        // Kiểm tra mã học phần đã tồn tại cho sinh viên trong danh sách đơn tập thể
+        for (TTDonTapThe x : listDTT) {
+            if (x.getMaHP().equals(maHP)) {
+                for (SinhVienTapThe sVTT_DaDK : x.getDsSV()) {
+                    if (sVTT_DaDK.getMaSV().equals(maSV)) {
+                        return false; // Mã sinh viên và mã học phần đã tồn tại
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public boolean setResults(){
         this.maDonTapThe = sinhMaDonTapThe();
         this.maSV = FakeData1.maSVDN;
         this.tenHP = cbbTenHP.getSelectedItem().toString();
         this.maHP = txtMaHP.getText();
         this.lyDo = txtLyDo.getText();
         this.trangThai = "Chưa duyệt";
+        if(this.lyDo.isEmpty() || this.lyDo.trim().equals("") || this.maHP.isEmpty() ||this.maHP.trim().equals("")){
+            return false;
+        }
+        return true;
     }
     
     
