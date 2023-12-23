@@ -4,6 +4,7 @@
  */
 package view.sinhvien;
 
+import view.dangnhap.DangNhap;
 import view.dangnhap.DoiMatKhau;
 
 /**
@@ -28,56 +29,61 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnTaoDonCaNhan = new javax.swing.JButton();
+        btnTaoDonTapThe = new javax.swing.JButton();
+        btnXemDSDon = new javax.swing.JButton();
+        btnDeXuatCaiTien = new javax.swing.JButton();
+        btnDoiMatKhau = new javax.swing.JButton();
+        btnDangXuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setText("Tạo đơn đăng ký cá nhân");
-        jButton1.setName("btnCaNhan"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTaoDonCaNhan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnTaoDonCaNhan.setText("Tạo đơn đăng ký cá nhân");
+        btnTaoDonCaNhan.setName("btnCaNhan"); // NOI18N
+        btnTaoDonCaNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnTaoDonCaNhanActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Tạo đơn đăng ký tập thể");
-        jButton2.setName("btnTapThe"); // NOI18N
+        btnTaoDonTapThe.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnTaoDonTapThe.setText("Tạo đơn đăng ký tập thể");
+        btnTaoDonTapThe.setName("btnTapThe"); // NOI18N
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton3.setText("Xem danh sách đơn đăng ký");
-        jButton3.setName("btnXemDS"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnXemDSDon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnXemDSDon.setText("Xem danh sách đơn đăng ký");
+        btnXemDSDon.setName("btnXemDS"); // NOI18N
+        btnXemDSDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnXemDSDonActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton4.setText("Đề xuất cải tiến");
-        jButton4.setName("btnCaiTien"); // NOI18N
-
-        jButton5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton5.setText("Đổi mật khẩu");
-        jButton5.setName("btnDoiMK"); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnDeXuatCaiTien.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnDeXuatCaiTien.setText("Đề xuất cải tiến");
+        btnDeXuatCaiTien.setName("btnCaiTien"); // NOI18N
+        btnDeXuatCaiTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnDeXuatCaiTienActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton6.setText("Đăng xuất");
-        jButton6.setName("btnThoat"); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnDoiMatKhau.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnDoiMatKhau.setText("Đổi mật khẩu");
+        btnDoiMatKhau.setName("btnDoiMK"); // NOI18N
+        btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnDoiMatKhauActionPerformed(evt);
+            }
+        });
+
+        btnDangXuat.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnDangXuat.setText("Đăng xuất");
+        btnDangXuat.setName("btnThoat"); // NOI18N
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
             }
         });
 
@@ -88,61 +94,70 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnXemDSDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTaoDonCaNhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTaoDonTapThe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeXuatCaiTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btnDangXuat)
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jButton1)
+                .addComponent(btnTaoDonCaNhan)
                 .addGap(33, 33, 33)
-                .addComponent(jButton2)
+                .addComponent(btnTaoDonTapThe)
                 .addGap(33, 33, 33)
-                .addComponent(jButton3)
+                .addComponent(btnXemDSDon)
                 .addGap(33, 33, 33)
-                .addComponent(jButton4)
+                .addComponent(btnDeXuatCaiTien)
                 .addGap(35, 35, 35)
-                .addComponent(jButton5)
+                .addComponent(btnDoiMatKhau)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btnDangXuat)
                 .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
         // TODO add your handling code here:
         DoiMatKhau doiMatKhau = new DoiMatKhau(this, true);
         doiMatKhau.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        DangNhap dn = new DangNhap();
+        dn.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnDangXuatActionPerformed
 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnTaoDonCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonCaNhanActionPerformed
         // TODO add your handling code here:
                 DonCaNhan dcn = new DonCaNhan();
                 dcn.setVisible(true); //Truy cập đến đơn cá nhân
                 dispose(); //Đóng giao diện đăng nhập hiện tại
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnTaoDonCaNhanActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnXemDSDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDSDonActionPerformed
         // TODO add your handling code here:
         DSDonDangKy dsDon = new DSDonDangKy(this, true);
         dsDon.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnXemDSDonActionPerformed
+
+    private void btnDeXuatCaiTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeXuatCaiTienActionPerformed
+        // TODO add your handling code here:
+        DeXuatCaiTien dx = new DeXuatCaiTien(this,true);
+        dx.setVisible(true);
+    }//GEN-LAST:event_btnDeXuatCaiTienActionPerformed
 
 
     /**
@@ -181,11 +196,11 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnDangXuat;
+    private javax.swing.JButton btnDeXuatCaiTien;
+    private javax.swing.JButton btnDoiMatKhau;
+    private javax.swing.JButton btnTaoDonCaNhan;
+    private javax.swing.JButton btnTaoDonTapThe;
+    private javax.swing.JButton btnXemDSDon;
     // End of variables declaration//GEN-END:variables
 }
