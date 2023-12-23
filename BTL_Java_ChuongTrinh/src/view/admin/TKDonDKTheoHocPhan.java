@@ -21,7 +21,7 @@ import view.dangnhap.DangNhap;
 public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
     private TKDSDonDKTheoMaHP model;
     private String maHP;
-    DefaultTableModel tableModel;
+    private DefaultTableModel tableModel;
     /**
      * Creates new form TKDonDKTheoHocPhan
      */
@@ -30,7 +30,7 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
         this.maHP = maHP;
         this.setTitle("Danh sách đơn đăng ký học phần " + getTenHP(this.maHP));
         initComponents();
-        capNhapBang();
+        capNhatBang();
     }
     
     public String getTenHP(String maHP){
@@ -42,7 +42,7 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
         return tenHP;
     }
     
-    public void capNhapBang(){
+    public void capNhatBang(){
         List<TTDonDangKy> dons = model.dsDonTheoMaHP(maHP);
         tableModel = new DefaultTableModel();
         tableModel.addColumn("Mã đơn");

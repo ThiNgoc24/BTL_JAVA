@@ -31,7 +31,6 @@ public class DangNhap extends javax.swing.JFrame {
         loadDataBase();
         initComponents();
     }
-
     private ArrayList<TaiKhoan> adminList;
     private ArrayList<TaiKhoan> sinhVienList;
    
@@ -176,7 +175,7 @@ public class DangNhap extends javax.swing.JFrame {
     }
     
     private int checkLogin(String maTK, String passWord)throws Exception{
-        if(maTK.trim().equals("") && passWord.trim().equals(""))
+        if(maTK.trim().equals("") || passWord.trim().equals(""))
             throw  new Exception("Vui lòng điền đầy đủ thông tin!");
         
         if(!rdoQuanTriVien.isSelected() && !rdoSinhVien.isSelected())
