@@ -143,8 +143,11 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
         DuyetDon duyet = new DuyetDon(model.dsDonTheoMaHP(maHP));
         if(DuyetDon.soLuongLopDuocMo == 0)
             JOptionPane.showMessageDialog(TKDonDKTheoHocPhan.this, "Đã duyệt! Không có lớp nào được mở do không đủ số lượng sinh viên!");
-        else
+        else{
             JOptionPane.showMessageDialog(TKDonDKTheoHocPhan.this, "Đã duyệt! Có " + DuyetDon.soLuongLopDuocMo + " lớp được mở");
+            DuyetDon.soLuongLopDuocMo = 0;
+        }
+            
         tableModel.setRowCount(0);
     }//GEN-LAST:event_btnDuyetActionPerformed
 

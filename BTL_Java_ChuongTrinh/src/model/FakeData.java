@@ -274,8 +274,7 @@ public class FakeData {
 //        listDonTapThe.forEach(System.out::println);
 //        layNganh();
 //        listNganh.forEach(System.out::println);
-        listDonDangKy.forEach(System.out::println);
 
-        listDonDangKy_ChuaDuyet.forEach(System.out::println);
+        listDonCaNhan.forEach(System.out::println);
     }
 }
