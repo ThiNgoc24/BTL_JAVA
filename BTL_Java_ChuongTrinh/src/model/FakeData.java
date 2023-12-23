@@ -127,7 +127,7 @@ public class FakeData {
         }
     }
     
-    /*public static void layDSDonCaNhan(){
+ /*   public static void layDSDonCaNhan(){
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonCaNhan.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {

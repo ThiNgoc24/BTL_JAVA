@@ -26,6 +26,7 @@ public class DonCaNhan extends javax.swing.JFrame {
     //mã sinh viên là sinh viên đang đăng nhập
     String maSV = FakeData1.maSVDN;
     private String maNganh = "HTTT";
+    
     List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
 
     public List<HocPhanDangKyCuaKhoa> getDanhSachHocPhan() {
@@ -229,16 +230,11 @@ public class DonCaNhan extends javax.swing.JFrame {
 
     public boolean checkDonHopLe() {
         List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src/Data/DSDonCaNhan.txt");
+       //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
+
         String maHP = txtMaHP.getText();
 
         // Kiểm tra mã học phần đã tồn tại 
-//        for (TTDonCaNhan x : ds) {
-//            System.out.println(x.getMaHP());
-//            if (x.getMaHP().equals(maHP)) {
-//                return false;
-//            }
-//        }
-
         Iterator<TTDonCaNhan> itr = ds.iterator();
         while(itr.hasNext()){
             TTDonCaNhan x = itr.next();
@@ -256,7 +252,8 @@ public class DonCaNhan extends javax.swing.JFrame {
         String trangThai = "Chưa duyệt";
 
         if (d1.trim().equals("") || d2.trim().equals("") || d3.trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             return;
         } else {
             if (checkDonHopLe()) {
