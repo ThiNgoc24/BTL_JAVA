@@ -2,3 +2,20 @@ HTTT,Hệ thống thông tin,KCNTT
 CNTT,Công nghệ thông tin,KCNTT
 KTPM,Kỹ thuật phần mềm,KCNTT
 KHMT,Khoa học máy tính,KCNTT
+TA,Tieng Anh,KNN
+TT,Tieng Trung,KNN
+1,1,q
+2,2,q
+w,w,qq
+n,n,qq
+3,3,qq
+4,4,qq
+12,22545,qq
+NKT,Kế toán,KDT
+jhskhf,fdsfsdg,qqq
+cvxccx,xcvx,qqq
+TTT,Tieng Trung,KNN
+TThgf,Tieng Trung,KNN
+NDien,Điện tử,KDT
+NKTPM,Kỹ thuật phần mềm,KDT
+66,3,KCNTT

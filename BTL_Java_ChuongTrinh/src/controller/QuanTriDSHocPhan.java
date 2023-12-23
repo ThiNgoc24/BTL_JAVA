@@ -6,11 +6,8 @@ package controller;
 
 /**
  *
- * @author NGUYEN VAN MANH
+ * @author DELL
  */
-public class DangNhapController {
-    
-    public DangNhapController() {
-    }
+public class QuanTriDSHocPhan {
     
 }

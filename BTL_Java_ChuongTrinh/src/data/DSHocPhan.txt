@@ -1,5 +1,0 @@
-CNTT, IT1, Trí tuệ nhân tạo, 3
-CNTT, IT2, Nhập môn tin học, 2
-CNTT, IT3, Toán rời rạc, 3
-NN, NN1, Tiếng anh, 5
-NN, NN2, Tin Anh, 2
