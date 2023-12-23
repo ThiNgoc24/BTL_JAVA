@@ -31,7 +31,6 @@ public class DangNhap extends javax.swing.JFrame {
         
         initComponents();
     }
-
     private ArrayList<TaiKhoan> adminList;
     private ArrayList<TaiKhoan> sinhVienList;
    
@@ -150,10 +149,29 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
-   
+    private int checkLogin(String maTK, String passWord)throws Exception{
+        if(maTK.trim().equals("") || passWord.trim().equals(""))
+            throw  new Exception("Vui lòng điền đầy đủ thông tin!");
+        
+        if(!rdoQuanTriVien.isSelected() && !rdoSinhVien.isSelected())
+            throw new Exception("Vui lòng chọn vai trò đăng nhập");
+        
+        if(rdoQuanTriVien.isSelected()){
+            for(TaiKhoan qtv : adminList){
+                if(maTK.equalsIgnoreCase(qtv.getMaTK())&& passWord.equals(qtv.getMatKhau())){
+                    return 0;
+                }
+            }
+        }
+        else {
+            for(TaiKhoan sv : sinhVienList){
+                if(maTK.equalsIgnoreCase(sv.getMaTK())&& passWord.equals(sv.getMatKhau())){
+                    return 1;
+                }
+            }
+        }
+        return 2;
+    }
 //    Map<String, String> userMap = new HashMap<>();
     
     private void rdoQuanTriVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoQuanTriVienActionPerformed

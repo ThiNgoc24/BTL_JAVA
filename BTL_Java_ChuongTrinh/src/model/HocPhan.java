@@ -9,11 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-/**
- *
- * @author NGUYEN VAN MANH
- */
 public class HocPhan {
     private String maHP;
     private String maKhoa;
@@ -23,7 +20,7 @@ public class HocPhan {
 
     public HocPhan() {
     }
-
+    
     public HocPhan(String maKhoa, String maNganh,String maHP, String tenHP, int soTC) {
         this.maHP = maHP;
         this.maKhoa = maKhoa;
@@ -31,10 +28,6 @@ public class HocPhan {
         this.tenHP = tenHP;
         this.soTC = soTC;
     }
-
-    
-
-    
 
     public String getMaHP() {
         return maHP;
@@ -76,8 +69,6 @@ public class HocPhan {
         this.maNganh = maNganh;
     }
     
-    
-    
     public static List<HocPhan> readHocPhanFromFile(String filePath) {
         List<HocPhan> danhSachHocPhan = new ArrayList<>();
 
@@ -103,9 +94,30 @@ public class HocPhan {
 
     @Override
     public String toString() {
-        return "HocPhan{" + "maHP=" + maHP + ", maKhoa=" + maKhoa + ", maNganh=" + maNganh + ", tenHP=" + tenHP + ", soTC=" + soTC + '}';
+        return maKhoa +"," + maNganh + "," + maHP + ","+ tenHP +  "," + soTC;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.maHP);
+        hash = 37 * hash + Objects.hashCode(this.tenHP);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HocPhan other = (HocPhan) obj;
+        return Objects.equals(this.maHP, other.maHP);
+    }
     
 }

@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view.admin;
 
@@ -9,23 +9,22 @@ import model.DonDeXuat;
 
 /**
  *
- * @author ADMIN
+ * @author Le Thi Ngoc
  */
-public class ChiTietDeXuat extends javax.swing.JFrame {
-
+public class ChiTietDeXuat extends javax.swing.JDialog {
     private String maDon;
     private TKDonDeXuatController ctl;
-
     /**
      * Creates new form ChiTietDeXuat
      */
-    public ChiTietDeXuat(java.awt.Frame parent, boolean modal, String maDon) {
+    public ChiTietDeXuat(java.awt.Dialog parent, boolean modal,String maDon) {
+        super(parent, modal);
         this.maDon = maDon;
         initComponents();
         loadData();
     }
 
-    public void loadData() {
+     public void loadData() {
         DonDeXuat x = ctl.donTheoMaDon(maDon);
         txtCau1.setText(x.getCauHoi1());
         txtCau2.setText(x.getCauHoi2());
@@ -33,7 +32,6 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         txtCau4.setText(x.getCauHoi4());
         txtCau5.setText(x.getGopY());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +41,10 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCau5 = new javax.swing.JTextArea();
         txtCau1 = new javax.swing.JTextField();
@@ -52,19 +53,31 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         txtCau2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel3.setText("Bạn có góp ý gì về phương pháp giảng dạy các lớp học phần không?");
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel4.setText("Thời gian học của các lớp học phần được mở có phù hợp với sinh viên không?");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Góp ý khác:");
+
+        btnExit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnExit.setText("Quay Lại");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         txtCau5.setColumns(20);
         txtCau5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtCau5.setRows(5);
         jScrollPane1.setViewportView(txtCau5);
+        txtCau5.setEditable(false);
 
         txtCau1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
@@ -79,20 +92,6 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Bạn có góp ý gì cho nhà trường về form đăng ký không?");
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel3.setText("Bạn có góp ý gì về phương pháp giảng dạy các lớp học phần không?");
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel4.setText("Thời gian học của các lớp học phần được mở có phù hợp với sinh viên không?");
-
-        btnExit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnExit.setText("Quay Lại");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,7 +115,7 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(267, 267, 267)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,9 +141,14 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
+
+        txtCau1.setEditable(false);
+        txtCau4.setEditable(false);
+        txtCau3.setEditable(false);
+        txtCau2.setEditable(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,10 +185,17 @@ public class ChiTietDeXuat extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new ChiTietDeXuat().setVisible(true);
+//                ChiTietDeXuat dialog = new ChiTietDeXuat(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
             }
         });
     }
