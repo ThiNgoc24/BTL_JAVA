@@ -142,9 +142,8 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
 
     private void btnTaoDonCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonCaNhanActionPerformed
         // TODO add your handling code here:
-                DonCaNhan dcn = new DonCaNhan();
+                DonCaNhan dcn = new DonCaNhan(this, true);
                 dcn.setVisible(true); //Truy cập đến đơn cá nhân
-                dispose(); //Đóng giao diện đăng nhập hiện tại
     }//GEN-LAST:event_btnTaoDonCaNhanActionPerformed
 
     private void btnXemDSDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDSDonActionPerformed
