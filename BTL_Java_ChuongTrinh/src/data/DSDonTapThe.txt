@@ -1,8 +1,12 @@
-DTT004,SV001,IT6006,Cơ sở dữ liệu,h,q,q,q,Chưa duyệt
+DTT004,SV001,IT6002,Cấu trúc dữ liệu và giải thuật,học,Chưa duyệt
 DTT005,SV001,IT6039,Thiết kế Web,học,a,a,a,Chưa duyệt
 DTT001,SV001,IT6006,Cơ sở dữ liệu,học vượt,SV008,Nguyễn Thị Lan,Kỹ Thuật Phần Mềm,Chưa duyệt
 DTT002,SV001,IT6011,Nhập môn về kỹ thuật,học,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,Chưa duyệt
 DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Chưa duyệt
+<<<<<<< HEAD
 DTT004,<<<<<<< HEAD,IT6007,Cơ sở lập trình nhúng,ewe,1,a,b,Chưa duyệt
 DTT005,SV001,IT6014,Kiến trúc máy tính,test,Chưa duyệt
 DTT006,SV001,IT6014,Kiến trúc máy tính,ccc,Chưa duyệt
+=======
+
+>>>>>>> be815248fdfdd241225d2fc5e76698e91bf89d2d

@@ -32,9 +32,6 @@ import model.TTDonTapThe;
  */
 public class DonTapThe extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DonTapThe
-     */
     private String maDonTapThe;
     private String maSV;
     private String tenHP;
@@ -47,11 +44,12 @@ public class DonTapThe extends javax.swing.JFrame {
     List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
 
     private static int pos = -1;
+
     public DonTapThe() {
+        this.setTitle("Đơn tập thể");
         initComponents();
         viewTable();
     }
-    
 
     private static String generateCode(String currentCode) {
         // Hàm này sẽ sinh mã mới từ mã hiện tại, ví dụ: DTT001 -> DTT002
@@ -63,7 +61,7 @@ public class DonTapThe extends javax.swing.JFrame {
 
     private static String loadLastCodeFromFile() {
         String lastCode = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
+        try ( BufferedReader reader = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) { // Kiểm tra xem dòng có rỗng không
@@ -87,18 +85,20 @@ public class DonTapThe extends javax.swing.JFrame {
         return newCode;
     }
 
-    public void viewTable(){
+    public void viewTable() {
         DefaultTableModel model = (DefaultTableModel) this.tblSVTT.getModel();
         model.setRowCount(0);
-        
-        for(SinhVienTapThe x:dsSV){
-            model.addRow(new Object[]{x.getMaSV(),x.getHoTen(),x.getTenNganh()});
+
+        for (SinhVienTapThe x : dsSV) {
+            model.addRow(new Object[]{x.getMaSV(), x.getHoTen(), x.getTenNganh()});
         }
     }
-    public void reloadTable(){
+
+    public void reloadTable() {
         DefaultTableModel model = (DefaultTableModel) this.tblSVTT.getModel();
         model.setRowCount(0);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -370,19 +370,19 @@ public class DonTapThe extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        ChiTietDTT chiTietDonTapThe = new ChiTietDTT(this,true);
+        ChiTietDTT chiTietDonTapThe = new ChiTietDTT(this, true);
         // Thiết lập chế độ là thêm mới cho JFrame con
         chiTietDonTapThe.setAddMode();
         //Hiển thị Jframe con
         chiTietDonTapThe.setVisible(true);
         // Code ở đây sẽ thực hiện sau khi childDialog đóng
-                SinhVienTapThe sinhVienTapThe = chiTietDonTapThe.getSVTT();
-                if(sinhVienTapThe != null){
-                    dsSV.add(sinhVienTapThe);
-                    viewTable();
-                }
+        SinhVienTapThe sinhVienTapThe = chiTietDonTapThe.getSVTT();
+        if (sinhVienTapThe != null) {
+            dsSV.add(sinhVienTapThe);
+            viewTable();
+        }
 
-        
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -397,7 +397,7 @@ public class DonTapThe extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSVTTKeyReleased
 
-    
+
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = tblSVTT.getSelectedRow();
 
@@ -413,7 +413,7 @@ public class DonTapThe extends javax.swing.JFrame {
             // Hiển thị thông báo khi không có dòng nào được chọn
             JOptionPane.showMessageDialog(this, "Vui lòng chọn một sinh viên để xóa.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -430,49 +430,52 @@ public class DonTapThe extends javax.swing.JFrame {
             chiTietDonTapThe.setEditMode();
             chiTietDonTapThe.setVisible(true);
             // Code ở đây sẽ thực hiện sau khi childDialog đóng
-                SinhVienTapThe sinhVienTapThe = chiTietDonTapThe.getSVTT();
-                if(sinhVienTapThe != null){
-                    sv.setMaSV(sinhVienTapThe.getMaSV());
-                    sv.setHoTen(sinhVienTapThe.getHoTen());
-                    sv.setTenNganh(sinhVienTapThe.getTenNganh());
-                    viewTable();
-                }
-                
+            SinhVienTapThe sinhVienTapThe = chiTietDonTapThe.getSVTT();
+            if (sinhVienTapThe != null) {
+                sv.setMaSV(sinhVienTapThe.getMaSV());
+                sv.setHoTen(sinhVienTapThe.getHoTen());
+                sv.setTenNganh(sinhVienTapThe.getTenNganh());
+                viewTable();
+            }
+
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 sinh viên để sửa!", "Invalidation", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
-    public void reloadForm(){
+    public void reloadForm() {
         cbbTenHP.setSelectedIndex(0);
         txtMaHP.setText("");
         txtLyDo.setText("");
-        
+
         reloadTable();
     }
     private void btnGuiDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiDonActionPerformed
         // TODO add your handling code here:
         // Lấy thông tin từ form và tạo đối tượng TTDonTapThe
-        if(!this.setResults()){
+        if (!this.setResults()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
-        }else{
-            if(checkDonHopLe()){
-                TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe,maSV,maHP ,tenHP , lyDo, dsSV,trangThai);
+        } else {
+            try {
+                if (checkDonHopLe()) {
+                    TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, maSV, maHP, tenHP, lyDo, dsSV, trangThai);
 
-                // Gọi phương thức lưu trữ trong model
-                DonTapTheController.saveDonTapTheInfo(donTapThe);
+                    // Gọi phương thức lưu trữ trong model
+                    DonTapTheController.saveDonTapTheInfo(donTapThe);
 
-                // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
-                this.showRegistrationSuccessMessage();
-                reloadForm();
-            }else{
+                    // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
+                    this.showRegistrationSuccessMessage();
+                    reloadForm();
+                } else {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Đơn không hợp lệ.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-
             }
-            
+
         }
-        
+
     }//GEN-LAST:event_btnGuiDonActionPerformed
 
     private void cbbTenHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTenHPActionPerformed
@@ -482,6 +485,7 @@ public class DonTapThe extends javax.swing.JFrame {
     public void showRegistrationSuccessMessage() {
         JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }
+
     public String getTenHP() {
         return tenHP;
     }
@@ -556,20 +560,19 @@ public class DonTapThe extends javax.swing.JFrame {
         return true;
     }
 
-    public boolean setResults(){
+    public boolean setResults() {
         this.maDonTapThe = sinhMaDonTapThe();
         this.maSV = FakeData1.maSVDN;
         this.tenHP = cbbTenHP.getSelectedItem().toString();
         this.maHP = txtMaHP.getText();
         this.lyDo = txtLyDo.getText();
         this.trangThai = "Chưa duyệt";
-        if(this.lyDo.isEmpty() || this.lyDo.trim().equals("") || this.maHP.isEmpty() ||this.maHP.trim().equals("")){
+        if (this.lyDo.isEmpty() || this.lyDo.trim().equals("") || this.maHP.isEmpty() || this.maHP.trim().equals("")) {
             return false;
         }
         return true;
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */

@@ -22,12 +22,13 @@ import model.TTDonDangKy;
  */
 public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
 
-   private List<TTDonDangKy> listDonDangKy = FakeData.listDonDangKy_ChuaDuyet;
+    private List<TTDonDangKy> listDonDangKy = FakeData.listDonDangKy_ChuaDuyet;
     private List<HocPhan> listHocPhan = FakeData.listHocPhan;
     private String maKhoa = "KCNTT";
     private Map<HocPhanDangKyCuaKhoa, Integer> mapHPCuaKhoa = new HashMap<>();
 
     public ThongKeHocPhanTheoKhoa() {
+        this.setTitle("Thống kê danh sách học phần có đơn đăng ký theo khoa");
         initComponents();
         taoDanhSachHocPhanCuaKhoa();
         viewTable();
@@ -47,17 +48,12 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
                     // Kiểm tra xem HocPhan có thuộc khoa được chỉ định không
                     if (maKhoaHocPhan.equals(maKhoa)) {
                         HocPhanDangKyCuaKhoa hpKhoa = new HocPhanDangKyCuaKhoa(maHP, hp.getTenHP());
-                        mapHPCuaKhoa.put(hpKhoa, mapHPCuaKhoa.getOrDefault(hpKhoa, 0) + 1);
+                        mapHPCuaKhoa.put(hpKhoa, mapHPCuaKhoa.getOrDefault(hpKhoa, 0) + 1); //getOrDefault trả về giá trị của khóa nếu tồn tại nếu không thì trả về giá trị mặc định truyền vào
                     }
 
                     daTonTai = true;
                     break;
                 }
-            }
-
-            // Nếu không tồn tại trong danh sách, có thể xử lý tùy theo yêu cầu cụ thể
-            if (!daTonTai) {
-                // Xử lý nếu cần thiết
             }
         }
     }
@@ -101,7 +97,7 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Mã lớp học phần", "Tên lớp học phần", "Số đơn đăng ký"
+                "Mã học phần", "Tên học phần", "Số đơn đăng ký"
             }
         ) {
             Class[] types = new Class [] {
@@ -188,8 +184,10 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selectedRow = tblDSHP.getSelectedRow();
 
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một học phần để xem chi tiết.");
+        try{
+            if (selectedRow == -1) {
+                throw new Exception();
+            
         } else {
             String maHP = (String) tblDSHP.getValueAt(selectedRow, 0);
             // Gọi giao diện Thống kê đơn đăng ký theo học phần và truyền mã học phần
@@ -199,6 +197,10 @@ public class ThongKeHocPhanTheoKhoa extends javax.swing.JFrame {
             
             reloadTable();
         }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một học phần để xem chi tiết.");
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
