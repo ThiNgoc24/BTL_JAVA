@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view.admin;
 
@@ -18,14 +18,13 @@ import model.FakeData;
  *
  * @author Le Thi Ngoc
  */
-public class ThongKeDeXuat extends javax.swing.JFrame {
-
+public class ThongKeDeXuat extends javax.swing.JDialog {
     List<DonDeXuat> dsDon = FakeData.listDonDeXuat;
-
     /**
      * Creates new form ThongKeDeXuat
      */
-    public ThongKeDeXuat() {
+    public ThongKeDeXuat(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setTitle("Thống kê đơn đề xuất");
         loadTable();
@@ -46,7 +45,33 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
 
         }
     }
-
+    
+     public void writeDSDonToFile(List<DonDeXuat> dsDon, String filePath) {
+        try {
+            FileWriter wt = new FileWriter(filePath);
+            PrintWriter pt = new PrintWriter(wt);
+            for (DonDeXuat don : dsDon) {
+                String line = String.join(",", don.getMaDon(), don.getCauHoi1(), don.getCauHoi2(), don.getCauHoi3(), don.getCauHoi4(), don.getGopY());
+                pt.write(line + "\n");
+            }
+            pt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void capNhatDS(String fileName) {
+        dsDon = new ArrayList<>();
+        dsDon.clear();
+        for (int i = 0; i < tblDonDeXuat.getRowCount(); i++) {
+            String maDon = tblDonDeXuat.getValueAt(i, 0).toString();
+            String deXuat = tblDonDeXuat.getValueAt(i, 1).toString();
+            String[] parts = deXuat.split(",");
+            DonDeXuat ddx = new DonDeXuat(maDon, parts[0], parts[1], parts[2], parts[3], parts[4]);
+            dsDon.add(ddx);
+        }
+        writeDSDonToFile(dsDon, fileName);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,8 +87,9 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
         btnXemChiTiet = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        tblDonDeXuat.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         tblDonDeXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -128,7 +154,7 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnXemChiTiet))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,38 +166,25 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
                     .addComponent(btnExit)
                     .addComponent(btnXoa)
                     .addComponent(btnXemChiTiet))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void writeDSDonToFile(List<DonDeXuat> dsDon, String filePath) {
-        try {
-            FileWriter wt = new FileWriter(filePath);
-            PrintWriter pt = new PrintWriter(wt);
-            for (DonDeXuat don : dsDon) {
-                String line = String.join(",", don.getMaDon(), don.getCauHoi1(), don.getCauHoi2(), don.getCauHoi3(), don.getCauHoi4(), don.getGopY());
-                pt.write(line + "\n");
-            }
-            pt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void tblDonDeXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonDeXuatMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDonDeXuatMouseClicked
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            TrangChuAdmin admin = new TrangChuAdmin();
+            admin.setVisible(true); //Truy cập đến trang chủ Admin
+            dispose(); //Đóng giao diện hiện tại
         }
-    }
-    
-    private void capNhatDS(String fileName) {
-        dsDon = new ArrayList<>();
-        dsDon.clear();
-        for (int i = 0; i < tblDonDeXuat.getRowCount(); i++) {
-            String maDon = tblDonDeXuat.getValueAt(i, 0).toString();
-            String deXuat = tblDonDeXuat.getValueAt(i, 1).toString();
-            String[] parts = deXuat.split(",");
-            DonDeXuat ddx = new DonDeXuat(maDon, parts[0], parts[1], parts[2], parts[3], parts[4]);
-            dsDon.add(ddx);
-        }
-        writeDSDonToFile(dsDon, fileName);
-    }
+    }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
@@ -191,20 +204,6 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-        int choice = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-        if (choice == JOptionPane.YES_OPTION) {
-            TrangChuAdmin admin = new TrangChuAdmin();
-            admin.setVisible(true); //Truy cập đến trang chủ Admin
-            dispose(); //Đóng giao diện hiện tại
-        }
-    }//GEN-LAST:event_btnExitActionPerformed
-
-    private void tblDonDeXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonDeXuatMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblDonDeXuatMouseClicked
 
     private void btnXemChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietActionPerformed
         // TODO add your handling code here:
@@ -246,10 +245,17 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThongKeDeXuat().setVisible(true);
+                ThongKeDeXuat dialog = new ThongKeDeXuat(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

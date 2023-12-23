@@ -39,6 +39,11 @@ public class TrangChuAdmin extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jButton1.setText("Thống kê danh sách đơn đăng ký");
         jButton1.setName("btnThongKe"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jButton2.setText("Quản lý danh sách khoa, ngành và lớp học phần ");
@@ -107,7 +112,7 @@ public class TrangChuAdmin extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        ThongKeDeXuat tk = new ThongKeDeXuat();
+        ThongKeDeXuat tk = new ThongKeDeXuat(this, true);
         tk.setVisible(true); //Truy cập đến trang chủ Thống kê đề xuất
         dispose(); //Đóng giao diện hiện tại
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -121,6 +126,12 @@ public class TrangChuAdmin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ThongKe tk = new ThongKe(this, true);
+        tk.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

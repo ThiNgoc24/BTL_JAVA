@@ -1,5 +1,0 @@
-DTT004,SV001,IT6002,Cấu trúc dữ liệu và giải thuật,học,Chưa duyệt
-DTT005,SV001,IT6039,Thiết kế Web,học,a,a,a,Chưa duyệt
-DTT001,SV001,IT6006,Cơ sở dữ liệu,học vượt,SV008,Nguyễn Thị Lan,Kỹ Thuật Phần Mềm,Chưa duyệt
-DTT002,SV001,IT6011,Nhập môn về kỹ thuật,học,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,Chưa duyệt
-DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Chưa duyệt
