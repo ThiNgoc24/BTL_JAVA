@@ -9,6 +9,8 @@ import controller.TKDSDonDKTheoMaHP;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.FakeData;
+import model.HocPhan;
 import model.TTDonDangKy;
 import view.dangnhap.DangNhap;
 
@@ -19,18 +21,28 @@ import view.dangnhap.DangNhap;
 public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
     private TKDSDonDKTheoMaHP model;
     private String maHP;
-    DefaultTableModel tableModel;
+    private DefaultTableModel tableModel;
     /**
      * Creates new form TKDonDKTheoHocPhan
      */
     public TKDonDKTheoHocPhan(java.awt.Dialog parent, boolean modal, String maHP) {
         super(parent, modal);
         this.maHP = maHP;
+        this.setTitle("Danh sách đơn đăng ký học phần " + getTenHP(this.maHP));
         initComponents();
-        capNhapBang();
+        capNhatBang();
     }
     
-    public void capNhapBang(){
+    public String getTenHP(String maHP){
+        String tenHP = "";
+        List<HocPhan> listHP = FakeData.listHocPhan;
+        for(HocPhan hp : listHP)
+            if(hp.getMaHP().equals(maHP))
+                tenHP =  hp.getTenHP();
+        return tenHP;
+    }
+    
+    public void capNhatBang(){
         List<TTDonDangKy> dons = model.dsDonTheoMaHP(maHP);
         tableModel = new DefaultTableModel();
         tableModel.addColumn("Mã đơn");
@@ -80,7 +92,7 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
             }
         });
 
-        tbl_DonDangKy.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tbl_DonDangKy.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         tbl_DonDangKy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -147,7 +159,6 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(TKDonDKTheoHocPhan.this, "Đã duyệt! Có " + DuyetDon.soLuongLopDuocMo + " lớp được mở");
             DuyetDon.soLuongLopDuocMo = 0;
         }
-            
         tableModel.setRowCount(0);
     }//GEN-LAST:event_btnDuyetActionPerformed
 

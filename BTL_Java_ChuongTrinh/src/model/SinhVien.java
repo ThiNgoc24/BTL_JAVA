@@ -9,43 +9,40 @@ package model;
  * @author NGUYEN VAN MANH
  */
 
-public class SinhVien{
-    private String maSV;
+public class SinhVien extends TaiKhoan{
     private String hoTenSV;
     private String maNganh;
-    private String maKhoa;
 
     public SinhVien() {
     }
 
-    public SinhVien(String maSV, String hoTenSV, String maNganh, String maKhoa) {
-        this.maSV = maSV;
+    public SinhVien(String hoTenSV, String maNganh) {
         this.hoTenSV = hoTenSV;
         this.maNganh = maNganh;
-        this.maKhoa = maKhoa;
     }
-    
-    public String getMaSV() {
-        return maSV;
+   
+
+    public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau) {
+        super(maTK, matKhau);
+        this.hoTenSV = hoTenSV;
+        this.maNganh = maNganh;
     }
 
     public String getHoTenSV() {
         return hoTenSV;
     }
 
+    public void setHoTenSV(String hoTenSV) {
+        this.hoTenSV = hoTenSV;
+    }
+
     public String getMaNganh() {
         return maNganh;
     }
+
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
+    }
     
-    public String getMaKhoa() {
-        return maKhoa;
-    }
-
-    public void setMaSV(String maSV) {
-        this.maSV = maSV;
-    }
-
-    public void setMaKhoa(String maKhoa) {
-        this.maKhoa = maKhoa;
-    }
+    
 }

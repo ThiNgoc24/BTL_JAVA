@@ -31,4 +31,10 @@ public class TaiKhoan {
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
     }
+
+    public void setMaTK(String maTK) {
+        this.maTK = maTK;
+    }
+    
+    
 }

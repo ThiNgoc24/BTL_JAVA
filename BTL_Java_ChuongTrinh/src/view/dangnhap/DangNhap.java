@@ -28,10 +28,9 @@ import view.sinhvien.TrangChuSinhVien;
  */
 public class DangNhap extends javax.swing.JFrame {
     public DangNhap() {
-        loadDataBase();
+        
         initComponents();
     }
-
     private ArrayList<TaiKhoan> adminList;
     private ArrayList<TaiKhoan> sinhVienList;
    
@@ -150,33 +149,8 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadDataBase(){
-        //Đọc cơ sở dữ liệu từ tệp văn bản và tạo danh sách người dùng
-        adminList = readUserFromFile("src\\data\\TaiKhoanAdmin.txt");
-        sinhVienList = readUserFromFile("src\\data\\TaiKhoanSV.txt");
-    }
-    
-    private ArrayList<TaiKhoan> readUserFromFile(String fileName){
-        ArrayList<TaiKhoan> users = new ArrayList<>();
-        FileReader inFileReader;
-        BufferedReader in;
-        try{
-           inFileReader = new FileReader(fileName);
-           in = new BufferedReader(inFileReader);
-           String line;
-           while((line = in.readLine()) != null){
-               String[] tk = line.split(",");
-               TaiKhoan taikhoan = new TaiKhoan(tk[0].trim(), tk[1].trim());
-               users.add(taikhoan);
-           }
-        }catch(Exception ex){
-            System.out.println(ex.toString());
-        }
-        return users;
-    }
-    
     private int checkLogin(String maTK, String passWord)throws Exception{
-        if(maTK.trim().equals("") && passWord.trim().equals(""))
+        if(maTK.trim().equals("") || passWord.trim().equals(""))
             throw  new Exception("Vui lòng điền đầy đủ thông tin!");
         
         if(!rdoQuanTriVien.isSelected() && !rdoSinhVien.isSelected())
@@ -210,29 +184,7 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String userName = tenDangNhap.getText();
-        String passWord = new String(matKhau.getPassword()) ;
-        String outputFileName = "src\\data\\LichSuDangNhap.txt";
-        try{
-            if(checkLogin(userName, passWord) == 1){
-                writeUserInFileHistory(userName, outputFileName);
-                TrangChuSinhVien sinhVien = new TrangChuSinhVien();
-                sinhVien.setVisible(true);
-                dispose();
-                JOptionPane.showMessageDialog(DangNhap.this, "Đăng nhập thành công với vai trò sinh viên!");
-            }
-            else if(checkLogin(userName, passWord) == 0){
-                writeUserInFileHistory(userName, outputFileName);
-                TrangChuAdmin admin = new TrangChuAdmin();
-                admin.setVisible(true); //Truy cập đến trang chủ admin
-                dispose(); //Đóng giao diện đăng nhập hiện tại
-                JOptionPane.showMessageDialog(DangNhap.this, "Đăng nhập thành công với vai trò quản trị viên!");
-            }
-            else
-                throw new Exception("Tài khoản không tồn tại!");
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(DangNhap.this, ex.getMessage());
-        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void writeUserInFileHistory(String maUser, String outputFileName)throws Exception{

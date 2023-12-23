@@ -4,6 +4,11 @@
  */
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -64,6 +69,27 @@ public class HocPhanDangKyCuaKhoa {
         return Objects.equals(this.tenHP, other.tenHP);
     }
 
+public static List<HocPhanDangKyCuaKhoa> readHocPhanFromFile(String filePath) {
+        List<HocPhanDangKyCuaKhoa> danhSachHocPhan = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\t");
+                if (parts.length == 3) {
+                    HocPhanDangKyCuaKhoa hocPhan = new HocPhanDangKyCuaKhoa();
+                    hocPhan.setMaHP(parts[0]);
+                    hocPhan.setTenHP(parts[1]);
+
+                    danhSachHocPhan.add(hocPhan);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Xử lý lỗi nếu cần
+        }
+
+        return danhSachHocPhan;
+    }
 
 
     
