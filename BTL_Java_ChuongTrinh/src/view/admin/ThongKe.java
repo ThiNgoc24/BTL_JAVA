@@ -6,12 +6,12 @@ package view.admin;
 
 /**
  *
- * @author Le Thi Ngoc
+ * @author NGUYEN VAN MANH
  */
 public class ThongKe extends javax.swing.JDialog {
 
     /**
-     * Creates new form ThongKe
+     * Creates new form ThongKeJDialog
      */
     public ThongKe(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,39 +27,19 @@ public class ThongKe extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jButton5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton5.setText("Khoa Công nghệ hoá");
-        jButton5.setName("btnCNH"); // NOI18N
-
-        jButton6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton6.setText("Khoa Công nghệ thực phẩm");
-        jButton6.setName("btnCNTP"); // NOI18N
-
-        jButton7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton7.setText("Khoa Kế toán - Kiểm toán");
-        jButton7.setName("btnKTKT"); // NOI18N
-
-        jButton8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton8.setText("Khoa Ngoại ngữ - Du lịch");
-        jButton8.setName("btnNNDL"); // NOI18N
-
-        jButton9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton9.setText("Khoa Điện");
-        jButton9.setName("btnD"); // NOI18N
 
         jButton10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton10.setText("Khoa Công nghệ may và thiết kế thời trang");
@@ -91,6 +71,11 @@ public class ThongKe extends javax.swing.JDialog {
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton2.setText("Khoa Quản lý kinh doanh");
         jButton2.setName("btnQLKD"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton3.setText("Khoa Cơ khí - Ô tô");
@@ -104,13 +89,63 @@ public class ThongKe extends javax.swing.JDialog {
         jButton4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton4.setText("Khoa Điện tử");
         jButton4.setName("btnDT"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jButton5.setText("Khoa Công nghệ hoá");
+        jButton5.setName("btnCNH"); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jButton6.setText("Khoa Công nghệ thực phẩm");
+        jButton6.setName("btnCNTP"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jButton7.setText("Khoa Kế toán - Kiểm toán");
+        jButton7.setName("btnKTKT"); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jButton8.setText("Khoa Ngoại ngữ - Du lịch");
+        jButton8.setName("btnNNDL"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jButton9.setText("Khoa Điện");
+        jButton9.setName("btnD"); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,7 +161,7 @@ public class ThongKe extends javax.swing.JDialog {
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(68, 68, 68))
             .addGroup(layout.createSequentialGroup()
-                .addGap(364, 364, 364)
+                .addGap(331, 331, 331)
                 .addComponent(jButton11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -153,9 +188,9 @@ public class ThongKe extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton10))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton11)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -163,6 +198,8 @@ public class ThongKe extends javax.swing.JDialog {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KCNMVTKTT");
+        thongKeHocPhanTheoKhoa.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -171,11 +208,57 @@ public class ThongKe extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KCNTT");
+        thongKeHocPhanTheoKhoa.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KCKOT");
+        thongKeHocPhanTheoKhoa.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KCNH");
+        thongKeHocPhanTheoKhoa.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KCNTP");
+        thongKeHocPhanTheoKhoa.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KQLKD");
+        thongKeHocPhanTheoKhoa.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KKTKT");
+        thongKeHocPhanTheoKhoa.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KNNDL");
+        thongKeHocPhanTheoKhoa.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KDT");
+        thongKeHocPhanTheoKhoa.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        ThongKeHocPhanTheoKhoa thongKeHocPhanTheoKhoa = new ThongKeHocPhanTheoKhoa(this, true,"KD");
+        thongKeHocPhanTheoKhoa.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +285,7 @@ public class ThongKe extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ThongKe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
