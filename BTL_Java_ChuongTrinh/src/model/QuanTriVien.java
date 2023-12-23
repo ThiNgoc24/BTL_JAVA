@@ -25,9 +25,11 @@ public class QuanTriVien{
         this.tenQTV = tenQTV;
     }
 
+
     public String getMaQTV() {
         return maQTV;
     }
+
 
     public String getTenQTV() {
         return tenQTV;

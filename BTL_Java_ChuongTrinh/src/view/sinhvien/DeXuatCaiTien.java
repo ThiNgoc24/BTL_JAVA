@@ -1,20 +1,65 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view.sinhvien;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.DonDeXuat;
 
 /**
  *
  * @author Le Thi Ngoc
  */
-public class DeXuatCaiTien extends javax.swing.JFrame {
-
+public class DeXuatCaiTien extends javax.swing.JDialog {
+    ArrayList<DonDeXuat> dons = new ArrayList<DonDeXuat>();
+    private static int nextMaDonTapThe = 1;
     /**
      * Creates new form DeXuatCaiTien
      */
-    public DeXuatCaiTien() {
+    public DeXuatCaiTien(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+    }
+    
+    private static String generateCode(String currentCode) {
+        // Hàm này sẽ sinh mã mới từ mã hiện tại, ví dụ: DTT001 -> DTT002
+        String prefix = currentCode.substring(0, currentCode.length() - 3);
+        int suffix = Integer.parseInt(currentCode.substring(currentCode.length() - 3));
+        int newSuffix = suffix + 1;
+        return String.format("%s%03d", prefix, newSuffix);
+    }
+
+    private static String loadLastCodeFromFile() {
+        String lastCode = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src\\data\\DonDeXuat.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().isEmpty()) { // Kiểm tra xem dòng có rỗng không
+                    lastCode = line.split(",")[0]; // Lấy mã ở cột đầu tiên, tách các cột bằng dấu phẩy
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastCode;
+    }
+
+    private String sinhMaDonTapThe() {
+        String currentCode = loadLastCodeFromFile();
+        if (currentCode == null) {
+            // Nếu không có mã trong file, khởi tạo mã ban đầu
+            currentCode = "DTT001";
+        }
+        // Sinh mã mới
+        String newCode = generateCode(currentCode);
+        return newCode;
     }
 
     /**
@@ -26,30 +71,21 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtGopYKhac = new javax.swing.JTextArea();
+        txtcauHoi1 = new javax.swing.JTextField();
+        txtCauhoi4 = new javax.swing.JTextField();
+        txtCauHoi3 = new javax.swing.JTextField();
+        txtCauHoi2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btlGuiDonDeXuat = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("Bạn muốn nhà trường mở thêm lớp học phần nào khác?");
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel2.setText("Bạn có góp ý gì cho nhà trường về form đăng ký không?");
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel3.setText("Bạn có góp ý gì về phương pháp giảng dạy các lớp học phần không?");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("Thời gian học của các lớp học phần được mở có phù hợp với sinh viên không?");
@@ -57,23 +93,42 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Góp ý khác:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtGopYKhac.setColumns(20);
+        txtGopYKhac.setRows(5);
+        jScrollPane1.setViewportView(txtGopYKhac);
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtcauHoi1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtCauhoi4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtCauHoi3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtCauHoi2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel1.setText("Bạn muốn nhà trường mở thêm lớp học phần nào khác?");
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton1.setText("Quay lại");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Gửi đề xuất");
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel2.setText("Bạn có góp ý gì cho nhà trường về form đăng ký không?");
+
+        btlGuiDonDeXuat.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btlGuiDonDeXuat.setText("Gửi đề xuất");
+        btlGuiDonDeXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlGuiDonDeXuatActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel3.setText("Bạn có góp ý gì về phương pháp giảng dạy các lớp học phần không?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,18 +145,18 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(txtCauHoi2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                                .addComponent(txtcauHoi1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCauHoi3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addComponent(txtCauhoi4, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
-                        .addComponent(jButton2)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(btlGuiDonDeXuat)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,19 +164,19 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtcauHoi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel2)
                 .addGap(12, 12, 12)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCauHoi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(9, 9, 9)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCauHoi3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCauhoi4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -129,12 +184,59 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(btlGuiDonDeXuat))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btlGuiDonDeXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlGuiDonDeXuatActionPerformed
+        // TODO add your handling code here:
+        DonDeXuat x = new DonDeXuat();
+        x.setMaDon(sinhMaDonTapThe());
+        x.setCauHoi1(txtcauHoi1.getText());
+        x.setCauHoi2(txtCauHoi2.getText());
+        x.setCauHoi3(txtCauHoi3.getText());
+        x.setCauHoi4(txtCauhoi4.getText());
+        x.setGopY(txtGopYKhac.getText());
+        dons.add(x);
+
+        if(txtcauHoi1.getText().isEmpty() && txtCauHoi2.getText().isEmpty() && txtCauHoi3.getText().isEmpty() && txtCauhoi4.getText().isEmpty() && txtGopYKhac.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Nhập dữ liệu trước khi lưu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Lưu dữ liệu vào file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\Data\\DonDexuat.txt", true))) {
+            writer.write(x.getMaDon() + ",");
+            writer.write(x.getCauHoi1() + ",");
+            writer.write(x.getCauHoi2() + ",");
+            writer.write(x.getCauHoi3() + ",");
+            writer.write(x.getCauHoi4() + ",");
+            writer.write(x.getGopY());
+
+            writer.newLine();
+            writer.flush();
+            JOptionPane.showMessageDialog(this, "Gửi đơn đề xuất thành công!");
+
+            // Xóa nội dung của các ô textbox sau khi lưu thành công
+            txtcauHoi1.setText("");
+            txtCauHoi2.setText("");
+            txtCauHoi3.setText("");
+            txtCauhoi4.setText("");
+            txtGopYKhac.setText("");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi lưu dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btlGuiDonDeXuatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,27 +265,34 @@ public class DeXuatCaiTien extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeXuatCaiTien().setVisible(true);
+                DeXuatCaiTien dialog = new DeXuatCaiTien(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btlGuiDonDeXuat;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtCauHoi2;
+    private javax.swing.JTextField txtCauHoi3;
+    private javax.swing.JTextField txtCauhoi4;
+    private javax.swing.JTextArea txtGopYKhac;
+    private javax.swing.JTextField txtcauHoi1;
     // End of variables declaration//GEN-END:variables
 }

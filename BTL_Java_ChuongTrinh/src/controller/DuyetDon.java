@@ -24,14 +24,14 @@ import model.TTDonTapThe;
  */
 public class DuyetDon {
     public static int maxSV = 65;
-    public static int minSV = 40;
+    public static int minSV = 5;
     public static int soLuongLopDuocMo;
     public static Map<String, TTDonCaNhan> mapDonCaNhan = new HashMap<>();
     public static Map<String, TTDonTapThe> mapDonTapThe = new HashMap<>();
     
     public DuyetDon(List<TTDonDangKy> dsDon){
         try{
-            soLuongLopDuocMo = thongKeSoLuongSV(dsDon);
+            soLuongLopDuocMo = thongKeSoLuongLop(dsDon);
             System.out.println(soLuongLopDuocMo);
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -44,7 +44,7 @@ public class DuyetDon {
         return soLuongLopDuocMo;
     }
     
-    public static int thongKeSoLuongSV(List<TTDonDangKy> dsDon) throws Exception{
+    public static int thongKeSoLuongLop(List<TTDonDangKy> dsDon) throws Exception{
         int tongSV = 0;
         int soLuongLopDuocMo = 0;
         
