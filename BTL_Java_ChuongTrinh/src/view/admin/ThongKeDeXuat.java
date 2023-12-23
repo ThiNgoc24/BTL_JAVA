@@ -27,6 +27,7 @@ public class ThongKeDeXuat extends javax.swing.JFrame {
      */
     public ThongKeDeXuat() {
         initComponents();
+        this.setTitle("Thống kê đơn đề xuất");
         loadTable();
     }
 

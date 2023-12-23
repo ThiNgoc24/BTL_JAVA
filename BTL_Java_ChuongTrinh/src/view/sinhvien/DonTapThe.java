@@ -505,7 +505,7 @@ public class DonTapThe extends javax.swing.JFrame {
     public String getLyDo() {
         return lyDo;
     }
-
+    
     public void setLyDo(String lyDo) {
         this.lyDo = lyDo;
     }
