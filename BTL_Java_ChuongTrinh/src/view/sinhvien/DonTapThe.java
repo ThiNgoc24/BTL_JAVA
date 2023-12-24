@@ -556,7 +556,7 @@ public class DonTapThe extends javax.swing.JDialog {
 
     public boolean setResults() {
         this.maDonTapThe = sinhMaDonTapThe();
-        this.maSV = FakeData1.maSVDN;
+        this.maSV = FakeData.maSVDN;
         this.tenHP = cbbTenHP.getSelectedItem().toString();
         this.maHP = txtMaHP.getText();
         this.lyDo = txtLyDo.getText();
