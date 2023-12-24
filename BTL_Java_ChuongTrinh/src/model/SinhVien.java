@@ -9,25 +9,20 @@ package model;
  * @author NGUYEN VAN MANH
  */
 
-public class SinhVien extends TaiKhoan{
+public class SinhVien{
     private String hoTenSV;
     private String maNganh;
+    private String maTK;
 
     public SinhVien() {
     }
 
-    public SinhVien(String hoTenSV, String maNganh) {
+    public SinhVien(String hoTenSV, String maNganh, String maTK) {
         this.hoTenSV = hoTenSV;
         this.maNganh = maNganh;
+        this.maTK = maTK;
     }
-   
-
-    public SinhVien(String hoTenSV, String maNganh, String maTK, String matKhau) {
-        super(maTK, matKhau);
-        this.hoTenSV = hoTenSV;
-        this.maNganh = maNganh;
-    }
-
+  
     public String getHoTenSV() {
         return hoTenSV;
     }
@@ -43,6 +38,12 @@ public class SinhVien extends TaiKhoan{
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
     }
-    
-    
+
+    public void setMaTK(String maTK) {
+        this.maTK = maTK;
+    }
+
+    public String getMaTK() {
+        return maTK;
+    }
 }

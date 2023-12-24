@@ -28,8 +28,8 @@ import view.sinhvien.TrangChuSinhVien;
  */
 public class DangNhap extends javax.swing.JFrame {
     public DangNhap() {
-        
         initComponents();
+        loadDataBase();
     }
     private ArrayList<TaiKhoan> adminList;
     private ArrayList<TaiKhoan> sinhVienList;
@@ -41,12 +41,12 @@ public class DangNhap extends javax.swing.JFrame {
         btnGRRole = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tenDangNhap = new javax.swing.JTextField();
+        txtTenDangNhap = new javax.swing.JTextField();
         rdoQuanTriVien = new javax.swing.JRadioButton();
         rdoSinhVien = new javax.swing.JRadioButton();
         btnThoat = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        matKhau = new javax.swing.JPasswordField();
+        btnDangNhap = new javax.swing.JButton();
+        txtMatKhau = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,10 +56,10 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Mật khẩu:");
 
-        tenDangNhap.setName("txtTenDangNhap"); // NOI18N
-        tenDangNhap.addActionListener(new java.awt.event.ActionListener() {
+        txtTenDangNhap.setName("txtTenDangNhap"); // NOI18N
+        txtTenDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tenDangNhapActionPerformed(evt);
+                txtTenDangNhapActionPerformed(evt);
             }
         });
 
@@ -87,16 +87,16 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton2.setText("Đăng nhập");
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDangNhap.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setName("btnDangNhap"); // NOI18N
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDangNhapActionPerformed(evt);
             }
         });
 
-        matKhau.setName("txtMatKhau"); // NOI18N
+        txtMatKhau.setName("txtMatKhau"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,13 +110,13 @@ public class DangNhap extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(matKhau)
-                            .addComponent(tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtMatKhau)
+                            .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(btnDangNhap))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(rdoQuanTriVien, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,11 +130,11 @@ public class DangNhap extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(matKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdoQuanTriVien)
@@ -142,13 +142,35 @@ public class DangNhap extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void loadDataBase(){
+        adminList = readUserFromFile("src\\data\\TaiKhoanAdmin.txt");
+        sinhVienList = readUserFromFile("src\\data\\TaiKhoanSV.txt");
+    }
+    private ArrayList<TaiKhoan> readUserFromFile(String fileName){
+        ArrayList<TaiKhoan> users = new ArrayList<>();
+        FileReader inFileReader;
+        BufferedReader in;
+        try{
+            inFileReader = new FileReader(fileName);
+            in = new BufferedReader(inFileReader);
+            String line;
+            while((line = in.readLine()) != null){
+                String[] tk = line.split(",");
+                TaiKhoan taiKhoan = new TaiKhoan(tk[0].trim(), tk[1].trim());
+                users.add(taiKhoan);
+            }
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+        return users;
+    }
+    
     private int checkLogin(String maTK, String passWord)throws Exception{
         if(maTK.trim().equals("") || passWord.trim().equals(""))
             throw  new Exception("Vui lòng điền đầy đủ thông tin!");
@@ -178,14 +200,14 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdoQuanTriVienActionPerformed
 
-    private void tenDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenDangNhapActionPerformed
+    private void txtTenDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDangNhapActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tenDangNhapActionPerformed
+    }//GEN-LAST:event_txtTenDangNhapActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        String userName = tenDangNhap.getText();
-        String passWord = new String(matKhau.getPassword()) ;
+        String userName = txtTenDangNhap.getText();
+        String passWord = new String(txtMatKhau.getPassword()) ;
         String outputFileName = "src\\data\\LichSuDangNhap.txt";
         try{
             if(checkLogin(userName, passWord) == 1){
@@ -203,11 +225,11 @@ public class DangNhap extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(DangNhap.this, "Đăng nhập thành công với vai trò quản trị viên!");
             }
             else
-                throw new Exception("Tài khoản không tồn tại!");
+                throw new Exception("Tài khoản không tồn tại!");           
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(DangNhap.this, ex.getMessage(),  "Invalidation", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(DangNhap.this, ex.getMessage(),"Invalidation", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void writeUserInFileHistory(String maUser, String outputFileName)throws Exception{
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
@@ -258,14 +280,14 @@ public class DangNhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDangNhap;
     private javax.swing.ButtonGroup btnGRRole;
     private javax.swing.JButton btnThoat;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField matKhau;
     private javax.swing.JRadioButton rdoQuanTriVien;
     private javax.swing.JRadioButton rdoSinhVien;
-    private javax.swing.JTextField tenDangNhap;
+    private javax.swing.JPasswordField txtMatKhau;
+    private javax.swing.JTextField txtTenDangNhap;
     // End of variables declaration//GEN-END:variables
 }
