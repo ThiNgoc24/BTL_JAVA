@@ -18,7 +18,7 @@ public class ChiTietDTT extends javax.swing.JDialog {
      */
     private SinhVienTapThe sinhVienTapThe;
     private boolean isModeAdd;  // Biến để xác định chế độ là thêm mới hay sửa
-    public ChiTietDTT(java.awt.Frame parent, boolean modal) {
+    public ChiTietDTT(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -290,7 +290,7 @@ public class ChiTietDTT extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ChiTietDTT dialog = new ChiTietDTT(new javax.swing.JFrame(), true);
+                ChiTietDTT dialog = new ChiTietDTT(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

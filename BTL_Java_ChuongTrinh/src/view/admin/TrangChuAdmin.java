@@ -4,6 +4,7 @@
  */
 package view.admin;
 
+import view.dangnhap.DangNhap;
 import view.dangnhap.DoiMatKhau;
 
 /**
@@ -28,44 +29,54 @@ public class TrangChuAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnThongKeDon = new javax.swing.JButton();
+        btnQuanLy = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnDoiMatKhau = new javax.swing.JButton();
+        btnThongKeDeXuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jButton1.setText("Thống kê danh sách đơn đăng ký");
-        jButton1.setName("btnThongKe"); // NOI18N
-
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jButton2.setText("Quản lý danh sách khoa, ngành và lớp học phần ");
-        jButton2.setName("btnQuanLy"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnThongKeDon.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnThongKeDon.setText("Thống kê danh sách đơn đăng ký");
+        btnThongKeDon.setName("btnThongKe"); // NOI18N
+        btnThongKeDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnThongKeDonActionPerformed(evt);
+            }
+        });
+
+        btnQuanLy.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnQuanLy.setText("Quản lý thông tin khoa, ngành và lớp học phần ");
+        btnQuanLy.setName("btnQuanLy"); // NOI18N
+        btnQuanLy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuanLyActionPerformed(evt);
             }
         });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton3.setText("Đăng xuất");
+        jButton3.setText("Thoát");
         jButton3.setName("btnThoat"); // NOI18N
-
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jButton4.setText("Đổi mật khẩu");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jButton5.setText("Thống kê đề xuất cải tiến");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnDoiMatKhau.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnDoiMatKhau.setText("Đổi mật khẩu");
+        btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnDoiMatKhauActionPerformed(evt);
+            }
+        });
+
+        btnThongKeDeXuat.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnThongKeDeXuat.setText("Thống kê đề xuất cải tiến");
+        btnThongKeDeXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeDeXuatActionPerformed(evt);
             }
         });
 
@@ -74,50 +85,68 @@ public class TrangChuAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnThongKeDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnThongKeDeXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jButton1)
-                .addGap(43, 43, 43)
-                .addComponent(jButton5)
-                .addGap(35, 35, 35)
-                .addComponent(jButton2)
-                .addGap(31, 31, 31)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(btnThongKeDon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(btnThongKeDeXuat)
+                .addGap(26, 26, 26)
+                .addComponent(btnQuanLy)
+                .addGap(28, 28, 28)
+                .addComponent(btnDoiMatKhau)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(21, 21, 21))
+                .addGap(40, 40, 40))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnThongKeDeXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeDeXuatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        ThongKeDeXuat thongKeDeXuat = new ThongKeDeXuat(this, true);
+        thongKeDeXuat.setVisible(true);
+    }//GEN-LAST:event_btnThongKeDeXuatActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnThongKeDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeDonActionPerformed
         // TODO add your handling code here:
-        DoiMatKhau doimk = new DoiMatKhau(this, true);
-        doimk.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+        ThongKe thongKe = new ThongKe(this, true);
+        thongKe.setVisible(true);
+    }//GEN-LAST:event_btnThongKeDonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        DoiMatKhau doiMatKhau = new DoiMatKhau(this, true);
+        doiMatKhau.setVisible(true);
+    }//GEN-LAST:event_btnDoiMatKhauActionPerformed
+
+    private void btnQuanLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyActionPerformed
+        // TODO add your handling code here:
+        QuanLyKhoa quanLyKhoa = new QuanLyKhoa(this, true);
+        quanLyKhoa.setVisible(true);
+    }//GEN-LAST:event_btnQuanLyActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DangNhap dangNhap = new DangNhap();
+        dangNhap.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,10 +184,10 @@ public class TrangChuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnDoiMatKhau;
+    private javax.swing.JButton btnQuanLy;
+    private javax.swing.JButton btnThongKeDeXuat;
+    private javax.swing.JButton btnThongKeDon;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }

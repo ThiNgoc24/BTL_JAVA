@@ -25,7 +25,7 @@ public class TKDonDKTheoHocPhan extends javax.swing.JDialog {
     /**
      * Creates new form TKDonDKTheoHocPhan
      */
-    public TKDonDKTheoHocPhan(java.awt.Frame parent, boolean modal, String maHP) {
+    public TKDonDKTheoHocPhan(java.awt.Dialog parent, boolean modal, String maHP) {
         super(parent, modal);
         this.maHP = maHP;
         this.setTitle("Danh sách đơn đăng ký học phần " + getTenHP(this.maHP));

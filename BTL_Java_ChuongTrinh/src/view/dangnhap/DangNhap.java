@@ -28,7 +28,7 @@ import view.sinhvien.TrangChuSinhVien;
  */
 public class DangNhap extends javax.swing.JFrame {
     public DangNhap() {
-        loadDataBase();
+        
         initComponents();
     }
     private ArrayList<TaiKhoan> adminList;
@@ -149,31 +149,6 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadDataBase(){
-        //Đọc cơ sở dữ liệu từ tệp văn bản và tạo danh sách người dùng
-        adminList = readUserFromFile("src\\data\\TaiKhoanAdmin.txt");
-        sinhVienList = readUserFromFile("src\\data\\TaiKhoanSV.txt");
-    }
-    
-    private ArrayList<TaiKhoan> readUserFromFile(String fileName){
-        ArrayList<TaiKhoan> users = new ArrayList<>();
-        FileReader inFileReader;
-        BufferedReader in;
-        try{
-           inFileReader = new FileReader(fileName);
-           in = new BufferedReader(inFileReader);
-           String line;
-           while((line = in.readLine()) != null){
-               String[] tk = line.split(",");
-               TaiKhoan taikhoan = new TaiKhoan(tk[0].trim(), tk[1].trim());
-               users.add(taikhoan);
-           }
-        }catch(Exception ex){
-            System.out.println(ex.toString());
-        }
-        return users;
-    }
-    
     private int checkLogin(String maTK, String passWord)throws Exception{
         if(maTK.trim().equals("") || passWord.trim().equals(""))
             throw  new Exception("Vui lòng điền đầy đủ thông tin!");
