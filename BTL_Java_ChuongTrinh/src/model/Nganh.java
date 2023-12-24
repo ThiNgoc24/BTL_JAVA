@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author NGUYEN VAN MANH
@@ -12,6 +14,7 @@ public class Nganh {
     private String maNganh;
     private String tenNganh;
     private String maKhoa;
+    private int soLopHP;
 
     public Nganh() {
     }
@@ -20,6 +23,17 @@ public class Nganh {
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;
         this.maKhoa = maKhoa;
+        this.soLopHP = laySoLopHPTheoNganh(maNganh, FakeData.listHocPhan);
+    }
+    
+     public static int laySoLopHPTheoNganh(String maNganh, List<HocPhan> dsHocPhan){
+        int soHP = 0;
+        for(HocPhan hp : dsHocPhan){
+            if(hp.getMaNganh().equals(maNganh)){
+                soHP++;
+            }
+        }
+        return soHP;
     }
 
     public String getMaNganh() {
@@ -46,9 +60,17 @@ public class Nganh {
         this.maKhoa = maKhoa;
     }
 
+    public int getSoLopHP() {
+        return soLopHP;
+    }
+
+    public void setSoLopHP(int soLopHP) {
+        this.soLopHP = soLopHP;
+    }
+
     @Override
     public String toString() {
-        return "Nganh{" + "maNganh=" + maNganh + ", tenNganh=" + tenNganh + ", maKhoa=" + maKhoa + '}';
+        return maNganh + "," + tenNganh + "," + maKhoa;
     }
     
 }

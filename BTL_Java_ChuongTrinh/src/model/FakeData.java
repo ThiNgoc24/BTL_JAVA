@@ -25,12 +25,13 @@ public class FakeData {
     public static List<TTDonDangKy> listDonDangKy = new ArrayList<>();
     public static List<TTDonDangKy> listDonDangKy_ChuaDuyet = new ArrayList<>();
     public static String maSVDN;
+    static List<HocPhan> layHocPhan;
     
     static {
         layMaSV();
-        layKhoa();
-        layNganh();
         layHocPhan();
+        layNganh();
+        layKhoa();
         layDonDeXuat();
         //layDSDonCaNhan();
         layDSDonTapThe();
@@ -92,12 +93,12 @@ public class FakeData {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\Nganh.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Chia cắt dữ liệu thành mã khoa và tên khoa
                 String[] nganhInfo = line.split(",");
+                
                 String maNganh = nganhInfo[0].trim();
                 String tenNganh = nganhInfo[1].trim();
                 String maKhoa = nganhInfo[2].trim();
-                // Tạo đối tượng Khoa và thêm vào danh sách
+                
                 Nganh nganh = new Nganh(maNganh, tenNganh, maKhoa);
                 listNganh.add(nganh);
             }
@@ -110,7 +111,6 @@ public class FakeData {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\HocPhan.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Chia cắt dữ liệu thành mã khoa và tên khoa
                 String[] hocPhanInfo = line.split(",");
                 String maKhoa = hocPhanInfo[0].trim();
                 String maNganh = hocPhanInfo[1].trim();
@@ -118,8 +118,6 @@ public class FakeData {
                 String tenHP = hocPhanInfo[3].trim();
                 int soTC = Integer.parseInt(hocPhanInfo[4].trim());
                 
-
-                // Tạo đối tượng Khoa và thêm vào danh sách
                 HocPhan hocPhan = new HocPhan(maKhoa, maNganh,maHP,tenHP,soTC);
                 listHocPhan.add(hocPhan);
                 
@@ -277,9 +275,9 @@ public class FakeData {
     }
 
     public static void main(String[] args) {
-//        layKhoa();
-//        listKhoa.forEach(System.out::println);
-//        layHocPhan();
+        layKhoa();
+        listKhoa.forEach(System.out::println);
+        layHocPhan();
 //        listHocPhan.forEach(System.out::println);
 //        layDonDeXuat();
 //        listDonDeXuat.forEach(System.out::println);

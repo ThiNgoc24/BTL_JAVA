@@ -82,6 +82,9 @@
         <Property name="text" type="java.lang.String" value="T&#x1ea1;o &#x111;&#x1a1;n &#x111;&#x103;ng k&#xfd; t&#x1ead;p th&#x1ec3;"/>
         <Property name="name" type="java.lang.String" value="btnTapThe" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaoDonTapTheActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnXemDSDon">
       <Properties>

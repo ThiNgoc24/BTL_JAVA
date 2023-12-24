@@ -37,3 +37,21 @@ KCNTT,HTTT,IT6022,Lập trình web bằng PHP,3
 KCNTT,HTTT,IT6030,Phần mềm mã nguồn mở,3
 KCNTT,HTTT,IT6028,Phát triển ứng dụng Game,3
 KCNTT,HTTT,IT6029,Phát triển ứng dụng trên thiết bị di động,3
+KNN,TA,TA001,Tiếng Anh,3
+KNN,TA,TA002,Tiếng Anh,3
+qq,n,3,3,3
+qq,n,4,4,4
+qq,w,1,1,1
+qq,n,3,7,3
+KNN,TA,TA001,Tiếng Việt,30
+KDT,NKT,HP001,Kiểm tra tài chính,3
+KDT,NKT,HP002,Doanh nghiệp,7
+KDT,NDien,HPTT,thựa hành điện,3
+KDT,NDien,TT,Toán,2
+KDT,NDien,2,2,2
+KDT,NKT,22,22,22
+KDT,NDien,33,33,33
+KDT,NKTPM,222,2222,2222
+KCNTT,66,22FRG,2,33
+KCNTT,44,5,5,5
+KCNTT,44,6,6,6
