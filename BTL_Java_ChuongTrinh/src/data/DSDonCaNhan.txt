@@ -1,1 +1,3 @@
 DCN002,SV001,IT6014,Kiến trúc máy tính,xxx,Chưa duyệt
+DCN003,SV001,IT6015,Kỹ thuật lập trình,xxx,Chưa duyệt
+DCN004,SV002,IT6015,Kỹ thuật lập trình,xxx,Chưa duyệt

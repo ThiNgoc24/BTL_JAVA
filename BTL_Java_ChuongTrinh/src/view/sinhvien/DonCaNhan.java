@@ -25,6 +25,8 @@ import model.TTDonCaNhan;
 public class DonCaNhan extends javax.swing.JDialog {
     //mã sinh viên là sinh viên đang đăng nhập
     String maSV = FakeData1.maSVDN;
+    
+
     private String maNganh = "HTTT";
     
     List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
@@ -38,6 +40,8 @@ public class DonCaNhan extends javax.swing.JDialog {
     }
     /**
      * Creates new form DonCaNhan
+     * @param parent
+     * @param modal
      */
     public DonCaNhan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -84,11 +88,11 @@ public class DonCaNhan extends javax.swing.JDialog {
 
         String maHP = txtMaHP.getText();
 
-        // Kiểm tra mã học phần đã tồn tại 
+        // Kiểm tra đơn đã tồn tại 
         Iterator<TTDonCaNhan> itr = ds.iterator();
         while(itr.hasNext()){
             TTDonCaNhan x = itr.next();
-            if (x.getMaHP().equals(maHP)) {
+            if (x.getMaHP().equals(maHP) && maSV.equals(x.getMaSV())) {
                 return false;
             }
         }
