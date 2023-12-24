@@ -28,6 +28,7 @@ public class FakeData {
     static List<HocPhan> layHocPhan;
     
     static {
+        layMaSV();
         layHocPhan();
         layNganh();
         layKhoa();
@@ -36,7 +37,7 @@ public class FakeData {
         layDSDonTapThe();
         taoDSDonDangKy();
         taoDSDonDangKyChuaDuyet();
-        layMaSV();
+        
     }
     
     public static void layMaSV() {

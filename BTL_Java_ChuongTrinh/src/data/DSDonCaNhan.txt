@@ -1,3 +1,14 @@
-DCN002,SV001,IT6014,Kiến trúc máy tính,xxx,Chưa duyệt
-DCN003,SV001,IT6015,Kỹ thuật lập trình,xxx,Chưa duyệt
-DCN004,SV002,IT6015,Kỹ thuật lập trình,xxx,Chưa duyệt
+DCN002,SV002,IT6039,Thiết kế Web,học lại,Chưa duyệt
+DCN003,SV002,IT6012,Hệ quản trị cơ sở dữ liệu,học vượt,Chưa duyệt
+DCN004,SV002,IT6014,Kiến trúc máy tính,học,Chưa duyệt
+DCN005,SV002,IT6006,Cơ sở dữ liệu,xxx,Chưa duyệt
+DCN006,SV002,IT6001,An toàn và bảo mật thông tin,xxx,Chưa duyệt
+DCN007,SV002,IT6036,Tối ưu hóa,xxx,Chưa duyệt
+DCN008,SV001,IT6002,Cấu trúc dữ liệu và giải thuật,xxx,Chưa duyệt
+DCN009,SV001,IT6039,Thiết kế Web,xxx,Chưa duyệt
+DCN010,SV001,IT6044,Ứng dụng thuật toán,xx,Chưa duyệt
+DCN011,SV002,IT6056,Quản trị mạng trên hệ điều hành Windows,xxx,Chưa duyệt
+DCN012,SV001,IT6017,Lập trình .NET,xxx,Chưa duyệt
+DCN013,SV001,IT6030,Phần mềm mã nguồn mở,xxx,Chưa duyệt
+DCN014,SV002,IT6032,Phương pháp số trong lập trình,xxx,Chưa duyệt
+DCN015,SV002,IT6007,Cơ sở lập trình nhúng,xxx,Chưa duyệt

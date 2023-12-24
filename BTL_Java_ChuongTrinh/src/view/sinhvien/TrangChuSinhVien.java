@@ -50,6 +50,11 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
         btnTaoDonTapThe.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnTaoDonTapThe.setText("Tạo đơn đăng ký tập thể");
         btnTaoDonTapThe.setName("btnTapThe"); // NOI18N
+        btnTaoDonTapThe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoDonTapTheActionPerformed(evt);
+            }
+        });
 
         btnXemDSDon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnXemDSDon.setText("Xem danh sách đơn đăng ký");
@@ -157,6 +162,10 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
         DeXuatCaiTien dx = new DeXuatCaiTien(this,true);
         dx.setVisible(true);
     }//GEN-LAST:event_btnDeXuatCaiTienActionPerformed
+
+    private void btnTaoDonTapTheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonTapTheActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTaoDonTapTheActionPerformed
 
 
     /**

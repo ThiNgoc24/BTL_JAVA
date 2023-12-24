@@ -32,7 +32,7 @@ public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
     /**
      * Creates new form QuanLyNganhTheoKhoa
      */
-    public QuanLyNganhTheoKhoa(java.awt.Frame parent, boolean modal, String maKhoa) {
+    public QuanLyNganhTheoKhoa(java.awt.Dialog parent, boolean modal, String maKhoa) {
         super(parent, modal);
         this.maKhoa = maKhoa;
         initComponents();

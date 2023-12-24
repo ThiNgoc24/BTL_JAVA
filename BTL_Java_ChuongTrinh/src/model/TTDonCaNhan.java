@@ -102,11 +102,8 @@ public static List<TTDonCaNhan> readDonFromFile(String filePath) {
         } catch (IOException e) {
             e.printStackTrace(); // Xử lý lỗi nếu cần
         }
-
         return dsDon;
     }
-
-    
 
     @Override
     public String toString() {

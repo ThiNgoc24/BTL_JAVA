@@ -14,7 +14,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.FakeData;
-import model.FakeData1;
 import model.HocPhanDangKyCuaKhoa;
 import model.TTDonCaNhan;
 
@@ -23,13 +22,17 @@ import model.TTDonCaNhan;
  * @author Le Thi Ngoc
  */
 public class DonCaNhan extends javax.swing.JDialog {
-    //mã sinh viên là sinh viên đang đăng nhập
-    String maSV = FakeData1.maSVDN;
-    
 
+    //mã sinh viên là sinh viên đang đăng nhập
+    private String maDonCaNhan;
+    String maSV = FakeData.maSVDN;
+    private String tenHP;
+    private String maHP;
+    private String lyDo;
+    private String trangThai = "Chưa duyệt";
     private String maNganh = "HTTT";
-    
     List<HocPhanDangKyCuaKhoa> danhSachHocPhan = FakeData.layHocPhantheoNganh(maNganh);
+    TTDonCaNhan dcn = new TTDonCaNhan(maDonCaNhan, maSV, maHP, tenHP, lyDo, trangThai);
 
     public List<HocPhanDangKyCuaKhoa> getDanhSachHocPhan() {
         return danhSachHocPhan;
@@ -38,8 +41,10 @@ public class DonCaNhan extends javax.swing.JDialog {
     public void setDanhSachHocPhan(List<HocPhanDangKyCuaKhoa> danhSachHocPhan) {
         this.danhSachHocPhan = danhSachHocPhan;
     }
+
     /**
      * Creates new form DonCaNhan
+     *
      * @param parent
      * @param modal
      */
@@ -47,7 +52,7 @@ public class DonCaNhan extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
+
     private static String generateCode(String currentCode) {
         // Hàm này sẽ sinh mã mới từ mã hiện tại, ví dụ: DTT001 -> DTT002
         String prefix = currentCode.substring(0, currentCode.length() - 3);  //DTT
@@ -81,16 +86,16 @@ public class DonCaNhan extends javax.swing.JDialog {
         String newCode = generateCode(currentCode);
         return newCode;
     }
-    
+
     public boolean checkDonHopLe() {
         List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src/Data/DSDonCaNhan.txt");
-       //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
+        //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
 
         String maHP = txtMaHP.getText();
 
         // Kiểm tra đơn đã tồn tại 
         Iterator<TTDonCaNhan> itr = ds.iterator();
-        while(itr.hasNext()){
+        while (itr.hasNext()) {
             TTDonCaNhan x = itr.next();
             if (x.getMaHP().equals(maHP) && maSV.equals(x.getMaSV())) {
                 return false;
@@ -100,18 +105,18 @@ public class DonCaNhan extends javax.swing.JDialog {
     }
 
     private void themDon() {
-        String d1 = (String) cboTenHP.getSelectedItem();
-        String d2 = txtMaHP.getText();
-        String d3 = txtLyDo.getText();
-        String trangThai = "Chưa duyệt";
 
-        if (d1.trim().equals("") || d2.trim().equals("") || d3.trim().equals("")) {
+        dcn.setTenHP((String) cboTenHP.getSelectedItem()); 
+        dcn.setMaHP(txtMaHP.getText());
+        dcn.setLyDo(txtLyDo.getText());
+
+        if (dcn.getTenHP().trim().equals("") || dcn.getMaHP().trim().equals("") || dcn.getLyDo().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.",
                     "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             return;
         } else {
             if (checkDonHopLe()) {
-                String md = MaDon();
+                dcn.setMaDonCaNhan(MaDon());
                 String filePath = "src/Data/DSDonCaNhan.txt";
                 try {
                     // Khởi tạo FileWriter với đường dẫn tới tệp tin và true để cho phép ghi thêm
@@ -119,16 +124,15 @@ public class DonCaNhan extends javax.swing.JDialog {
 
                     // Khởi tạo BufferedWriter
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
                     // Ghi dữ liệu vào tệp tin
-                    bufferedWriter.write(md + "," + maSV + "," + d2 + "," + d1 + "," + d3 + "," + trangThai);
+                    bufferedWriter.write(dcn.toString());
                     bufferedWriter.newLine(); // Thêm dòng mới sau mỗi dữ liệu
 
                     // Đóng BufferedWriter
                     bufferedWriter.close();
                     JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
-                    
+
                     cboTenHP.setSelectedIndex(-1);
                     txtMaHP.setText("");
                     txtLyDo.setText("");
@@ -140,7 +144,7 @@ public class DonCaNhan extends javax.swing.JDialog {
             }
         }
 
-    }       
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -333,14 +337,14 @@ public class DonCaNhan extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                DonCaNhan dialog = new DonCaNhan(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
+                DonCaNhan dialog = new DonCaNhan(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
