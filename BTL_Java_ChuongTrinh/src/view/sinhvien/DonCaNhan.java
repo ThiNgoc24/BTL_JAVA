@@ -6,6 +6,7 @@ package view.sinhvien;
 
 import controller.DonCaNhanController;
 import controller.DonTapTheController;
+import controller.TKDSDonTheoSV;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -21,6 +22,7 @@ import model.FakeData;
 import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
 import model.TTDonCaNhan;
+import model.TTDonDangKy;
 import model.TTDonTapThe;
 
 /**
@@ -374,6 +376,7 @@ public class DonCaNhan extends javax.swing.JDialog {
                     // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
                     this.showRegistrationSuccessMessage();
                     reloadForm();
+                    
                 } else {
                     throw new Exception();
                 }
