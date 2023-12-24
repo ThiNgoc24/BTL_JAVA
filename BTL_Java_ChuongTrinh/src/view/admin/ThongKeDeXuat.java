@@ -34,10 +34,6 @@ public class ThongKeDeXuat extends javax.swing.JDialog {
         DefaultTableModel model = (DefaultTableModel) this.tblDonDeXuat.getModel();
         model.setRowCount(0);//reset nội dung trong bảng về 0
 
-//        for (DonDeXuat x : dsDon) {
-//            model.addRow(new Object[]{x.getMaDon(), x.getCauHoi1() + "," + x.getCauHoi2() + "," + x.getCauHoi3() + "," + x.getCauHoi4() + "," + x.getGopY()});
-//        }
-
         Iterator<DonDeXuat> itr = dsDon.iterator();
         while (itr.hasNext()) {
             DonDeXuat x = itr.next();
@@ -51,7 +47,8 @@ public class ThongKeDeXuat extends javax.swing.JDialog {
             FileWriter wt = new FileWriter(filePath);
             PrintWriter pt = new PrintWriter(wt);
             for (DonDeXuat don : dsDon) {
-                String line = String.join(",", don.getMaDon(), don.getCauHoi1(), don.getCauHoi2(), don.getCauHoi3(), don.getCauHoi4(), don.getGopY());
+                String line = String.join(",", don.getMaDon(), don.getCauHoi1(), don.getCauHoi2(),
+                        don.getCauHoi3(), don.getCauHoi4(), don.getGopY());
                 pt.write(line + "\n");
             }
             pt.close();
@@ -89,7 +86,7 @@ public class ThongKeDeXuat extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tblDonDeXuat.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        tblDonDeXuat.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tblDonDeXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},

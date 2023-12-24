@@ -28,6 +28,7 @@ public class FakeData {
     static List<HocPhan> layHocPhan;
     
     static {
+        layMaSV();
         layHocPhan();
         layNganh();
         layKhoa();
@@ -36,9 +37,24 @@ public class FakeData {
         layDSDonTapThe();
         taoDSDonDangKy();
         taoDSDonDangKyChuaDuyet();
-        layMaSV();
+        
     }
     
+//    public static void layMaSV() {
+//        try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\LichSuDangNhap.txt"))) {
+//            String line = br.readLine();
+//            if (line != null) {
+//                maSVDN = line.trim();
+//            } else {
+//                System.out.println("File is empty");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public static void layMaSV() {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\LichSuDangNhap.txt"))) {
             String line = br.readLine();
@@ -53,7 +69,6 @@ public class FakeData {
             e.printStackTrace();
         }
     }
-
     
     public static void layKhoa(){
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\Khoa.txt"))) {
