@@ -230,7 +230,7 @@ public class DangNhap extends javax.swing.JFrame {
             else
                 throw new Exception("Tài khoản không tồn tại!");
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(DangNhap.this, ex.getMessage());
+            JOptionPane.showMessageDialog(DangNhap.this, ex.getMessage(),  "Invalidation", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
