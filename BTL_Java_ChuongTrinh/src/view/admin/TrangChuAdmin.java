@@ -133,11 +133,12 @@ public class TrangChuAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         DoiMatKhau doiMatKhau = new DoiMatKhau(this, true);
         doiMatKhau.setVisible(true);
-        
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnQuanLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyActionPerformed
         // TODO add your handling code here:
+        QuanLyKhoa quanLyKhoa = new QuanLyKhoa(this, true);
+        quanLyKhoa.setVisible(true);
     }//GEN-LAST:event_btnQuanLyActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
