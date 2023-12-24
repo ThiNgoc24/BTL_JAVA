@@ -32,7 +32,7 @@ public class FakeData {
         layNganh();
         layKhoa();
         layDonDeXuat();
-        //layDSDonCaNhan();
+//        layDSDonCaNhan();
         layDSDonTapThe();
         taoDSDonDangKy();
         taoDSDonDangKyChuaDuyet();

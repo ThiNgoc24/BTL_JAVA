@@ -88,7 +88,7 @@ public class DonCaNhan extends javax.swing.JDialog {
         Iterator<TTDonCaNhan> itr = ds.iterator();
         while(itr.hasNext()){
             TTDonCaNhan x = itr.next();
-            if (x.getMaHP().equals(maHP)) {
+            if (x.getMaHP().equals(maHP) && maSV.equals(x.getMaSV())) {
                 return false;
             }
         }
