@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
@@ -19,6 +20,7 @@ import model.FakeData;
 import model.FakeData1;
 import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
+import model.TTDonCaNhan;
 import model.TTDonTapThe;
 
 /**
@@ -381,7 +383,7 @@ public class DonTapThe extends javax.swing.JDialog {
 
         } else {
             try {
-                if (checkDonHopLe()) {
+                if (checkDonHopLe() && checkDonHopLe_FileDSDonCaNhan() ) {
                     TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, maSV, maHP, tenHP, lyDo, dsSV, trangThai);
 
                     // Gọi phương thức lưu trữ trong model
@@ -394,7 +396,7 @@ public class DonTapThe extends javax.swing.JDialog {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Đơn không hợp lệ.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Đơn chứa sinh viên đã đăng ký mở lớp học phần này rồi.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
 
         }
@@ -406,6 +408,7 @@ public class DonTapThe extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -521,7 +524,7 @@ public class DonTapThe extends javax.swing.JDialog {
     }
 
     public boolean checkDonHopLe() {
-        String maSV = FakeData1.maSVDN;
+        String maSV = FakeData.maSVDN;
         String maHP = txtMaHP.getText();
         List<SinhVienTapThe> svtt = this.getDsSV();
 
@@ -554,6 +557,22 @@ public class DonTapThe extends javax.swing.JDialog {
         return true;
     }
 
+    public boolean checkDonHopLe_FileDSDonCaNhan() {
+        List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src/Data/DSDonCaNhan.txt");
+        //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
+
+        String maHP = txtMaHP.getText();
+
+        // Kiểm tra đơn đã tồn tại 
+        Iterator<TTDonCaNhan> itr = ds.iterator();
+        while (itr.hasNext()) {
+            TTDonCaNhan x = itr.next();
+            if (x.getMaHP().equals(maHP) && maSV.equals(x.getMaSV())) {
+                return false;
+            }
+        }
+        return true;
+    }
     public boolean setResults() {
         this.maDonTapThe = sinhMaDonTapThe();
         this.maSV = FakeData.maSVDN;

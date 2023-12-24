@@ -1,4 +1,5 @@
-DTT002,SV001,IT6011,Nhập môn về kỹ thuật,học,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,Có 1 lớp được mở
-DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Không có lớp nào được mở
-DTT004,SV003,IT6011,Nhập môn về kỹ thuật,học vượt,Chưa duyệt
+DTT004,SV003,IT6011,Nhập môn về kỹ thuật,học vượt,Có 1 lớp được mở
 DTT005,SV003,IT6039,Thiết kế Web,học vượt,Chưa duyệt
+DTT006,SV002,IT6011,Nhập môn về kỹ thuật,học ,Có 1 lớp được mở
+DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Không có lớp nào được mở
+DTT004,SV001,IT6011,Nhập môn về kỹ thuật,học cải thiện,Chưa duyệt
