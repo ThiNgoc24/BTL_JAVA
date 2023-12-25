@@ -35,6 +35,4 @@ public class TaiKhoan {
     public void setMaTK(String maTK) {
         this.maTK = maTK;
     }
-    
-    
 }

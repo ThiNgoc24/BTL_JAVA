@@ -1,2 +1,1 @@
 DTT002,SV001,IT6011,Nhập môn về kỹ thuật,Học vượt,SV003,Nguyễn Văn Mạnh,Hệ thống thông tin,SV004,Nguyễn Hoài Sơn,Công nghệ thông tin,SV007,Nguyễn Thị Phương,Kỹ thuật phần mềm,Chưa duyệt
-

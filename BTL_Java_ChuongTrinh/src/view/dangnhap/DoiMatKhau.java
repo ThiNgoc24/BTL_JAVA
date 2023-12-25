@@ -33,8 +33,8 @@ public class DoiMatKhau extends javax.swing.JDialog {
         this.setTitle("Đổi mật khẩu");
     }
     
-    public static String tkDangNhap;
-    public static String password;
+    private String tkDangNhap;
+    private String password;
     
     public void checkChange(){
         String filePath = "src\\data\\LichSuDangNhap.txt";
@@ -104,7 +104,7 @@ public class DoiMatKhau extends javax.swing.JDialog {
         }
     }
     
-    public static Map<String, String> readUserMapFromFile(String fileName) throws FileNotFoundException, IOException{
+    private Map<String, String> readUserMapFromFile(String fileName) throws FileNotFoundException, IOException{
         Map<String, String> userMap = new HashMap<>();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line;
@@ -118,7 +118,7 @@ public class DoiMatKhau extends javax.swing.JDialog {
     }
     
     //Kiểm tra xem user đăng nhập thuộc danh sách nào
-    public boolean checkUser(String username, String fileName) throws IOException{
+    private boolean checkUser(String username, String fileName) throws IOException{
         Map<String, String> userMap = readUserMapFromFile(fileName);
         if(userMap.containsKey(username))
             return true;
@@ -136,7 +136,7 @@ public class DoiMatKhau extends javax.swing.JDialog {
         }
     }
     
-    public boolean checkChangePassword(){
+    private boolean checkChangePassword(){
         //Lấy thông tin các ô textbox
         String matKhauCu = new String(txtMatKhauCu.getPassword());
         String matKhauMoi = new String(txtMatKhauMoi.getPassword());
@@ -163,7 +163,7 @@ public class DoiMatKhau extends javax.swing.JDialog {
         }
     }
     
-    public void resetForm(){
+    private void resetForm(){
         txtMatKhauCu.setText("");
         txtMatKhauMoi.setText("");
         txtNhapLai.setText("");

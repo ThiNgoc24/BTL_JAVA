@@ -22,7 +22,7 @@ import model.Nganh;
  * @author Le Thi Ngoc
  */
 public class QuanLyKhoa extends javax.swing.JDialog {
-    private List<Khoa> listKhoa = new ArrayList<>(FakeData.listKhoa);
+    private List<Khoa> khoas = FakeData.listKhoa;
     private String pathKhoa = "src\\data\\Khoa.txt";
     DefaultTableModel tb;
 
@@ -38,9 +38,18 @@ public class QuanLyKhoa extends javax.swing.JDialog {
         HienThi();
     }
     
+    private void reloadKhoa(){
+        khoas.clear();
+        FakeData.listKhoa.clear();
+        FakeData.layKhoa();
+        khoas = FakeData.listKhoa;
+        loadData();
+    }
+    
     private void loadData() {
+       // reloadData();
         tb = new DefaultTableModel();
-        List<Khoa> listKhoa = new ArrayList<>(this.listKhoa);
+        List<Khoa> listKhoa = new ArrayList<>(this.khoas);
         tb.addColumn("Mã khoa");
         tb.addColumn("Tên khoa");
         tb.addColumn("Số ngành");
@@ -58,7 +67,7 @@ public class QuanLyKhoa extends javax.swing.JDialog {
         //Cập nhật danh sách vào file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathKhoa))) {
             // Ghi dữ liệu vào file
-            for (Khoa khoa : listKhoa) {
+            for (Khoa khoa : khoas) {
                 System.out.println(khoa.toString());
                 writer.write(khoa.toString());
                 writer.newLine();
@@ -81,7 +90,7 @@ public class QuanLyKhoa extends javax.swing.JDialog {
     }
 
     public boolean ktraMaTonTai(String maKhoa) {
-        for (Khoa khoa : listKhoa) {
+        for (Khoa khoa : khoas) {
             if (khoa.getMaKhoa().equals(maKhoa)) {
                 return true;
             }
@@ -295,7 +304,7 @@ public class QuanLyKhoa extends javax.swing.JDialog {
         tbl_DSKhoa.updateUI();
         JOptionPane.showMessageDialog(rootPane, "Thêm thành công!");
         Khoa khoa = new Khoa(ma, ten);
-        listKhoa.add(khoa);
+        khoas.add(khoa);
         saveFileKhoa();
 
         txtmaK.setText("");
@@ -336,9 +345,9 @@ public class QuanLyKhoa extends javax.swing.JDialog {
                     tb.removeRow(selectedRow);
 
                     // Xóa dòng dữ liệu từ danh sách
-                    for (Khoa khoa : listKhoa) {
+                    for (Khoa khoa : khoas) {
                         if (khoa.getMaKhoa().equals(maKhoa) && khoa.getTenKhoa().equals(tenKhoa)) {
-                            listKhoa.remove(khoa);
+                            khoas.remove(khoa);
                             break;
                         }
                     }
@@ -370,16 +379,17 @@ public class QuanLyKhoa extends javax.swing.JDialog {
                 QuanLyNganhTheoKhoa nganhTheoKhoa = new QuanLyNganhTheoKhoa(this, true, maKhoa);
 
                 nganhTheoKhoa.setVisible(true);
-                Nganh nganh = nganhTheoKhoa.getNganh();
-                if(nganh != null){
-                    for(Khoa khoa : listKhoa){
-                        if(khoa.getMaKhoa().equals(maKhoa)){
-                            khoa.setSoNganh(khoa.getSoNganh()+1);
-                            break;
-                        }
-                    }
-                    loadData();
-                }
+//                Nganh nganh = nganhTheoKhoa.getNganh();
+//                if(nganh != null){
+//                    for(Khoa khoa : listKhoa){
+//                        if(khoa.getMaKhoa().equals(maKhoa)){
+//                            khoa.setSoNganh(khoa.getSoNganh()+1);
+//                            break;
+//                        }
+//                    }
+//                    loadData();
+//                }
+                reloadKhoa();
             }
         } catch (Exception e) {
             e.printStackTrace();

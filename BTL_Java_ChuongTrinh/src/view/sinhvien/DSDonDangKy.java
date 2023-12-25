@@ -18,14 +18,18 @@ public class DSDonDangKy extends javax.swing.JDialog {
     private TKDSDonTheoSV model;
     private String maSV = FakeData.maSVDN;
     
+    private static List<TTDonDangKy> donsDKTheoSV=null;
     public DSDonDangKy(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         capNhapDon();
     }
-    List<TTDonDangKy> dons = model.dsDonTheoMaSV(maSV);
+    
+//    List<TTDonDangKy> donsDKTheoSV = model.dsDonTheoMaSV(maSV); 
     
     public void capNhapDon(){
+        TKDSDonTheoSV.reloaded();
+        donsDKTheoSV = TKDSDonTheoSV.dsDonTheoMaSV(maSV);
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Mã đơn");
         tableModel.addColumn("Mã học phần");
@@ -33,7 +37,7 @@ public class DSDonDangKy extends javax.swing.JDialog {
         tableModel.addColumn("Loại đơn");
         tableModel.addColumn("Trạng thái");
         
-        for(TTDonDangKy don: dons){
+        for(TTDonDangKy don: donsDKTheoSV){
                Object[] row = {
                    don.getMaDon(),
                    don.getMaHP(),
@@ -143,18 +147,18 @@ public class DSDonDangKy extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DSDonDangKy dialog = new DSDonDangKy(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                DSDonDangKy dialog = new DSDonDangKy(new javax.swing.JFrame(), true,donsDKTheoSV);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
