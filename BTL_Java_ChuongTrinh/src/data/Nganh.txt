@@ -4,29 +4,5 @@ KTPM,Kỹ thuật phần mềm,KCNTT
 KHMT,Khoa học máy tính,KCNTT
 TA,Tieng Anh,KNN
 TT,Tieng Trung,KNN
-1,1,q
-2,2,q
-w,w,qq
-n,n,qq
-3,3,qq
-4,4,qq
-12,22545,qq
-NKT,Kế toán,KDT
-jhskhf,fdsfsdg,qqq
-cvxccx,xcvx,qqq
-TTT,Tieng Trung,KNN
-TThgf,Tieng Trung,KNN
-NDien,Điện tử,KDT
-NKTPM,Kỹ thuật phần mềm,KDT
-66,3,KCNTT
-777,777,KCNTT
-7,7,g
-8,8,g
-888,88,g
-9,9,g
-a,a,g
-78,88,g
-88,99,g
-70,70,g
-889,99,g
-122,12,g
+TMDT,Thương mại điện tử,KCNTT
+ATBM,An toàn bảo mật,KCNTT

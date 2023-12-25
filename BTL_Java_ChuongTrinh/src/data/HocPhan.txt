@@ -58,3 +58,4 @@ KCNTT,44,6,6,6
 g,7,55,55,55
 g,8,199,1,1
 g,888,66,66,66
+KCNTT,CNTT,IT7000,Kiểm thử phần mềm test,3

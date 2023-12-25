@@ -1,4 +1,3 @@
 KCNTT,Công nghệ thông tin
 KDT,Điện tử
 KNN,Ngoại Ngữ
-g,g
