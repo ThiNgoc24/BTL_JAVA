@@ -59,6 +59,8 @@ public class FakeData {
             while ((line = br.readLine()) != null) {
                 // Chia cắt dữ liệu thành mã khoa và tên khoa
                 String[] khoaInfo = line.split(",");
+                if(khoaInfo.length < 2)
+                    continue;
                 String maKhoa = khoaInfo[0].trim();
                 String tenKhoa = khoaInfo[1].trim();
 
