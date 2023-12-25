@@ -29,6 +29,7 @@ import view.sinhvien.TrangChuSinhVien;
 public class DangNhap extends javax.swing.JFrame {
     public DangNhap() {
         initComponents();
+        this.setTitle("Đăng nhập");
         loadDataBase();
     }
     private ArrayList<TaiKhoan> adminList;
@@ -148,6 +149,7 @@ public class DangNhap extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     private void loadDataBase(){
         adminList = readUserFromFile("src\\data\\TaiKhoanAdmin.txt");
         sinhVienList = readUserFromFile("src\\data\\TaiKhoanSV.txt");

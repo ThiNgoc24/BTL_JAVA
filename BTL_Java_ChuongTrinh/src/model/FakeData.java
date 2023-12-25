@@ -28,17 +28,18 @@ public class FakeData {
     static List<HocPhan> layHocPhan;
     
     static {
+        layMaSV();
         layHocPhan();
         layNganh();
         layKhoa();
         layDonDeXuat();
-        //layDSDonCaNhan();
+        layDSDonCaNhan();
         layDSDonTapThe();
         taoDSDonDangKy();
         taoDSDonDangKyChuaDuyet();
-        layMaSV();
+        
     }
-    
+
     public static void layMaSV() {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\LichSuDangNhap.txt"))) {
             String line = br.readLine();
@@ -53,7 +54,6 @@ public class FakeData {
             e.printStackTrace();
         }
     }
-
     
     public static void layKhoa(){
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\Khoa.txt"))) {
@@ -125,18 +125,22 @@ public class FakeData {
         }
     }
     
- /*   public static void layDSDonCaNhan(){
+    public static void layDSDonCaNhan(){
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonCaNhan.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(",");
+                if (tokens.length < 6) {
+                    // Bỏ qua dòng không hợp lệ không chứa đủ các phần tử cần thiết
+                    continue;
+                }
                 TTDonCaNhan don = new TTDonCaNhan(tokens[0], tokens[1], tokens[2], tokens[3],tokens[4], tokens[5]);
                 listDonCaNhan.add(don);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
     
     public static void layDSDonTapThe() {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\DSDonTapThe.txt"))) {
@@ -182,7 +186,7 @@ public class FakeData {
                String maHP = donCaNhan.getMaHP();
                String tenHP = donCaNhan.getTenHP();
                String loaiDon = "Cá nhân";
-               String trangThai = "Chưa duyệt";
+               String trangThai = donCaNhan.getTrangThai();
                TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, 1);
                listDonDangKy.add(donDK);
            }
@@ -192,7 +196,7 @@ public class FakeData {
                String maHP = donTapThe.getMaHP();
                String tenHP = donTapThe.getTenHP();
                String loaiDon = "Tập thể";
-               String trangThai = "Chưa duyệt";
+               String trangThai = donTapThe.getTrangThai();
                List<SinhVienTapThe> svs = new ArrayList<>(donTapThe.getDsSV());
                TTDonDangKy donDK = new TTDonDangKy(maDon, maSV, maHP, tenHP, loaiDon,trangThai, svs.size()+1);
                listDonDangKy.add(donDK);

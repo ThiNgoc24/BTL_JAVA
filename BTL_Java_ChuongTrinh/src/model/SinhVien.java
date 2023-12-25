@@ -22,7 +22,7 @@ public class SinhVien{
         this.maNganh = maNganh;
         this.maTK = maTK;
     }
-  
+    
     public String getHoTenSV() {
         return hoTenSV;
     }
@@ -38,12 +38,11 @@ public class SinhVien{
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
     }
+    public String getMaTK() {
+        return maTK;
+    }
 
     public void setMaTK(String maTK) {
         this.maTK = maTK;
-    }
-
-    public String getMaTK() {
-        return maTK;
     }
 }

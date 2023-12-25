@@ -4,6 +4,11 @@
  */
 package view.sinhvien;
 
+import controller.TKDSDonTheoSV;
+import java.util.List;
+import model.FakeData;
+import model.FakeData1;
+import model.TTDonDangKy;
 import view.dangnhap.DangNhap;
 import view.dangnhap.DoiMatKhau;
 
@@ -19,6 +24,7 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
     public TrangChuSinhVien() {
         initComponents();
     }
+    private String maSV = FakeData1.maSVDN;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,6 +56,11 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
         btnTaoDonTapThe.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnTaoDonTapThe.setText("Tạo đơn đăng ký tập thể");
         btnTaoDonTapThe.setName("btnTapThe"); // NOI18N
+        btnTaoDonTapThe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoDonTapTheActionPerformed(evt);
+            }
+        });
 
         btnXemDSDon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnXemDSDon.setText("Xem danh sách đơn đăng ký");
@@ -148,6 +159,7 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
 
     private void btnXemDSDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDSDonActionPerformed
         // TODO add your handling code here:
+        
         DSDonDangKy dsDon = new DSDonDangKy(this, true);
         dsDon.setVisible(true);
     }//GEN-LAST:event_btnXemDSDonActionPerformed
@@ -157,6 +169,12 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
         DeXuatCaiTien dx = new DeXuatCaiTien(this,true);
         dx.setVisible(true);
     }//GEN-LAST:event_btnDeXuatCaiTienActionPerformed
+
+    private void btnTaoDonTapTheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonTapTheActionPerformed
+        // TODO add your handling code here:
+        DonTapThe donTapThe = new DonTapThe(this, true);
+        donTapThe.setVisible(true);
+    }//GEN-LAST:event_btnTaoDonTapTheActionPerformed
 
 
     /**

@@ -1,4 +1,4 @@
-DCN002,SV001,IT6018,Lập trình hướng đối tượng,hoc,Chưa duyệt
-DCN003,SV001,IT6039,Thiết kế Web,hoc,Chưa duyệt
+DCN008,SV002,IT6034,Tích hợp hệ thống phần mềm,h,Chưa duyệt
+DCN007,SV002,IT6002,Cấu trúc dữ liệu và giải thuật,học vượt,Chưa duyệt
+DCN009,SV002,IT6022,Lập trình web bằng PHP,h,Chưa duyệt
 DCN004,SV001,IT6006,Cơ sở dữ liệu,hoc,Chưa duyệt
-DCN005,SV002,IT6015,Kỹ thuật lập trình,ưer,Chưa duyệt

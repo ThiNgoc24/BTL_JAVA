@@ -24,7 +24,7 @@ public class QuanLyDSLopHocPhan extends javax.swing.JDialog {
 
     private String maNganh;
     private String maKhoa;
-    List<HocPhan> listHP = new ArrayList<>(FakeData.listHocPhan);
+    private List<HocPhan> listHP = FakeData.listHocPhan;
     DefaultTableModel tableModel;
     private HocPhan hocPhan;
     private String pathHocPhan = "src\\data\\HocPhan.txt";
@@ -57,6 +57,19 @@ public class QuanLyDSLopHocPhan extends javax.swing.JDialog {
         }
 
         tblHP.setModel(tableModel);
+    }
+    
+    private void reloadHP(){
+        listHP.clear();
+        FakeData.listHocPhan.clear();
+        FakeData.layHocPhan();
+        listHP = FakeData.listHocPhan;
+        dsHocPhanTheoNganh();
+        loadData();
+    }
+    
+    private void viewTable(){
+        
     }
 
     public List<HocPhan> dsHocPhanTheoNganh() {
@@ -278,6 +291,7 @@ public class QuanLyDSLopHocPhan extends javax.swing.JDialog {
                     }
                 }
             }
+            reloadHP();
         }
     }//GEN-LAST:event_btXoaActionPerformed
 
@@ -311,7 +325,7 @@ public class QuanLyDSLopHocPhan extends javax.swing.JDialog {
             tblHP.setValueAt(ma, selectedRow, 0);
             tblHP.setValueAt(ten, selectedRow, 1);
             tblHP.setValueAt(soTC, selectedRow, 2);
-
+            reloadHP();
             txtMaHP.setText("");
             txtTenHP.setText("");
             txtSoTC.setText("");
@@ -348,7 +362,7 @@ public class QuanLyDSLopHocPhan extends javax.swing.JDialog {
         this.hocPhan = new HocPhan(maKhoa, maNganh, ma, ten, soTC);
         listHP.add(hocPhan);
         saveFileHocPhan();
-
+        reloadHP();
         //Làm trắng các textbox
         txtMaHP.setText("");
         txtTenHP.setText("");
