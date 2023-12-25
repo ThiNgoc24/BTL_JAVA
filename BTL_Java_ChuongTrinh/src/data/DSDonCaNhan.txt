@@ -1,10 +1,9 @@
-DCN004,SV001,IT6006,Cơ sở dữ liệu,hoc,Chưa duyệt
-DCN003,SV001,IT6039,Thiết kế Web,hoc,Chưa duyệt
-DCN006,SV002,IT6039,Thiết kế Web,k,Chưa duyệt
-DCN007,SV002,IT6002,Cấu trúc dữ liệu và giải thuật,học vượt,Chưa duyệt
-
 DCN008,SV002,IT6034,Tích hợp hệ thống phần mềm,h,Chưa duyệt
+DCN007,SV002,IT6002,Cấu trúc dữ liệu và giải thuật,học vượt,Chưa duyệt
 DCN009,SV002,IT6022,Lập trình web bằng PHP,h,Chưa duyệt
-DCN010,SV002,IT6059,Thực tập chuyên ngành Hệ thống thông tin,23,Chưa duyệt
+DCN004,SV001,IT6006,Cơ sở dữ liệu,hoc,Chưa duyệt
+DCN003,SV001,IT6039,Thiết kế Web,hoc,Không có lớp nào được mở
+DCN006,SV002,IT6039,Thiết kế Web,k,Không có lớp nào được mở
 DCN011,SV002,IT6028,Phát triển ứng dụng Game,df,Chưa duyệt
+DCN010,SV002,IT6059,Thực tập chuyên ngành Hệ thống thông tin,23,Chưa duyệt
 DCN012,SV002,IT6044,Ứng dụng thuật toán,ae,Chưa duyệt

@@ -29,6 +29,7 @@ import view.sinhvien.TrangChuSinhVien;
 public class DangNhap extends javax.swing.JFrame {
     public DangNhap() {
         initComponents();
+        this.setTitle("Đăng nhập");
         loadDataBase();
     }
     private ArrayList<TaiKhoan> adminList;
