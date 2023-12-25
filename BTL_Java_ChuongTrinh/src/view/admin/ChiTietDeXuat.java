@@ -13,7 +13,6 @@ import model.DonDeXuat;
  */
 public class ChiTietDeXuat extends javax.swing.JDialog {
     private String maDon;
-    private TKDonDeXuatController ctl;
     /**
      * Creates new form ChiTietDeXuat
      */
@@ -25,7 +24,7 @@ public class ChiTietDeXuat extends javax.swing.JDialog {
     }
 
      public void loadData() {
-        DonDeXuat x = ctl.donTheoMaDon(maDon);
+        DonDeXuat x = TKDonDeXuatController.donTheoMaDon(maDon);
         txtCau1.setText(x.getCauHoi1());
         txtCau2.setText(x.getCauHoi2());
         txtCau3.setText(x.getCauHoi3());

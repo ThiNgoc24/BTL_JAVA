@@ -4,10 +4,7 @@
  */
 package view.admin;
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
+import controller.TKDonDeXuatController;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +16,9 @@ import model.FakeData;
  * @author Le Thi Ngoc
  */
 public class ThongKeDeXuat extends javax.swing.JDialog {
+
     List<DonDeXuat> dsDon = FakeData.listDonDeXuat;
+
     /**
      * Creates new form ThongKeDeXuat
      */
@@ -33,42 +32,11 @@ public class ThongKeDeXuat extends javax.swing.JDialog {
     public void loadTable() {
         DefaultTableModel model = (DefaultTableModel) this.tblDonDeXuat.getModel();
         model.setRowCount(0);//reset nội dung trong bảng về 0
-
-        Iterator<DonDeXuat> itr = dsDon.iterator();
-        while (itr.hasNext()) {
-            DonDeXuat x = itr.next();
+        for (DonDeXuat x : dsDon) {
             model.addRow(new Object[]{x.getMaDon(), x.getCauHoi1() + "," + x.getCauHoi2() + "," + x.getCauHoi3() + "," + x.getCauHoi4() + "," + x.getGopY()});
+        }
+    }
 
-        }
-    }
-    
-     public void writeDSDonToFile(List<DonDeXuat> dsDon, String filePath) {
-        try {
-            FileWriter wt = new FileWriter(filePath);
-            PrintWriter pt = new PrintWriter(wt);
-            for (DonDeXuat don : dsDon) {
-                String line = String.join(",", don.getMaDon(), don.getCauHoi1(), don.getCauHoi2(),
-                        don.getCauHoi3(), don.getCauHoi4(), don.getGopY());
-                pt.write(line + "\n");
-            }
-            pt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private void capNhatDS(String fileName) {
-        dsDon = new ArrayList<>();
-        dsDon.clear();
-        for (int i = 0; i < tblDonDeXuat.getRowCount(); i++) {
-            String maDon = tblDonDeXuat.getValueAt(i, 0).toString();
-            String deXuat = tblDonDeXuat.getValueAt(i, 1).toString();
-            String[] parts = deXuat.split(",");
-            DonDeXuat ddx = new DonDeXuat(maDon, parts[0], parts[1], parts[2], parts[3], parts[4]);
-            dsDon.add(ddx);
-        }
-        writeDSDonToFile(dsDon, fileName);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,18 +145,26 @@ public class ThongKeDeXuat extends javax.swing.JDialog {
         // TODO add your handling code here:
         int choice = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
-            TrangChuAdmin admin = new TrangChuAdmin();
-            admin.setVisible(true); //Truy cập đến trang chủ Admin
             dispose(); //Đóng giao diện hiện tại
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void capNhatDS(String fileName) {
+        dsDon.clear(); //xóa tất cả các dữ liệu trong dsDon
+        for (int i = 0; i < tblDonDeXuat.getRowCount(); i++) {
+            String maDon = tblDonDeXuat.getValueAt(i, 0).toString();
+            String deXuat = tblDonDeXuat.getValueAt(i, 1).toString();
+            String[] parts = deXuat.split(",");
+            DonDeXuat ddx = new DonDeXuat(maDon, parts[0], parts[1], parts[2], parts[3], parts[4]);
+            dsDon.add(ddx);
+        }
+        TKDonDeXuatController.writeDSDonToFile(dsDon, fileName);
+    }
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         int pos = this.tblDonDeXuat.getSelectedRow();
         if (pos == -1) { // Kiểm tra xem có dòng nào được chọn không
             JOptionPane.showMessageDialog(this, "Vui lòng chọn một dòng để xóa.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            return;
         } else {
             DonDeXuat don = dsDon.get(pos);
             if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn xoá", "Xác nhận", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -206,7 +182,7 @@ public class ThongKeDeXuat extends javax.swing.JDialog {
         // TODO add your handling code here:
         int pos = this.tblDonDeXuat.getSelectedRow();
         if (pos == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn một dòng để xem chi tiết.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một đơn để xem chi tiết.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         } else {
             String maDon = (String) tblDonDeXuat.getValueAt(pos, 0);
             // Gọi giao diện xem chi tiết đề xuất , truy xuất bằng mã đơn đề xuất

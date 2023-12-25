@@ -120,7 +120,7 @@ public class DonDeXuat {
 
     @Override
     public String toString() {
-        return "DonDeXuat{" + "maDon=" + maDon + ", cauHoi1=" + cauHoi1 + ", cauHoi2=" + cauHoi2 + ", cauHoi3=" + cauHoi3 + ", cauHoi4=" + cauHoi4 + ", gopY=" + gopY + '}';
+        return  maDon + "," + cauHoi1 + "," + cauHoi2 + "," + cauHoi3 + "," + cauHoi4 + "," + gopY ;
     }
 
 }

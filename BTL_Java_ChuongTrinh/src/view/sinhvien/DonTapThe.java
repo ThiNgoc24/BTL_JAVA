@@ -557,8 +557,8 @@ public class DonTapThe extends javax.swing.JDialog {
     }
 
     public boolean checkDonHopLe_FileDSDonCaNhan() {
-        List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src/Data/DSDonCaNhan.txt");
-        //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
+       // List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src/Data/DSDonCaNhan.txt");
+        List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
 
         String maHP = txtMaHP.getText();
 

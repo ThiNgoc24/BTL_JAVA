@@ -55,7 +55,7 @@ public class DeXuatCaiTien extends javax.swing.JDialog {
         String currentCode = loadLastCodeFromFile();
         if (currentCode == null) {
             // Nếu không có mã trong file, khởi tạo mã ban đầu
-            currentCode = "DTT001";
+            currentCode = "DDX001";
         }
         // Sinh mã mới
         String newCode = generateCode(currentCode);

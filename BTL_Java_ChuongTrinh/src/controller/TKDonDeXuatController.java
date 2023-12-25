@@ -4,6 +4,8 @@
  */
 package controller;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,20 @@ public class TKDonDeXuatController {
             }
         }
         return null;
+    }
+    
+    public static void writeDSDonToFile(List<DonDeXuat> dsDon, String filePath) {
+        try {
+            FileWriter wt = new FileWriter(filePath);
+            PrintWriter pt = new PrintWriter(wt);
+            for (DonDeXuat don : dsDon) {
+                String line = don.toString();
+                pt.write(line + "\n");
+            }
+            pt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

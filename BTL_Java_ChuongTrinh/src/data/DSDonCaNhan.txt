@@ -3,3 +3,8 @@ DCN003,SV001,IT6039,Thiết kế Web,hoc,Chưa duyệt
 DCN004,SV001,IT6006,Cơ sở dữ liệu,hoc,Chưa duyệt
 DCN005,SV002,IT6015,Kỹ thuật lập trình,hoc,Chưa duyệtDCN006,SV002,IT6002,Cấu trúc dữ liệu và giải thuật,hoc,Chưa duyệt
 DCN006,SV002,IT6039,Thiết kế Web,k,Chưa duyệt
+DCN007,SV002,IT6018,Lập trình hướng đối tượng,xxx,Chưa duyệt
+DCN008,SV002,IT6001,An toàn và bảo mật thông tin,xxx,Chưa duyệt
+DCN009,SV002,IT6044,Ứng dụng thuật toán,cxxx,Chưa duyệt
+DCN010,SV002,IT6029,Phát triển ứng dụng trên thiết bị di động,học,Chưa duyệt
+DCN011,SV002,IT6036,Tối ưu hóa,học,Chưa duyệt

@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import static model.FakeData1.maSVDN;
 
 /**
  *
@@ -25,7 +24,6 @@ public class FakeData {
     public static List<TTDonDangKy> listDonDangKy = new ArrayList<>();
     public static List<TTDonDangKy> listDonDangKy_ChuaDuyet = new ArrayList<>();
     public static String maSVDN;
-    static List<HocPhan> layHocPhan;
     
     static {
         layMaSV();
@@ -37,7 +35,7 @@ public class FakeData {
         layDSDonTapThe();
         taoDSDonDangKy();
         taoDSDonDangKyChuaDuyet();
-        
+        layDSDonCaNhan();
     }
 
     public static void layMaSV() {
