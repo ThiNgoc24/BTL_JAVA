@@ -165,6 +165,8 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
 
     private void btnTaoDonTapTheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonTapTheActionPerformed
         // TODO add your handling code here:
+        DonTapThe donTapThe = new DonTapThe(this, true);
+        donTapThe.setVisible(true);
     }//GEN-LAST:event_btnTaoDonTapTheActionPerformed
 
 

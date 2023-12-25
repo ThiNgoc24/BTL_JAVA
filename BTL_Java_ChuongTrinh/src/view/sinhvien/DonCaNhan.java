@@ -4,18 +4,26 @@
  */
 package view.sinhvien;
 
+import controller.DonCaNhanController;
+import controller.DonTapTheController;
+import controller.TKDSDonTheoSV;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.FakeData;
 import model.HocPhanDangKyCuaKhoa;
+import model.SinhVienTapThe;
 import model.TTDonCaNhan;
+import model.TTDonDangKy;
+import model.TTDonTapThe;
 
 /**
  *
@@ -103,49 +111,98 @@ public class DonCaNhan extends javax.swing.JDialog {
         }
         return true;
     }
+    
+    public boolean checkDonHopLe_FileDSDonTapThe() {
+        String maSV = FakeData.maSVDN;
+        String maHP = txtMaHP.getText();
 
-    private void themDon() {
-
-        dcn.setTenHP((String) cboTenHP.getSelectedItem()); 
-        dcn.setMaHP(txtMaHP.getText());
-        dcn.setLyDo(txtLyDo.getText());
-
-        if (dcn.getTenHP().trim().equals("") || dcn.getMaHP().trim().equals("") || dcn.getLyDo().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.",
-                    "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        } else {
-            if (checkDonHopLe()) {
-                dcn.setMaDonCaNhan(MaDon());
-                String filePath = "src/Data/DSDonCaNhan.txt";
-                try {
-                    // Khởi tạo FileWriter với đường dẫn tới tệp tin và true để cho phép ghi thêm
-                    FileWriter fileWriter = new FileWriter(filePath, true);
-
-                    // Khởi tạo BufferedWriter
-                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                    // Ghi dữ liệu vào tệp tin
-                    bufferedWriter.write(dcn.toString());
-                    bufferedWriter.newLine(); // Thêm dòng mới sau mỗi dữ liệu
-
-                    // Đóng BufferedWriter
-                    bufferedWriter.close();
-                    JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
-
-                    cboTenHP.setSelectedIndex(-1);
-                    txtMaHP.setText("");
-                    txtLyDo.setText("");
-                } catch (IOException e) {
-                    System.out.println("Đã xảy ra lỗi khi thêm dữ liệu vào tệp tin: " + e.getMessage());
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Đơn đã tồn tại.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        // Kiểm tra đơn tập thể đã tồn tại
+        List<TTDonTapThe> listDTT = FakeData.listDonTapThe;
+        listDTT.forEach(System.out::println);
+        for (TTDonTapThe x : listDTT) {
+            if (x.getMaSV().equals(maSV) && x.getMaHP().equals(maHP)) {
+                return false; // Đơn tập thể đã tồn tại
             }
         }
 
+        // Kiểm tra mã học phần đã tồn tại cho sinh viên trong danh sách đơn tập thể
+        for (TTDonTapThe x : listDTT) {
+            if (x.getMaHP().equals(maHP)) {
+                for (SinhVienTapThe sVTT_DaDK : x.getDsSV()) {
+                    if (sVTT_DaDK.getMaSV().equals(maSV)) {
+                        return false; // Mã sinh viên và mã học phần đã tồn tại
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
+//    private void themDon() {
+//
+//        dcn.setTenHP((String) cboTenHP.getSelectedItem()); 
+//        dcn.setMaHP(txtMaHP.getText());
+//        dcn.setLyDo(txtLyDo.getText());
+//
+//        if (dcn.getTenHP().trim().equals("") || dcn.getMaHP().trim().equals("") || dcn.getLyDo().trim().equals("")) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.",
+//                    "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//            return;
+//        } else {
+//            if (checkDonHopLe()) {
+//                dcn.setMaDonCaNhan(MaDon());
+//                String filePath = "src/Data/DSDonCaNhan.txt";
+//                try {
+//                    // Khởi tạo FileWriter với đường dẫn tới tệp tin và true để cho phép ghi thêm
+//                    FileWriter fileWriter = new FileWriter(filePath, true);
+//
+//                    // Khởi tạo BufferedWriter
+//                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+//                    // Ghi dữ liệu vào tệp tin
+//                    bufferedWriter.write(dcn.toString());
+//                    bufferedWriter.newLine(); // Thêm dòng mới sau mỗi dữ liệu
+//
+//                    // Đóng BufferedWriter
+//                    bufferedWriter.close();
+//                    JOptionPane.showMessageDialog(this, "Thêm đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//                    System.out.println("Đã thêm dữ liệu vào tệp tin thành công.");
+//
+//                    cboTenHP.setSelectedIndex(-1);
+//                    txtMaHP.setText("");
+//                    txtLyDo.setText("");
+//                } catch (IOException e) {
+//                    System.out.println("Đã xảy ra lỗi khi thêm dữ liệu vào tệp tin: " + e.getMessage());
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Đơn đã tồn tại.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//            }
+//        }
+//
+//    }
+//    
+    public boolean setResults() {
+        this.maDonCaNhan = MaDon();
+        this.maSV = FakeData.maSVDN;
+        this.tenHP = cboTenHP.getSelectedItem().toString();
+        this.maHP = txtMaHP.getText();
+        this.lyDo = txtLyDo.getText();
+        this.trangThai = "Chưa duyệt";
+        if (this.lyDo.isEmpty() || this.lyDo.trim().equals("") || this.maHP.isEmpty() || this.maHP.trim().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    public void reloadForm() {
+        cboTenHP.setSelectedIndex(0);
+        txtMaHP.setText("");
+        txtLyDo.setText("");
+
+    }
+    public void showRegistrationSuccessMessage() {
+        JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -304,7 +361,30 @@ public class DonCaNhan extends javax.swing.JDialog {
 
     private void btnGuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiActionPerformed
         // TODO add your handling code here:
-        this.themDon();
+        //this.themDon();
+        if (!this.setResults()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            try {
+                if (checkDonHopLe() && checkDonHopLe_FileDSDonTapThe()) {
+                   TTDonCaNhan donCaNhan = new TTDonCaNhan(maDonCaNhan,maSV,maHP,tenHP,lyDo,trangThai);
+
+                    // Gọi phương thức lưu trữ trong model
+                    DonCaNhanController.saveDonTapTheInfo(donCaNhan);
+
+                    // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
+                    this.showRegistrationSuccessMessage();
+                    reloadForm();
+                    
+                } else {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Bạn đã đăng ký mở lớp học phần này rồi.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
     }//GEN-LAST:event_btnGuiActionPerformed
 
     /**

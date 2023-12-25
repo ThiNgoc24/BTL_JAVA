@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import model.FakeData;
 import static model.FakeData.listDonDangKy;
+
+
 import model.TTDonDangKy;
 
 /**
@@ -17,11 +19,13 @@ import model.TTDonDangKy;
  * @author Admin
  */
 public class TKDSDonTheoSV {
-    static List<TTDonDangKy> listDon = new ArrayList<>(FakeData.listDonDangKy);
+    public static List<TTDonDangKy> listDon = new ArrayList<>(FakeData.listDonDangKy);
     static Map<String, List<TTDonDangKy>> mapDon = new HashMap<>();
+    
     static {
         tongHopTheoSV();
     }
+    
     public static void tongHopTheoSV(){
         for (TTDonDangKy don : listDon) {
             String maSV = don.getMaSV();

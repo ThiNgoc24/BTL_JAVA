@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
@@ -19,6 +20,7 @@ import model.FakeData;
 import model.FakeData1;
 import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
+import model.TTDonCaNhan;
 import model.TTDonTapThe;
 
 /**
@@ -112,14 +114,12 @@ public class DonTapThe extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnGuiDon = new javax.swing.JButton();
         cbbTenHP = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtMaHP = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtLyDo = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -127,20 +127,13 @@ public class DonTapThe extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSVTT = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        btnGuiDon = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("Tên học phần");
-
-        btnGuiDon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnGuiDon.setText("Gửi đơn");
-        btnGuiDon.setName("btnGuiDon"); // NOI18N
-        btnGuiDon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuiDonActionPerformed(evt);
-            }
-        });
 
         cbbTenHP.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         cbbTenHP.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -186,15 +179,6 @@ public class DonTapThe extends javax.swing.JDialog {
         txtLyDo.setRows(5);
         txtLyDo.setName("txtLyDo"); // NOI18N
         jScrollPane1.setViewportView(txtLyDo);
-
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setText("Thoát");
-        jButton1.setName("btnThoat"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         btnThem.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnThem.setText("Thêm");
@@ -258,6 +242,24 @@ public class DonTapThe extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Danh sách sinh viên");
 
+        btnGuiDon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnGuiDon.setText("Gửi đơn");
+        btnGuiDon.setName("btnGuiDon"); // NOI18N
+        btnGuiDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuiDonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jButton1.setText("Thoát");
+        jButton1.setName("btnThoat"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -275,6 +277,12 @@ public class DonTapThe extends javax.swing.JDialog {
                             .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnGuiDon)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +301,11 @@ public class DonTapThe extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(69, 69, 69))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnGuiDon))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,29 +314,22 @@ public class DonTapThe extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(36, 36, 36)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtMaHP, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cbbTenHP, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGap(47, 47, 47))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnGuiDon)
-                        .addGap(259, 259, 259)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMaHP, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbbTenHP, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(47, 47, 47))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,11 +348,7 @@ public class DonTapThe extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnGuiDon))
-                .addGap(60, 60, 60))
+                .addGap(24, 24, 24))
         );
 
         txtMaHP.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +382,7 @@ public class DonTapThe extends javax.swing.JDialog {
 
         } else {
             try {
-                if (checkDonHopLe()) {
+                if (checkDonHopLe() && checkDonHopLe_FileDSDonCaNhan() ) {
                     TTDonTapThe donTapThe = new TTDonTapThe(maDonTapThe, maSV, maHP, tenHP, lyDo, dsSV, trangThai);
 
                     // Gọi phương thức lưu trữ trong model
@@ -394,7 +395,7 @@ public class DonTapThe extends javax.swing.JDialog {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Đơn không hợp lệ.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Đơn chứa sinh viên đã đăng ký mở lớp học phần này rồi.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
 
         }
@@ -406,6 +407,7 @@ public class DonTapThe extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -521,7 +523,7 @@ public class DonTapThe extends javax.swing.JDialog {
     }
 
     public boolean checkDonHopLe() {
-        String maSV = FakeData1.maSVDN;
+        String maSV = FakeData.maSVDN;
         String maHP = txtMaHP.getText();
         List<SinhVienTapThe> svtt = this.getDsSV();
 
@@ -554,9 +556,25 @@ public class DonTapThe extends javax.swing.JDialog {
         return true;
     }
 
+    public boolean checkDonHopLe_FileDSDonCaNhan() {
+        List<TTDonCaNhan> ds = TTDonCaNhan.readDonFromFile("src/Data/DSDonCaNhan.txt");
+        //List<TTDonCaNhan> ds = FakeData.listDonCaNhan;
+
+        String maHP = txtMaHP.getText();
+
+        // Kiểm tra đơn đã tồn tại 
+        Iterator<TTDonCaNhan> itr = ds.iterator();
+        while (itr.hasNext()) {
+            TTDonCaNhan x = itr.next();
+            if (x.getMaHP().equals(maHP) && maSV.equals(x.getMaSV())) {
+                return false;
+            }
+        }
+        return true;
+    }
     public boolean setResults() {
         this.maDonTapThe = sinhMaDonTapThe();
-        this.maSV = FakeData1.maSVDN;
+        this.maSV = FakeData.maSVDN;
         this.tenHP = cbbTenHP.getSelectedItem().toString();
         this.maHP = txtMaHP.getText();
         this.lyDo = txtLyDo.getText();
