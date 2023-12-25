@@ -6,3 +6,4 @@ TA,Tieng Anh,KNN
 TT,Tieng Trung,KNN
 TMDT,Thương mại điện tử,KCNTT
 ATBM,An toàn bảo mật,KCNTT
+TN,Tiếng Nhật,KNN

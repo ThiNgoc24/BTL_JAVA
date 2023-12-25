@@ -24,7 +24,8 @@ import model.SinhVienTapThe;
  */
 public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
     
-    List<Nganh> listNganh = FakeData.listNganh;
+//    List<Nganh> listNganh = FakeData.listNganh;
+    List<Nganh> listNganh;
     DefaultTableModel tableModel;
     private String maKhoa;
     private String pathNganh = "src\\data\\Nganh.txt";
@@ -64,6 +65,7 @@ public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
 //    }
     
     public List<Nganh> dsNganhTheoKhoa() {
+        listNganh = FakeData.layNganh_Test();
         List<Nganh> nganhs = new ArrayList<>();
         for (Nganh nganh : listNganh) {
             if (nganh.getMaKhoa().equals(maKhoa)) {
@@ -115,7 +117,8 @@ public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
         DefaultTableModel model = (DefaultTableModel) this.tbl_Nganh.getModel();
         model.setRowCount(0);
 
-        for (Nganh nganh : listNganh) {
+        List<Nganh> nganhs = dsNganhTheoKhoa();
+        for (Nganh nganh : nganhs) {
             model.addRow(new Object[]{nganh.getMaNganh(),
                 nganh.getTenNganh(),
                 nganh.getSoLopHP()});
