@@ -77,7 +77,10 @@ public class FakeData {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] nganhInfo = line.split(",");
-                
+                if (nganhInfo.length < 3) {
+                    // Bỏ qua dòng không hợp lệ không chứa đủ các phần tử cần thiết
+                    continue;
+                }
                 String maNganh = nganhInfo[0].trim();
                 String tenNganh = nganhInfo[1].trim();
                 String maKhoa = nganhInfo[2].trim();
@@ -88,6 +91,28 @@ public class FakeData {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static List<Nganh> layNganh_Test(){
+        List<Nganh> nganhs = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\data\\Nganh.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] nganhInfo = line.split(",");
+                if (nganhInfo.length < 3) {
+                    // Bỏ qua dòng không hợp lệ không chứa đủ các phần tử cần thiết
+                    continue;
+                }
+                String maNganh = nganhInfo[0].trim();
+                String tenNganh = nganhInfo[1].trim();
+                String maKhoa = nganhInfo[2].trim();
+                
+                Nganh nganh = new Nganh(maNganh, tenNganh, maKhoa);
+                nganhs.add(nganh);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return nganhs;
     }
     
     public static void layHocPhan(){
@@ -128,6 +153,10 @@ public class FakeData {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(",");
+                if (tokens.length < 6) {
+                    // Bỏ qua dòng không hợp lệ không chứa đủ các phần tử cần thiết
+                    continue;
+                }
                 TTDonCaNhan don = new TTDonCaNhan(tokens[0], tokens[1], tokens[2], tokens[3],tokens[4], tokens[5]);
                 listDonCaNhan.add(don);
             }
@@ -258,9 +287,9 @@ public class FakeData {
     }
 
     public static void main(String[] args) {
-        layKhoa();
-        listKhoa.forEach(System.out::println);
-        layHocPhan();
+//        layKhoa();
+//        listKhoa.forEach(System.out::println);
+//        layHocPhan();
 //        listHocPhan.forEach(System.out::println);
 //        layDonDeXuat();
 //        listDonDeXuat.forEach(System.out::println);
@@ -269,8 +298,8 @@ public class FakeData {
 //        layDSDonTapThe();
 //        listDonTapThe.forEach(System.out::println);
 //        layNganh();
-//        listNganh.forEach(System.out::println);
+        listNganh.forEach(System.out::println);
 
-        listDonCaNhan.forEach(System.out::println);
+//        listDonCaNhan.forEach(System.out::println);
     }
 }

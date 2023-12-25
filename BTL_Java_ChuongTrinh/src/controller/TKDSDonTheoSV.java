@@ -19,11 +19,11 @@ import model.TTDonDangKy;
  * @author Admin
  */
 public class TKDSDonTheoSV {
-    public static List<TTDonDangKy> listDon = new ArrayList<>(FakeData.listDonDangKy);
+    public static List<TTDonDangKy> listDon = FakeData.listDonDangKy;
     static Map<String, List<TTDonDangKy>> mapDon = new HashMap<>();
     
     static {
-        tongHopTheoSV();
+//        tongHopTheoSV();
     }
     
     public static void tongHopTheoSV(){
@@ -34,7 +34,7 @@ public class TKDSDonTheoSV {
             }
             mapDon.get(maSV).add(don);
         }
-}
+    }
 
     public static List<TTDonDangKy> dsDonTheoMaSV(String masv){
         List<TTDonDangKy> dons = new ArrayList<>();
@@ -50,12 +50,23 @@ public class TKDSDonTheoSV {
         }
         return dons;
     }
-    
+    public static void reloaded() {
+        listDon.clear();
+        FakeData.listDonDangKy.clear();
+        FakeData.listDonCaNhan.clear();
+        FakeData.listDonTapThe.clear();
+        FakeData.layDSDonCaNhan();
+        FakeData.layDSDonTapThe();
+        FakeData.taoDSDonDangKy();
+        listDon = FakeData.listDonDangKy;
+        mapDon.clear();
+        tongHopTheoSV();
+    }
+
     public static void main(String[] args) {
+        listDonDangKy.forEach(System.out::println);
+            
         FakeData.listDonDangKy.forEach(System.out::println);
-//        tongHopTheoSV();
-        System.out.println("Kết quả tìm kiếm");
-        dsDonTheoMaSV("SV001").forEach(System.out::println);
     }
 }
 

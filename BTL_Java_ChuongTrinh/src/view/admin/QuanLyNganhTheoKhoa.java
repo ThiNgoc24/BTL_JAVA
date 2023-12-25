@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import model.FakeData;
 import model.HocPhan;
 import model.Nganh;
+import model.SinhVienTapThe;
 
 /**
  *
@@ -23,7 +24,8 @@ import model.Nganh;
  */
 public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
     
-    List<Nganh> listNganh = new ArrayList<>(FakeData.listNganh);
+//    List<Nganh> listNganh = FakeData.listNganh;
+    List<Nganh> listNganh;
     DefaultTableModel tableModel;
     private String maKhoa;
     private String pathNganh = "src\\data\\Nganh.txt";
@@ -38,30 +40,32 @@ public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
         initComponents();
         this.setTitle("Quản lý ngành");
         tbl_Nganh.setDefaultEditor(Object.class, null);
-        loadData();
+//        loadData();
+        viewTable();
         HienThi();
     }
     
-    private void loadData() {
-        List<Nganh> nganhs = dsNganhTheoKhoa();
-        tableModel = new DefaultTableModel();
-        tableModel.addColumn("Mã ngành");
-        tableModel.addColumn("Tên ngành");
-        tableModel.addColumn("Số học phần");
-        
-        for (Nganh nganh : nganhs) {
-            Object[] row = {
-                nganh.getMaNganh(),
-                nganh.getTenNganh(),
-                nganh.getSoLopHP()
-            };
-            tableModel.addRow(row);
-        }
-        
-        tbl_Nganh.setModel(tableModel);
-    }
+//    private void loadData() {
+//        List<Nganh> nganhs = dsNganhTheoKhoa();
+//        tableModel = new DefaultTableModel();
+//        tableModel.addColumn("Mã ngành");
+//        tableModel.addColumn("Tên ngành");
+//        tableModel.addColumn("Số học phần");
+//        
+//        for (Nganh nganh : nganhs) {
+//            Object[] row = {
+//                nganh.getMaNganh(),
+//                nganh.getTenNganh(),
+//                nganh.getSoLopHP()
+//            };
+//            tableModel.addRow(row);
+//        }
+//        
+//        tbl_Nganh.setModel(tableModel);
+//    }
     
     public List<Nganh> dsNganhTheoKhoa() {
+        listNganh = FakeData.layNganh_Test();
         List<Nganh> nganhs = new ArrayList<>();
         for (Nganh nganh : listNganh) {
             if (nganh.getMaKhoa().equals(maKhoa)) {
@@ -108,6 +112,25 @@ public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
     public Nganh getNganh() {
         return this.nganh;
     }
+    
+    public void viewTable() {
+        DefaultTableModel model = (DefaultTableModel) this.tbl_Nganh.getModel();
+        model.setRowCount(0);
+
+        List<Nganh> nganhs = dsNganhTheoKhoa();
+        for (Nganh nganh : nganhs) {
+            model.addRow(new Object[]{nganh.getMaNganh(),
+                nganh.getTenNganh(),
+                nganh.getSoLopHP()});
+        }
+    }
+//    private void reloadNganh(){
+//        listNganh.clear();
+//        FakeData.listNganh.clear();
+//        FakeData.layNganh();
+//        listNganh = FakeData.listNganh;
+//        loadData();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -262,16 +285,16 @@ public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
                 // Thống kê số học phần theo học khoa và truyền mã khoa
                 QuanLyDSLopHocPhan lopHPTheoNganh = new QuanLyDSLopHocPhan(this, true, maNganh, this.maKhoa);
                 lopHPTheoNganh.setVisible(true);
-                HocPhan hocPhan = lopHPTheoNganh.getHocPhan();
-                if (hocPhan != null) {
-                    for (Nganh ng : listNganh) {
-                        if (ng.getMaNganh().equals(maNganh)) {
-                            ng.setSoLopHP(ng.getSoLopHP() + 1);
-                            break;
-                        }
-                    }
-                }
-                loadData();
+//                HocPhan hocPhan = lopHPTheoNganh.getHocPhan();
+//                if (hocPhan != null) {
+//                    for (Nganh ng : listNganh) {
+//                        if (ng.getMaNganh().equals(maNganh)) {
+//                            ng.setSoLopHP(ng.getSoLopHP() + 1);
+//                            break;
+//                        }
+//                    }
+//                }
+                //reloadNganh();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một ngành để xem chi tiết!");
@@ -299,7 +322,7 @@ public class QuanLyNganhTheoKhoa extends javax.swing.JDialog {
         this.nganh = new Nganh(maNganh, tenNganh, maKhoa);
         listNganh.add(nganh);
         saveFileNganh();
-        
+        viewTable();
         txtMaNganh.setText("");
         txtTenNganh.setText("");
     }//GEN-LAST:event_btnThemActionPerformed

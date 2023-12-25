@@ -5,6 +5,7 @@
 package view.sinhvien;
 
 import controller.DonTapTheController;
+import controller.TKDSDonTheoSV;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,10 +18,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.FakeData;
-import model.FakeData1;
 import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
 import model.TTDonCaNhan;
+import model.TTDonDangKy;
 import model.TTDonTapThe;
 
 /**
@@ -387,15 +388,22 @@ public class DonTapThe extends javax.swing.JDialog {
 
                     // Gọi phương thức lưu trữ trong model
                     DonTapTheController.saveDonTapTheInfo(donTapThe);
-
+                    FakeData.listDonTapThe.add(donTapThe);
+                    dsSV.clear();
                     // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
                     this.showRegistrationSuccessMessage();
                     reloadForm();
+                    
+                    
+                    String maSVDN = FakeData.maSVDN;
+                    TKDSDonTheoSV.listDon = FakeData.listDonDangKy;
+                    
                 } else {
-                    throw new Exception();
+                    JOptionPane.showMessageDialog(this, "Đơn chứa sinh viên đã đăng ký mở lớp học phần này rồi.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Đơn chứa sinh viên đã đăng ký mở lớp học phần này rồi.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Vui lòng thêm danh sách sinh viên!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
 
         }
@@ -522,8 +530,9 @@ public class DonTapThe extends javax.swing.JDialog {
         this.maDonTapThe = maDonTapThe;
     }
 
-    public boolean checkDonHopLe() {
+    public boolean checkDonHopLe() throws Exception{
         String maSV = FakeData.maSVDN;
+        if(dsSV.size() == 0) throw new Exception();
         String maHP = txtMaHP.getText();
         List<SinhVienTapThe> svtt = this.getDsSV();
 
@@ -535,7 +544,6 @@ public class DonTapThe extends javax.swing.JDialog {
 
         // Kiểm tra đơn tập thể đã tồn tại
         List<TTDonTapThe> listDTT = FakeData.listDonTapThe;
-        listDTT.forEach(System.out::println);
         for (TTDonTapThe x : listDTT) {
             if (x.getMaSV().equals(maSV) && x.getMaHP().equals(maHP)) {
                 return false; // Đơn tập thể đã tồn tại
