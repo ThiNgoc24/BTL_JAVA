@@ -387,7 +387,8 @@ public class DonTapThe extends javax.swing.JDialog {
 
                     // Gọi phương thức lưu trữ trong model
                     DonTapTheController.saveDonTapTheInfo(donTapThe);
-
+                    FakeData.listDonTapThe.add(donTapThe);
+                    dsSV.clear();
                     // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
                     this.showRegistrationSuccessMessage();
                     reloadForm();
@@ -524,6 +525,7 @@ public class DonTapThe extends javax.swing.JDialog {
 
     public boolean checkDonHopLe() {
         String maSV = FakeData.maSVDN;
+        System.out.println("maSV="  + maSV);
         String maHP = txtMaHP.getText();
         List<SinhVienTapThe> svtt = this.getDsSV();
 
