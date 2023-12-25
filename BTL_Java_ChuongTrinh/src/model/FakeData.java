@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import static model.FakeData1.maSVDN;
 
 /**
  *
@@ -79,7 +78,10 @@ public class FakeData {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] nganhInfo = line.split(",");
-                
+                if (nganhInfo.length < 3) {
+                    // Bỏ qua dòng không hợp lệ không chứa đủ các phần tử cần thiết
+                    continue;
+                }
                 String maNganh = nganhInfo[0].trim();
                 String tenNganh = nganhInfo[1].trim();
                 String maKhoa = nganhInfo[2].trim();
@@ -264,9 +266,9 @@ public class FakeData {
     }
 
     public static void main(String[] args) {
-        layKhoa();
-        listKhoa.forEach(System.out::println);
-        layHocPhan();
+//        layKhoa();
+//        listKhoa.forEach(System.out::println);
+//        layHocPhan();
 //        listHocPhan.forEach(System.out::println);
 //        layDonDeXuat();
 //        listDonDeXuat.forEach(System.out::println);
@@ -275,8 +277,8 @@ public class FakeData {
 //        layDSDonTapThe();
 //        listDonTapThe.forEach(System.out::println);
 //        layNganh();
-//        listNganh.forEach(System.out::println);
+        listNganh.forEach(System.out::println);
 
-        listDonCaNhan.forEach(System.out::println);
+//        listDonCaNhan.forEach(System.out::println);
     }
 }

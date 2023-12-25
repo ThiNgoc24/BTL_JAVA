@@ -7,7 +7,6 @@ package view.sinhvien;
 import controller.TKDSDonTheoSV;
 import java.util.List;
 import model.FakeData;
-import model.FakeData1;
 import model.TTDonDangKy;
 import view.dangnhap.DangNhap;
 import view.dangnhap.DoiMatKhau;
@@ -24,7 +23,7 @@ public class TrangChuSinhVien extends javax.swing.JFrame {
     public TrangChuSinhVien() {
         initComponents();
     }
-    private String maSV = FakeData1.maSVDN;
+    private String maSV = FakeData.maSVDN;
 
     /**
      * This method is called from within the constructor to initialize the form.

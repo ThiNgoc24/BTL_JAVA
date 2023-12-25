@@ -1,3 +1,5 @@
-DTT004,SV002,IT6029,Phát triển ứng dụng trên thiết bị di động,sdf,1,1,1,2,2,2,Không có lớp nào được mở
-DTT006,SV002,IT6012,Hệ quản trị cơ sở dữ liệu,học,1,1,1,2,2,2,Chưa duyệt
-DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Không có lớp nào được mở
+DTT002,SV001,IT6011,Nhập môn về kỹ thuật,Học vượt,SV003,Nguyễn Văn Mạnh,Hệ thống thông tin,SV004,Nguyễn Hoài Sơn,Công nghệ thông tin,SV007,Nguyễn Thị Phương,Kỹ thuật phần mềm,Chưa duyệt
+DTT003,SV002,IT6011,Nhập môn về kỹ thuật,Học vượt,SV007,Nguyễn Phương Nam,Hệ thống thông tin,Chưa duyệt
+DTT004,SV002,IT6006,Cơ sở dữ liệu,Học cải thiện,SV006,Nguyễn Hoài Phương,Công nghệ thông tin,Chưa duyệt
+
+
