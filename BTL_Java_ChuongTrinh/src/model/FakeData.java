@@ -130,6 +130,10 @@ public class FakeData {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(",");
+                if (tokens.length < 6) {
+                    // Bỏ qua dòng không hợp lệ không chứa đủ các phần tử cần thiết
+                    continue;
+                }
                 TTDonCaNhan don = new TTDonCaNhan(tokens[0], tokens[1], tokens[2], tokens[3],tokens[4], tokens[5]);
                 listDonCaNhan.add(don);
             }

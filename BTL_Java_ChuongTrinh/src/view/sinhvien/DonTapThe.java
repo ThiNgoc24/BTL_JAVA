@@ -5,6 +5,7 @@
 package view.sinhvien;
 
 import controller.DonTapTheController;
+import controller.TKDSDonTheoSV;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import model.FakeData1;
 import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
 import model.TTDonCaNhan;
+import model.TTDonDangKy;
 import model.TTDonTapThe;
 
 /**
@@ -391,6 +393,11 @@ public class DonTapThe extends javax.swing.JDialog {
                     // Hiển thị thông báo đăng ký thành công hoặc xử lý khác tùy ý
                     this.showRegistrationSuccessMessage();
                     reloadForm();
+                    
+                    
+                    String maSVDN = FakeData.maSVDN;
+                    TKDSDonTheoSV.listDon = FakeData.listDonDangKy;
+                    
                 } else {
                     throw new Exception();
                 }
