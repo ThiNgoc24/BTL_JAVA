@@ -3,3 +3,4 @@ DTT005,SV003,IT6039,Thiết kế Web,học vượt,Chưa duyệt
 DTT006,SV002,IT6011,Nhập môn về kỹ thuật,học ,Có 1 lớp được mở
 DTT003,SV001,IT6039,Thiết kế Web,học,a,a,a,Không có lớp nào được mở
 DTT004,SV001,IT6011,Nhập môn về kỹ thuật,học cải thiện,Chưa duyệt
+DTT005,ADMIN001,IT6014,Kiến trúc máy tính,học vượt,Chưa duyệt

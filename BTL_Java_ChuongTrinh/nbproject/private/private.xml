@@ -3,30 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/DonDKController.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/DonTapTheController.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/TKDSDonTheoSV.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/admin/TrangChuAdmin.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/DangNhapController.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/dangnhap/DangNhap.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/admin/ThongKeHocPhanTheoKhoa.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/IDonDK.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/admin/ThongKeDeXuat.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/DuyetDon.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/admin/TKDonDKTheoHocPhan.java</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/data/DonDeXuat.txt</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/data/DSDonCaNhan.txt</file>
             <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/data/TaiKhoanSV.txt</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/LayTTSVQuaMaSV.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/admin/ThongKe.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/TKDonDeXuatController.java</file>
-            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/controller/TKDSDonDKTheoMaHP.java</file>
-=======
-            <file>file:/D:/Tai%20lieu/BTL_Java/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/admin/ThongKeDeXuat.java</file>
-            <file>file:/D:/Tai%20lieu/BTL_Java/BTL_JAVA/BTL_Java_ChuongTrinh/src/data/DonDeXuat.txt</file>
-            <file>file:/D:/Tai%20lieu/BTL_Java/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/sinhvien/DonCaNhan.java</file>
-            <file>file:/D:/Tai%20lieu/BTL_Java/BTL_JAVA/BTL_Java_ChuongTrinh/src/model/DonDeXuat.java</file>
-            <file>file:/D:/Tai%20lieu/BTL_Java/BTL_JAVA/BTL_Java_ChuongTrinh/src/model/FakeData.java</file>
->>>>>>> c0822433b29b3163d46e9ed438a42d3e78d8fbcf
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/sinhvien/TrangChuSinhVien.java</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/data/DSDonDK.txt</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/dangnhap/DangNhap.java</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/sinhvien/DonTapThe.java</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/data/DSDonTapThe.txt</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/main/Main.java</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/model/FakeData.java</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/view/admin/ThongKeHocPhanTheoKhoa.java</file>
+            <file>file:/D:/Java%20HaUI/BTL_JAVA/BTL_Java_ChuongTrinh/src/data/DanhSachDonDK.txt</file>
         </group>
     </open-files>
 </project-private>

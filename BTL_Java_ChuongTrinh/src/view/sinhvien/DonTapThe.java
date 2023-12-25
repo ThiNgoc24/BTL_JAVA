@@ -17,7 +17,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.FakeData;
-import model.FakeData1;
 import model.HocPhanDangKyCuaKhoa;
 import model.SinhVienTapThe;
 import model.TTDonCaNhan;
