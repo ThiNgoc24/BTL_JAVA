@@ -1,0 +1,8 @@
+DCN008,SV002,IT6017,Lập trình .NET,học lại,Chưa duyệt
+DCN007,SV001,IT6017,Lập trình .NET,học lại,Chưa duyệt
+DCN004,SV001,IT6006,Cơ sở dữ liệu,hoc,Chưa duyệt
+DCN003,SV002,IT6030,Phần mềm mã nguồn mở,222,Chưa duyệt
+DCN006,SV001,IT6014,Kiến trúc máy tính,học vượt,Chưa duyệt
+DCN005,SV001,IT6039,Thiết kế Web,hoc,Có 1 lớp được mở
+DCN002,ADMIN001,IT6017,Lập trình .NET,hhhh,Chưa duyệt
+DCN001,SV002,IT6034,Tích hợp hệ thống phần mềm,h,Chưa duyệt

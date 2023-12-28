@@ -1,0 +1,5 @@
+DTT004,ADMIN001,IT6039,Thiết kế Web,yy,8,8,Hệ thống thông tin,9,9,Khoa học máy tính,90,90,Hệ thống thông tin,Chưa duyệt
+DTT005,SV002,IT6061,Hệ quản trị doanh nghiệp điện tử,222,1,1,Hệ thống thông tin,2,2,Hệ thống thông tin,3,3,Hệ thống thông tin,Chưa duyệt
+DTT001,SV002,IT6006,Cơ sở dữ liệu,Học vượt,SV002,Nguyễn Văn Mạnh,Chưa duyệt,Chưa duyệt
+DTT002,SV002,IT6055,Thực tập cơ sở ngành,Học cải thiện,SV003,Nguyễn Hồng Phúc,Hệ thống thông tin,Chưa duyệt
+DTT003,ADMIN001,IT6006,Cơ sở dữ liệu,333,1,1,Hệ thống thông tin,2,2,Hệ thống thông tin,3,3,Hệ thống thông tin,4,4,Hệ thống thông tin,Chưa duyệt
